@@ -1,0 +1,13 @@
+spring:
+  application:
+    name: energyCertificates
+  datasource:
+    url: jdbc:mariadb://localhost:3306/energy_certificates
+    username: root
+    password: root
+  jpa:
+    show-sql: true
+    hibernate:
+      ddl-auto: create
+  liquibase:
+    change-log: classpath:db/changelog/master.xml
