@@ -1,13 +1,14 @@
 package com.example.energyCertificates.Flat.Enums;
 
-public enum FloorNumberInTheFlat {
+public enum FloorNumberInTheBuilding {
     ONE_FLOOR("Jednopoziomowe"),
     TWO_FLOOR("Dwupoziomowe"),
-    THREE_FLOOR("Trzypoziomowe");
+    THREE_FLOOR("Trzypoziomowe"),
+    FOUR_FLOOR("Czteropoziomowe");
 
     private String nameInPolish;
 
-    FloorNumberInTheFlat(String nameInPolish) {
+    FloorNumberInTheBuilding(String nameInPolish) {
         this.nameInPolish = nameInPolish;
     }
 

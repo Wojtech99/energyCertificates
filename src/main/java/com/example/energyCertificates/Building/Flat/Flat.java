@@ -1,15 +1,17 @@
 package com.example.energyCertificates.Flat;
 
+import com.example.energyCertificates.Data.Data;
 import com.example.energyCertificates.Flat.Enums.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
+import java.sql.Date;
 import java.util.List;
 
 @Entity
 public class Flat {
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     //Basic data of the flat
     private String street;
@@ -20,10 +22,11 @@ public class Flat {
     private double usableArea;
     private double heightOfFlat;
     private int yearOfCommissioningOfTheBuilding;
-    private FloorNumberInTheFlat floorNumberInTheFlat;
+    private FloorNumberInTheBuilding floorNumberInTheBuilding;
     private boolean TheBuildingIsAfterThermalModernization;
     private int lastBuildingThermalModernizationYear;
-    private List<ThermalModernizationScope> thermalModernizationScopeList;
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<ThermalModernizationScopeClass> thermalModernizationScopeList;
     private boolean flatIsAtTheGroundFloor;
     private CeilingBelowTheFlatType ceilingBelowTheFlatType;
     private boolean flatIsAtTheLastFloor;
@@ -32,7 +35,7 @@ public class Flat {
     private ExternalMaterialWallsType externalMaterialWallsType;
     private int externalMaterialWallsThicknessInCentimeters;
     private ExternalIsolationWallsType externalIsolationWallsType;
-    private int externalIsolationWallsThicknessInCentimeters;
+    private int externalIsolationWallsThicknessInCm;
     private ExternalWallLayout externalWallLayout;
     //Windows
     private WindowFrameMaterial windowFrameMaterial;
@@ -42,8 +45,13 @@ public class Flat {
     private RadiatorsType radiatorsType;
     private HeatingOfWaterType heatingOfWaterType;
     private VentilationType ventilationType;
-    private List<String> attachments;
+    //Attachments
+    @OneToMany(fetch = FetchType.EAGER)
+    private List<Data> attachments;
     private String additionalInformation;
+    //Other
+    private Date sendFormDate;
+    private boolean certificationIsCompleted;
 
 
 }
