@@ -1,4 +1,4 @@
-package com.example.energyCertificates.Flat;
+package com.example.energyCertificates.Building.Flat;
 
 import jakarta.persistence.*;
 

@@ -1,4 +1,4 @@
-package com.example.energyCertificates.Flat.Enums;
+package com.example.energyCertificates.Building.Enums;
 
 public enum CeilingBelowTheFlatType {
     CEILING_OVER_UNHEATED_BASEMENT("Strop nad nieogrzewaną piwnicą"),

@@ -1,4 +1,4 @@
-package com.example.energyCertificates.Building.Flat.Enums;
+package com.example.energyCertificates.Building.Enums;
 
 public enum NumberOfGlasses {
     SINGLE_CHAMBER("Jednokomorowe"),

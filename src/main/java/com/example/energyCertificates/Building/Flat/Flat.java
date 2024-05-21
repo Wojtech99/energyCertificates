@@ -1,7 +1,8 @@
-package com.example.energyCertificates.Flat;
+package com.example.energyCertificates.Building.Flat;
 
 import com.example.energyCertificates.Data.Data;
-import com.example.energyCertificates.Flat.Enums.*;
+import com.example.energyCertificates.Building.Enums.*;
+import com.example.energyCertificates.Building.Flat.Enums.*;
 
 import jakarta.persistence.*;
 

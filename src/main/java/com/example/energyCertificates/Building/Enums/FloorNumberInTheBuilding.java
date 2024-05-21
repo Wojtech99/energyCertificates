@@ -1,4 +1,4 @@
-package com.example.energyCertificates.Flat.Enums;
+package com.example.energyCertificates.Building.Enums;
 
 public enum FloorNumberInTheBuilding {
     ONE_FLOOR("Jednopoziomowe"),

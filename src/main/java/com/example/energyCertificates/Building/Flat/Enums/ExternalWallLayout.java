@@ -1,4 +1,4 @@
-package com.example.energyCertificates.Flat.Enums;
+package com.example.energyCertificates.Building.Flat.Enums;
 
 public enum ExternalWallLayout {
     ONE_SIDED("Jednostronne"),
