@@ -1,4 +1,4 @@
-package com.example.energyCertificates.Building.House.Enums;
+package com.example.energyCertificates.House.Enums;
 
 public enum EntranceDoorType {
     PVC("PVC"),

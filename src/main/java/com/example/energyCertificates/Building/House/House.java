@@ -1,7 +1,3 @@
-package com.example.energyCertificates.Building.House;
-
-import com.example.energyCertificates.Building.Enums.*;
-import com.example.energyCertificates.Building.House.Enums.EntranceDoorType;
 import com.example.energyCertificates.Data.Data;
 import jakarta.persistence.*;
 
@@ -64,10 +60,7 @@ public class House {
     private int externalMaterialWallsThicknessInCentimeters;
     private ExternalIsolationWallsType externalIsolationWallsType;
     private int externalIsolationWallsThicknessInCentimeters;
-    @OneToMany
-    private List<HouseWall> hauseWallList;
     private boolean areThereAnyUnheatedRoomsInHouse;
-    @OneToMany
     private List<UnheatedRoom> unheatedRoomList;
     private boolean isHouseBuildCorrectly;
     private String HouseNotBuildCorrectlyInformation;
