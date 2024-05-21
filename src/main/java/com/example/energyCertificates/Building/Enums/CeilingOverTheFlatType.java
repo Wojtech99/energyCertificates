@@ -1,4 +1,4 @@
-package com.example.energyCertificates.Flat.Enums;
+package com.example.energyCertificates.Building.Enums;
 
 public enum CeilingOverTheFlatType {
     THE_CEILING_IS_UNDER_AN_UNHEATED_ATTIC("Strop jest pod nieogrzewanym poddaszem"),

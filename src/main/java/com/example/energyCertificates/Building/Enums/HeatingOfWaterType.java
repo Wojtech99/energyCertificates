@@ -1,4 +1,4 @@
-package com.example.energyCertificates.Flat.Enums;
+package com.example.energyCertificates.Building.Enums;
 
 public enum HeatingOfWaterType {
     DISTRICT_HEATING("Ogrzewanie miejskie"),

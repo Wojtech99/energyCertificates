@@ -1,8 +1,8 @@
-package com.example.energyCertificates.House;
+package com.example.energyCertificates.Building.House;
 
+import com.example.energyCertificates.Building.Enums.*;
+import com.example.energyCertificates.Building.House.Enums.EntranceDoorType;
 import com.example.energyCertificates.Data.Data;
-import com.example.energyCertificates.Flat.Enums.*;
-import com.example.energyCertificates.House.Enums.EntranceDoorType;
 import jakarta.persistence.*;
 
 import java.sql.Date;
@@ -64,8 +64,10 @@ public class House {
     private int externalMaterialWallsThicknessInCentimeters;
     private ExternalIsolationWallsType externalIsolationWallsType;
     private int externalIsolationWallsThicknessInCentimeters;
-    private List<HauseWall> hauseWallList;
+    @OneToMany
+    private List<HouseWall> hauseWallList;
     private boolean areThereAnyUnheatedRoomsInHouse;
+    @OneToMany
     private List<UnheatedRoom> unheatedRoomList;
     private boolean isHouseBuildCorrectly;
     private String HouseNotBuildCorrectlyInformation;
@@ -80,7 +82,7 @@ public class House {
     //Other
     private Date sendFormDate;
     private boolean certificationIsCompleted;
- 
+
 
 
 }
