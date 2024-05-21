@@ -27,12 +27,18 @@ public class Client {
 
     public Client() {}
 
-    public Client(String firstName, String lastName, String email, int phoneNumber, String pdfFile) {
+    public Client(String firstName, String lastName, String email, int phoneNumber, String pdfFile, String companyName, int companyNumber, String companyAddress, boolean dataAreGenuineStatement, boolean clientConfirmsCompanyTerms, boolean orderIsPaid) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.pdfFile = pdfFile;
+        this.companyName = companyName;
+        CompanyNumber = companyNumber;
+        this.companyAddress = companyAddress;
+        this.dataAreGenuineStatement = dataAreGenuineStatement;
+        this.clientConfirmsCompanyTerms = clientConfirmsCompanyTerms;
+        this.orderIsPaid = orderIsPaid;
     }
 
     public Long getId() {
