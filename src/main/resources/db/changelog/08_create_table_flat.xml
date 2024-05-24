@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+        https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <changeSet id="08" author="Wojciech">
+        <createTable tableName="flat">
+            <column name="id" type="BIGINT" autoIncrement="true">
+                <constraints nullable="false" primaryKey="true"/>
+            </column>
+
+            <column name="street" type="VARCHAR(32)"/>
+            <column name="house_number" type="integer"/>
+            <column name="flat_number" type="integer"/>
+            <column name="postal_code" type="varchar(8)"/>
+            <column name="city" type="VARCHAR(32)"/>
+            <column name="usable_area" type="double(11, 2)"/>
+            <column name="height_of_flat" type="double(11, 2)"/>
+            <column name="year_of_commissioning_of_the_building" type="integer"/>
+            <column name="floor_number_in_building" type="smallint"/>
+            <column name="the_building_is_after_thermal_modernization" type="boolean"/>
+            <column name="last_building_thermal_modernization_year" type="integer"/>
+            <column name="flat_is_at_ground_floor" type="boolean"/>
+            <column name="ceiling_below_the_flat_type" type="smallint"/>
+            <column name="flat_is_at_last_floor" type="boolean"/>
+            <column name="ceiling_over_the_flat_type" type="smallint"/>
+
+            <column name="external_material_walls_type" type="smallint"/>
+            <column name="external_material_walls_thickness_in_centimeters" type="integer"/>
+            <column name="external_isolation_walls_type" type="smallint"/>
+            <column name="external_isolation_walls_thickness_in_cm" type="integer"/>
+            <column name="external_wall_layout" type="smallint"/>
+
+            <column name="window_frame_material" type="smallint"/>
+            <column name="number_of_glasses" type="smallint"/>
+
+            <column name="heating_type" type="smallint"/>
+            <column name="radiators_type" type="smallint"/>
+            <column name="heating_of_water_type" type="smallint"/>
+            <column name="ventilation_type" type="smallint"/>
+
+            <column name="additional_information" type="VARCHAR(32)"/>
+
+            <column name="send_form_date" type="date"/>
+            <column name="certification_is_completed" type="boolean"/>
+
+
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

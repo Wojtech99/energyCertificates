@@ -12,6 +12,8 @@ public class Data {
     private Long id;
     private String name;
 
+    public Data() {}
+
     public Data(String name) {
         this.name = name;
     }

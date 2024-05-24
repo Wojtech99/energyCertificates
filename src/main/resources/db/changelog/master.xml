@@ -4,5 +4,13 @@
         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
         xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
         https://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.2.xsd">
+    <include file="01_create_table_user.xml" relativeToChangelogFile="true" />
+    <include file="02_create_table_data.xml" relativeToChangelogFile="true" />
+    <include file="03_create_table_client.xml" relativeToChangelogFile="true" />
+    <include file="04_create_table_unheated_room.xml" relativeToChangelogFile="true" />
+    <include file="05_create_table_house_wall.xml" relativeToChangelogFile="true" />
+    <include file="06_create_table_house.xml" relativeToChangelogFile="true" />
+    <include file="07_create_table_thermal_modernization_scope_class.xml" relativeToChangelogFile="true" />
+    <include file="08_create_table_flat.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

@@ -23,14 +23,14 @@ public class Flat {
     private double usableArea;
     private double heightOfFlat;
     private int yearOfCommissioningOfTheBuilding;
-    private FloorNumberInTheBuilding floorNumberInTheBuilding;
+    private FloorNumberInTheBuilding floorNumberInBuilding;
     private boolean TheBuildingIsAfterThermalModernization;
     private int lastBuildingThermalModernizationYear;
     @OneToMany(fetch = FetchType.EAGER)
     private List<ThermalModernizationScopeClass> thermalModernizationScopeList;
-    private boolean flatIsAtTheGroundFloor;
+    private boolean flatIsAtGroundFloor;
     private CeilingBelowTheFlatType ceilingBelowTheFlatType;
-    private boolean flatIsAtTheLastFloor;
+    private boolean flatIsAtLastFloor;
     private CeilingOverTheFlatType ceilingOverTheFlatType;
     //walls
     private ExternalMaterialWallsType externalMaterialWallsType;
