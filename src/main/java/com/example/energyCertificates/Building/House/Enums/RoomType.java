@@ -1,4 +1,5 @@
 package com.example.energyCertificates.Building.House.Enums;
+
 public enum RoomType {
     GARAGE("Garaż"),
     ATTIC("Poddasze"),

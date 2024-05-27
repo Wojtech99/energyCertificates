@@ -1,5 +1,6 @@
 package com.example.energyCertificates.Building.Flat;
 
+import com.example.energyCertificates.Building.Flat.Enums.ThermalModernizationScope;
 import jakarta.persistence.*;
 
 @Entity
@@ -7,11 +8,11 @@ public class ThermalModernizationScopeClass {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int enumNumber;
+    private ThermalModernizationScope enumNumber;
 
     public ThermalModernizationScopeClass() {}
 
-    public ThermalModernizationScopeClass(int enumNumber) {
+    public ThermalModernizationScopeClass(ThermalModernizationScope enumNumber) {
         this.enumNumber = enumNumber;
     }
 
@@ -23,11 +24,11 @@ public class ThermalModernizationScopeClass {
         this.id = id;
     }
 
-    public int getEnumNumber() {
+    public ThermalModernizationScope getEnumNumber() {
         return enumNumber;
     }
 
-    public void setEnumNumber(int enumNumber) {
+    public void setEnumNumber(ThermalModernizationScope enumNumber) {
         this.enumNumber = enumNumber;
     }
 }

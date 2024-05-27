@@ -11,4 +11,3 @@ spring:
       ddl-auto: update
   liquibase:
     change-log: classpath:db/changelog/master.xml
-

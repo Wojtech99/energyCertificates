@@ -1,5 +1,6 @@
 package com.example.energyCertificates.Building.House;
 
+import com.example.energyCertificates.Building.House.Enums.WorldParts;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,12 +11,12 @@ public class HouseWall {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int worldPartEnumNumber;
+    private WorldParts worldPartEnumNumber;
     private double totalLengthOfExternalWallInM;
 
     public HouseWall() {}
 
-    public HouseWall(int worldPartEnumNumber, double totalLengthOfExternalWallInM) {
+    public HouseWall(WorldParts worldPartEnumNumber, double totalLengthOfExternalWallInM) {
         this.worldPartEnumNumber = worldPartEnumNumber;
         this.totalLengthOfExternalWallInM = totalLengthOfExternalWallInM;
     }
@@ -28,11 +29,11 @@ public class HouseWall {
         this.id = id;
     }
 
-    public int getWorldPartEnumNumber() {
+    public WorldParts getWorldPartEnumNumber() {
         return worldPartEnumNumber;
     }
 
-    public void setWorldPartEnumNumber(int worldPartEnumNumber) {
+    public void setWorldPartEnumNumber(WorldParts worldPartEnumNumber) {
         this.worldPartEnumNumber = worldPartEnumNumber;
     }
 

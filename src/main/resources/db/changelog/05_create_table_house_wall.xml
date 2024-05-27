@@ -9,7 +9,7 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="world_part_enum_number" type="integer"/>
+            <column name="world_part_enum_number" type="smallint"/>
             <column name="total_length_of_external_wall_inm" type="double(11, 2)"/>
         </createTable>
     </changeSet>

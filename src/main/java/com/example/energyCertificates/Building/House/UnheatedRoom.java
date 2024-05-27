@@ -1,5 +1,6 @@
 package com.example.energyCertificates.Building.House;
 
+import com.example.energyCertificates.Building.House.Enums.RoomType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -10,12 +11,12 @@ public class UnheatedRoom {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int roomType;
+    private RoomType roomType;
     private double areaInSquareM;
 
     public UnheatedRoom() {}
 
-    public UnheatedRoom(int roomType, double area) {
+    public UnheatedRoom(RoomType roomType, double area) {
         this.roomType = roomType;
         this.areaInSquareM = area;
     }
@@ -28,11 +29,11 @@ public class UnheatedRoom {
         this.id = id;
     }
 
-    public int getRoomType() {
+    public RoomType getRoomType() {
         return roomType;
     }
 
-    public void setRoomType(int roomType) {
+    public void setRoomType(RoomType roomType) {
         this.roomType = roomType;
     }
 
