@@ -8,7 +8,7 @@ import com.example.energyCertificates.Building.House.HouseWall;
 import com.example.energyCertificates.Building.House.UnheatedRoom;
 import com.example.energyCertificates.Data.Data;
 import com.example.energyCertificates.Data.DataMapper;
-import com.example.energyCertificates.Data.Dtoes.DataDto;
+import com.example.energyCertificates.Data.DataDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

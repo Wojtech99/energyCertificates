@@ -6,7 +6,7 @@ import com.example.energyCertificates.Building.Flat.Flat;
 import com.example.energyCertificates.Building.Flat.ThermalModernizationScopeClass;
 import com.example.energyCertificates.Data.Data;
 import com.example.energyCertificates.Data.DataMapper;
-import com.example.energyCertificates.Data.Dtoes.DataDto;
+import com.example.energyCertificates.Data.DataDto;
 import org.springframework.stereotype.Component;
 
 import java.util.List;

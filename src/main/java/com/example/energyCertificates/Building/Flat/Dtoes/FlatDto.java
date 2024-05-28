@@ -2,7 +2,7 @@ package com.example.energyCertificates.Building.Flat.Dtoes;
 
 import com.example.energyCertificates.Building.Enums.*;
 import com.example.energyCertificates.Building.Flat.Enums.ExternalWallLayout;
-import com.example.energyCertificates.Data.Dtoes.DataDto;
+import com.example.energyCertificates.Data.DataDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

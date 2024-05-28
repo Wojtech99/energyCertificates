@@ -1,6 +1,5 @@
 package com.example.energyCertificates.Data;
 
-import com.example.energyCertificates.Data.Dtoes.DataDto;
 import org.springframework.stereotype.Component;
 
 @Component

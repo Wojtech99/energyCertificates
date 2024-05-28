@@ -1,7 +1,5 @@
 package com.example.energyCertificates.Client;
 
-import com.example.energyCertificates.Client.Dtoes.ClientDto;
-
 public class ClientMapper {
     public static Client map(ClientDto clientDto) {
         Client client = new Client(

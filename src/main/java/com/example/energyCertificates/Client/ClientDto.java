@@ -1,4 +1,4 @@
-package com.example.energyCertificates.Client.Dtoes;
+package com.example.energyCertificates.Client;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;

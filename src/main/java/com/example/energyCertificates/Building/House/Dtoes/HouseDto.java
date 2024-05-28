@@ -2,7 +2,7 @@ package com.example.energyCertificates.Building.House.Dtoes;
 
 import com.example.energyCertificates.Building.Enums.*;
 import com.example.energyCertificates.Building.House.Enums.EntranceDoorType;
-import com.example.energyCertificates.Data.Dtoes.DataDto;
+import com.example.energyCertificates.Data.DataDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
