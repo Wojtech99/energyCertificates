@@ -1,10 +1,7 @@
 package com.example.energyCertificates.Building.House;
 
 import com.example.energyCertificates.Building.House.Enums.WorldParts;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class HouseWall {
@@ -13,12 +10,24 @@ public class HouseWall {
     private Long id;
     private WorldParts worldPartEnumNumber;
     private double totalLengthOfExternalWallInM;
+    @ManyToOne
+    @JoinColumn(name = "house_id")
+    private House house;
 
     public HouseWall() {}
 
-    public HouseWall(WorldParts worldPartEnumNumber, double totalLengthOfExternalWallInM) {
+    public HouseWall(WorldParts worldPartEnumNumber, double totalLengthOfExternalWallInM, House house) {
         this.worldPartEnumNumber = worldPartEnumNumber;
         this.totalLengthOfExternalWallInM = totalLengthOfExternalWallInM;
+        this.house = house;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     public Long getId() {

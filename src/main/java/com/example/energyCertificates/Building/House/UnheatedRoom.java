@@ -1,10 +1,7 @@
 package com.example.energyCertificates.Building.House;
 
 import com.example.energyCertificates.Building.House.Enums.RoomType;
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
+import jakarta.persistence.*;
 
 @Entity
 public class UnheatedRoom {
@@ -13,12 +10,24 @@ public class UnheatedRoom {
     private Long id;
     private RoomType roomType;
     private double areaInSquareM;
+    @ManyToOne
+    @JoinColumn(name = "house_id")
+    private House house;
 
     public UnheatedRoom() {}
 
-    public UnheatedRoom(RoomType roomType, double area) {
+    public UnheatedRoom(RoomType roomType, double areaInSquareM, House house) {
         this.roomType = roomType;
-        this.areaInSquareM = area;
+        this.areaInSquareM = areaInSquareM;
+        this.house = house;
+    }
+
+    public House getHouse() {
+        return house;
+    }
+
+    public void setHouse(House house) {
+        this.house = house;
     }
 
     public Long getId() {

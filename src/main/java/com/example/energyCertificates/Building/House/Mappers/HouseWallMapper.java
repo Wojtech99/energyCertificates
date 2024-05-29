@@ -9,7 +9,8 @@ public class HouseWallMapper {
     public static HouseWall map(HouseWallDto houseWallDto) {
         HouseWall houseWall = new HouseWall(
                 houseWallDto.getWorldPart(),
-                houseWallDto.getTotalLengthOfExternalWallInM()
+                houseWallDto.getTotalLengthOfExternalWallInM(),
+                HouseMapper.map(houseWallDto.getHouseDto())
         );
 
         houseWall.setId(houseWall.getId());
@@ -21,7 +22,8 @@ public class HouseWallMapper {
         return new HouseWallDto(
                 houseWall.getId(),
                 houseWall.getWorldPartEnumNumber(),
-                houseWall.getTotalLengthOfExternalWallInM()
+                houseWall.getTotalLengthOfExternalWallInM(),
+                HouseMapper.map(houseWall.getHouse())
         );
     }
 }

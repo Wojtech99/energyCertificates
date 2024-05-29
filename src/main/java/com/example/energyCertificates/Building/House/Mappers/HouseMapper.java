@@ -6,6 +6,7 @@ import com.example.energyCertificates.Building.House.Dtoes.UnheatedRoomDto;
 import com.example.energyCertificates.Building.House.House;
 import com.example.energyCertificates.Building.House.HouseWall;
 import com.example.energyCertificates.Building.House.UnheatedRoom;
+import com.example.energyCertificates.Client.ClientMapper;
 import com.example.energyCertificates.Data.Data;
 import com.example.energyCertificates.Data.DataMapper;
 import com.example.energyCertificates.Data.DataDto;
@@ -90,7 +91,8 @@ public class HouseMapper {
                 datas,
                 houseDto.getAdditionalInformation(),
                 houseDto.getSendFormDate(),
-                houseDto.isCertificationIsCompleted()
+                houseDto.isCertificationIsCompleted(),
+                ClientMapper.map(houseDto.getClientDto())
         );
 
         house.setId(houseDto.getId());
@@ -173,7 +175,8 @@ public class HouseMapper {
                dataDtoss,
                 house.getAdditionalInformation(),
                 house.getSendFormDate(),
-                house.isCertificationIsCompleted()
+                house.isCertificationIsCompleted(),
+               ClientMapper.map(house.getClient())
 
         );
     }

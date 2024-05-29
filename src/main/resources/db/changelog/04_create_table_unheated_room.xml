@@ -11,6 +11,7 @@
             </column>
             <column name="room_type" type="smallint"/>
             <column name="area_in_squarem" type="double(11, 2)"/>
+            <column name="house_id" type="bigint"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

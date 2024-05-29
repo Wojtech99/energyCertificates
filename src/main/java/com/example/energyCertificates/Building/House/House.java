@@ -2,6 +2,7 @@ package com.example.energyCertificates.Building.House;
 
 import com.example.energyCertificates.Building.Enums.*;
 import com.example.energyCertificates.Building.House.Enums.EntranceDoorType;
+import com.example.energyCertificates.Client.Client;
 import com.example.energyCertificates.Data.Data;
 
 import jakarta.persistence.*;
@@ -65,10 +66,10 @@ public class House {
     private int externalMaterialWallsThicknessInCentimeters;
     private ExternalIsolationWallsType externalIsolationWallsType;
     private int externalIsolationWallsThicknessInCentimeters;
-    @OneToMany
+    @OneToMany(mappedBy = "house")
     private List<HouseWall> hauseWallList;
     private boolean areThereAnyUnheatedRoomsInHouse;
-    @OneToMany
+    @OneToMany(mappedBy = "house")
     private List<UnheatedRoom> unheatedRoomList;
     private boolean isHouseBuildCorrectly;
     private String HouseNotBuildCorrectlyInformation;
@@ -83,10 +84,13 @@ public class House {
     //Other
     private Date sendFormDate;
     private boolean certificationIsCompleted;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     public House() {}
 
-    public House(String street, int houseNumber, int flatNumber, String postalCode, String city, double usableArea, double volumeOfHouse, int yearOfCommissioningOfTheBuilding, HeatingType heatingType, String typeOfHeatingWithFurnaceModel, RadiatorsType radiatorsType, boolean areInstallationCablesInsulted, boolean isThereHeatingCirculation, boolean isThereHeatingBufferOrTank, boolean isThereSecondaryHeatingType, HeatingType secondaryHeatingType, String secondaryTypeOfHeatingWithFurnaceModel, RadiatorsType secondaryRadiatorsType, boolean secondaryAreInstallationCablesInsulted, boolean secondaryIsThereHeatingCirculation, boolean secondaryIsThereHeatingBufferOrTank, int percentOfUsageSecondaryHeatingType, HeatingOfWaterType heatingOfWaterType, String typeOfHeatingWaterWithFurnaceModel, boolean areWaterInstallationCablesInsulted, boolean isThereHeatWaterCirculation, boolean isThereHeatWaterBufferOrTank, boolean isThereSecondaryHeatingOfWaterType, HeatingOfWaterType secondaryHeatingOfWaterType, String secondaryTypeOfHeatingWaterWithFurnaceModel, boolean secondaryAreWaterInstallationCablesInsulted, boolean secondaryIsThereHeatWaterCirculation, boolean secondaryIsThereHeatWaterBufferOrTank, VentilationType ventilationType, CeilingOverTheFlatType ceilingOverTheFlatType, CeilingBelowTheFlatType ceilingBelowTheFlatType, FloorNumberInTheBuilding floorNumberInTheBuilding, EntranceDoorType entranceDoorType, WindowFrameMaterial windowFrameMaterial, NumberOfGlasses numberOfGlasses, ExternalMaterialWallsType externalMaterialWallsType, int externalMaterialWallsThicknessInCentimeters, ExternalIsolationWallsType externalIsolationWallsType, int externalIsolationWallsThicknessInCentimeters, List<HouseWall> hauseWallList, boolean areThereAnyUnheatedRoomsInHouse, List<UnheatedRoom> unheatedRoomList, boolean isHouseBuildCorrectly, String houseNotBuildCorrectlyInformation, boolean hasHouseAirConditioning, int airConditioningPowerInKw, boolean hasInstalledRecuperator, String recuperatorModel, List<Data> attachments, String additionalInformation, Date sendFormDate, boolean certificationIsCompleted) {
+    public House(String street, int houseNumber, int flatNumber, String postalCode, String city, double usableArea, double volumeOfHouse, int yearOfCommissioningOfTheBuilding, HeatingType heatingType, String typeOfHeatingWithFurnaceModel, RadiatorsType radiatorsType, boolean areInstallationCablesInsulted, boolean isThereHeatingCirculation, boolean isThereHeatingBufferOrTank, boolean isThereSecondaryHeatingType, HeatingType secondaryHeatingType, String secondaryTypeOfHeatingWithFurnaceModel, RadiatorsType secondaryRadiatorsType, boolean secondaryAreInstallationCablesInsulted, boolean secondaryIsThereHeatingCirculation, boolean secondaryIsThereHeatingBufferOrTank, int percentOfUsageSecondaryHeatingType, HeatingOfWaterType heatingOfWaterType, String typeOfHeatingWaterWithFurnaceModel, boolean areWaterInstallationCablesInsulted, boolean isThereHeatWaterCirculation, boolean isThereHeatWaterBufferOrTank, boolean isThereSecondaryHeatingOfWaterType, HeatingOfWaterType secondaryHeatingOfWaterType, String secondaryTypeOfHeatingWaterWithFurnaceModel, boolean secondaryAreWaterInstallationCablesInsulted, boolean secondaryIsThereHeatWaterCirculation, boolean secondaryIsThereHeatWaterBufferOrTank, VentilationType ventilationType, CeilingOverTheFlatType ceilingOverTheFlatType, CeilingBelowTheFlatType ceilingBelowTheFlatType, FloorNumberInTheBuilding floorNumberInTheBuilding, EntranceDoorType entranceDoorType, WindowFrameMaterial windowFrameMaterial, NumberOfGlasses numberOfGlasses, ExternalMaterialWallsType externalMaterialWallsType, int externalMaterialWallsThicknessInCentimeters, ExternalIsolationWallsType externalIsolationWallsType, int externalIsolationWallsThicknessInCentimeters, List<HouseWall> hauseWallList, boolean areThereAnyUnheatedRoomsInHouse, List<UnheatedRoom> unheatedRoomList, boolean isHouseBuildCorrectly, String houseNotBuildCorrectlyInformation, boolean hasHouseAirConditioning, int airConditioningPowerInKw, boolean hasInstalledRecuperator, String recuperatorModel, List<Data> attachments, String additionalInformation, Date sendFormDate, boolean certificationIsCompleted, Client client) {
         this.street = street;
         this.houseNumber = houseNumber;
         this.flatNumber = flatNumber;
@@ -144,6 +148,15 @@ public class House {
         this.additionalInformation = additionalInformation;
         this.sendFormDate = sendFormDate;
         this.certificationIsCompleted = certificationIsCompleted;
+        this.client = client;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 
     public Long getId() {

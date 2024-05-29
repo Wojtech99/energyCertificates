@@ -9,7 +9,8 @@ public class UnheatedRoomMapper {
     public static UnheatedRoom map(UnheatedRoomDto unheatedRoomDto) {
         UnheatedRoom unheatedRoom = new UnheatedRoom(
                 unheatedRoomDto.getRoomType(),
-                unheatedRoomDto.getAreaInSquareM()
+                unheatedRoomDto.getAreaInSquareM(),
+                HouseMapper.map(unheatedRoomDto.getHouseDto())
         );
 
         unheatedRoom.setId(unheatedRoomDto.getId());
@@ -21,7 +22,8 @@ public class UnheatedRoomMapper {
         return new UnheatedRoomDto(
                 unheatedRoom.getId(),
                 unheatedRoom.getRoomType(),
-                unheatedRoom.getAreaInSquareM()
+                unheatedRoom.getAreaInSquareM(),
+                HouseMapper.map(unheatedRoom.getHouse())
         );
     }
 }

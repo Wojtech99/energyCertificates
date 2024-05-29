@@ -2,6 +2,7 @@ package com.example.energyCertificates.Building.House.Dtoes;
 
 import com.example.energyCertificates.Building.Enums.*;
 import com.example.energyCertificates.Building.House.Enums.EntranceDoorType;
+import com.example.energyCertificates.Client.ClientDto;
 import com.example.energyCertificates.Data.DataDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -76,4 +77,5 @@ public class HouseDto implements Serializable {
     private String additionalInformation;
     private Date sendFormDate;
     private boolean certificationIsCompleted;
+    private ClientDto clientDto;
 }

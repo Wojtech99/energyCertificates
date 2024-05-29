@@ -72,6 +72,7 @@
 
             <column name="send_form_date" type="date"/>
             <column name="certification_is_completed" type="boolean"/>
+            <column name="client_id" type="bigint"/>
 
 
         </createTable>
