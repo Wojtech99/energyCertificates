@@ -6,4 +6,5 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface UnheatedRoomRepository extends CrudRepository<UnheatedRoom, Long> {
+    void deleteById(Long id);
 }

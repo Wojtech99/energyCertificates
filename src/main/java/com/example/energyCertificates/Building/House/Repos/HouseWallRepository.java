@@ -6,4 +6,6 @@ import org.springframework.stereotype.Repository;
 
 @Repository
 public interface HouseWallRepository extends CrudRepository<HouseWall, Long> {
+
+    void deleteById(Long id);
 }
