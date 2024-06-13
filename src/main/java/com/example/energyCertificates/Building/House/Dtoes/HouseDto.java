@@ -2,14 +2,14 @@ package com.example.energyCertificates.Building.House.Dtoes;
 
 import com.example.energyCertificates.Building.Enums.*;
 import com.example.energyCertificates.Building.House.Enums.EntranceDoorType;
-import com.example.energyCertificates.Client.ClientDto;
+import com.example.energyCertificates.Client.Dtoes.ClientDto;
 import com.example.energyCertificates.Data.DataDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +17,6 @@ import java.util.List;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class HouseDto implements Serializable {
     private Long id;
     private String street;
@@ -53,6 +52,7 @@ public class HouseDto implements Serializable {
     private boolean secondaryAreWaterInstallationCablesInsulted;
     private boolean secondaryIsThereHeatWaterCirculation;
     private boolean secondaryIsThereHeatWaterBufferOrTank;
+    private int percentOfUsageSecondaryHeatOfWaterType;
     private VentilationType ventilationType;
     private CeilingOverTheFlatType ceilingOverTheFlatType;
     private CeilingBelowTheFlatType ceilingBelowTheFlatType;
@@ -73,9 +73,17 @@ public class HouseDto implements Serializable {
     private int airConditioningPowerInKw;
     private boolean hasInstalledRecuperator;
     private String recuperatorModel;
+    private boolean hasSolarPanels;
+    private String powerAndUsageOfSolarPanels;
     private List<DataDto> attachmentDtoList;
     private String additionalInformation;
     private Date sendFormDate;
     private boolean certificationIsCompleted;
     private ClientDto clientDto;
+
+    public HouseDto() {
+        this.hauseWallDtoList = new ArrayList<>();
+        this.unheatedRoomDtoList = new ArrayList<>();
+        this.attachmentDtoList = new ArrayList<>();
+    }
 }

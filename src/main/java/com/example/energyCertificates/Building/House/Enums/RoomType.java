@@ -1,6 +1,7 @@
 package com.example.energyCertificates.Building.House.Enums;
 
 public enum RoomType {
+    NULL("Brak"),
     GARAGE("Garaż"),
     ATTIC("Poddasze"),
     BASEMENT("Piwnica");
@@ -13,5 +14,15 @@ public enum RoomType {
 
     public String getNameInPolish() {
         return nameInPolish;
+    }
+
+    public static RoomType mapToEnum(String nameInPolish) {
+        for (RoomType enumType : RoomType.values()) {
+            if (enumType.getNameInPolish().equals(nameInPolish)) {
+                return enumType;
+            }
+        }
+
+        return null;
     }
 }

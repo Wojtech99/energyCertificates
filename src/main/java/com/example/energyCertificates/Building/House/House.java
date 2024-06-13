@@ -51,6 +51,7 @@ public class House {
     private boolean secondaryAreWaterInstallationCablesInsulted;
     private boolean secondaryIsThereHeatWaterCirculation;
     private boolean secondaryIsThereHeatWaterBufferOrTank;
+    private int percentOfUsageSecondaryHeatOfWaterType;
     //Ventilation
     private VentilationType ventilationType;
     //Ceiling
@@ -66,10 +67,10 @@ public class House {
     private int externalMaterialWallsThicknessInCentimeters;
     private ExternalIsolationWallsType externalIsolationWallsType;
     private int externalIsolationWallsThicknessInCentimeters;
-    @OneToMany(mappedBy = "house")
+    @OneToMany(fetch = FetchType.EAGER)
     private List<HouseWall> hauseWallList;
     private boolean areThereAnyUnheatedRoomsInHouse;
-    @OneToMany(mappedBy = "house")
+    @OneToMany(fetch = FetchType.EAGER)
     private List<UnheatedRoom> unheatedRoomList;
     private boolean isHouseBuildCorrectly;
     private String HouseNotBuildCorrectlyInformation;
@@ -77,6 +78,8 @@ public class House {
     private int airConditioningPowerInKw;
     private boolean hasInstalledRecuperator;
     private String recuperatorModel;
+    private boolean hasSolarPanels;
+    private String powerAndUsageOfSolarPanels;
     //Attachments
     @OneToMany(fetch = FetchType.EAGER)
     private List<Data> attachments;
@@ -90,7 +93,7 @@ public class House {
 
     public House() {}
 
-    public House(String street, int houseNumber, int flatNumber, String postalCode, String city, double usableArea, double volumeOfHouse, int yearOfCommissioningOfTheBuilding, HeatingType heatingType, String typeOfHeatingWithFurnaceModel, RadiatorsType radiatorsType, boolean areInstallationCablesInsulted, boolean isThereHeatingCirculation, boolean isThereHeatingBufferOrTank, boolean isThereSecondaryHeatingType, HeatingType secondaryHeatingType, String secondaryTypeOfHeatingWithFurnaceModel, RadiatorsType secondaryRadiatorsType, boolean secondaryAreInstallationCablesInsulted, boolean secondaryIsThereHeatingCirculation, boolean secondaryIsThereHeatingBufferOrTank, int percentOfUsageSecondaryHeatingType, HeatingOfWaterType heatingOfWaterType, String typeOfHeatingWaterWithFurnaceModel, boolean areWaterInstallationCablesInsulted, boolean isThereHeatWaterCirculation, boolean isThereHeatWaterBufferOrTank, boolean isThereSecondaryHeatingOfWaterType, HeatingOfWaterType secondaryHeatingOfWaterType, String secondaryTypeOfHeatingWaterWithFurnaceModel, boolean secondaryAreWaterInstallationCablesInsulted, boolean secondaryIsThereHeatWaterCirculation, boolean secondaryIsThereHeatWaterBufferOrTank, VentilationType ventilationType, CeilingOverTheFlatType ceilingOverTheFlatType, CeilingBelowTheFlatType ceilingBelowTheFlatType, FloorNumberInTheBuilding floorNumberInTheBuilding, EntranceDoorType entranceDoorType, WindowFrameMaterial windowFrameMaterial, NumberOfGlasses numberOfGlasses, ExternalMaterialWallsType externalMaterialWallsType, int externalMaterialWallsThicknessInCentimeters, ExternalIsolationWallsType externalIsolationWallsType, int externalIsolationWallsThicknessInCentimeters, List<HouseWall> hauseWallList, boolean areThereAnyUnheatedRoomsInHouse, List<UnheatedRoom> unheatedRoomList, boolean isHouseBuildCorrectly, String houseNotBuildCorrectlyInformation, boolean hasHouseAirConditioning, int airConditioningPowerInKw, boolean hasInstalledRecuperator, String recuperatorModel, List<Data> attachments, String additionalInformation, Date sendFormDate, boolean certificationIsCompleted, Client client) {
+    public House(String street, int houseNumber, int flatNumber, String postalCode, String city, double usableArea, double volumeOfHouse, int yearOfCommissioningOfTheBuilding, HeatingType heatingType, String typeOfHeatingWithFurnaceModel, RadiatorsType radiatorsType, boolean areInstallationCablesInsulted, boolean isThereHeatingCirculation, boolean isThereHeatingBufferOrTank, boolean isThereSecondaryHeatingType, HeatingType secondaryHeatingType, String secondaryTypeOfHeatingWithFurnaceModel, RadiatorsType secondaryRadiatorsType, boolean secondaryAreInstallationCablesInsulted, boolean secondaryIsThereHeatingCirculation, boolean secondaryIsThereHeatingBufferOrTank, int percentOfUsageSecondaryHeatingType, HeatingOfWaterType heatingOfWaterType, String typeOfHeatingWaterWithFurnaceModel, boolean areWaterInstallationCablesInsulted, boolean isThereHeatWaterCirculation, boolean isThereHeatWaterBufferOrTank, boolean isThereSecondaryHeatingOfWaterType, HeatingOfWaterType secondaryHeatingOfWaterType, String secondaryTypeOfHeatingWaterWithFurnaceModel, boolean secondaryAreWaterInstallationCablesInsulted, boolean secondaryIsThereHeatWaterCirculation, boolean secondaryIsThereHeatWaterBufferOrTank, int percentOfUsageSecondaryHeatOfWaterType, VentilationType ventilationType, CeilingOverTheFlatType ceilingOverTheFlatType, CeilingBelowTheFlatType ceilingBelowTheFlatType, FloorNumberInTheBuilding floorNumberInTheBuilding, EntranceDoorType entranceDoorType, WindowFrameMaterial windowFrameMaterial, NumberOfGlasses numberOfGlasses, ExternalMaterialWallsType externalMaterialWallsType, int externalMaterialWallsThicknessInCentimeters, ExternalIsolationWallsType externalIsolationWallsType, int externalIsolationWallsThicknessInCentimeters, List<HouseWall> hauseWallList, boolean areThereAnyUnheatedRoomsInHouse, List<UnheatedRoom> unheatedRoomList, boolean isHouseBuildCorrectly, String houseNotBuildCorrectlyInformation, boolean hasHouseAirConditioning, int airConditioningPowerInKw, boolean hasInstalledRecuperator, String recuperatorModel, boolean hasSolarPanels, String powerAndUsageOfSolarPanels, List<Data> attachments, String additionalInformation, Date sendFormDate, boolean certificationIsCompleted, Client client) {
         this.street = street;
         this.houseNumber = houseNumber;
         this.flatNumber = flatNumber;
@@ -124,6 +127,7 @@ public class House {
         this.secondaryAreWaterInstallationCablesInsulted = secondaryAreWaterInstallationCablesInsulted;
         this.secondaryIsThereHeatWaterCirculation = secondaryIsThereHeatWaterCirculation;
         this.secondaryIsThereHeatWaterBufferOrTank = secondaryIsThereHeatWaterBufferOrTank;
+        this.percentOfUsageSecondaryHeatOfWaterType = percentOfUsageSecondaryHeatOfWaterType;
         this.ventilationType = ventilationType;
         this.ceilingOverTheFlatType = ceilingOverTheFlatType;
         this.ceilingBelowTheFlatType = ceilingBelowTheFlatType;
@@ -144,6 +148,8 @@ public class House {
         this.airConditioningPowerInKw = airConditioningPowerInKw;
         this.hasInstalledRecuperator = hasInstalledRecuperator;
         this.recuperatorModel = recuperatorModel;
+        this.hasSolarPanels = hasSolarPanels;
+        this.powerAndUsageOfSolarPanels = powerAndUsageOfSolarPanels;
         this.attachments = attachments;
         this.additionalInformation = additionalInformation;
         this.sendFormDate = sendFormDate;
@@ -431,6 +437,14 @@ public class House {
         this.secondaryIsThereHeatWaterBufferOrTank = secondaryIsThereHeatWaterBufferOrTank;
     }
 
+    public int getPercentOfUsageSecondaryHeatOfWaterType() {
+        return percentOfUsageSecondaryHeatOfWaterType;
+    }
+
+    public void setPercentOfUsageSecondaryHeatOfWaterType(int percentOfUsageSecondaryHeatOfWaterType) {
+        this.percentOfUsageSecondaryHeatOfWaterType = percentOfUsageSecondaryHeatOfWaterType;
+    }
+
     public VentilationType getVentilationType() {
         return ventilationType;
     }
@@ -589,6 +603,22 @@ public class House {
 
     public void setRecuperatorModel(String recuperatorModel) {
         this.recuperatorModel = recuperatorModel;
+    }
+
+    public boolean isHasSolarPanels() {
+        return hasSolarPanels;
+    }
+
+    public void setHasSolarPanels(boolean hasSolarPanels) {
+        this.hasSolarPanels = hasSolarPanels;
+    }
+
+    public String getPowerAndUsageOfSolarPanels() {
+        return powerAndUsageOfSolarPanels;
+    }
+
+    public void setPowerAndUsageOfSolarPanels(String powerAndUsageOfSolarPanels) {
+        this.powerAndUsageOfSolarPanels = powerAndUsageOfSolarPanels;
     }
 
     public List<Data> getAttachments() {

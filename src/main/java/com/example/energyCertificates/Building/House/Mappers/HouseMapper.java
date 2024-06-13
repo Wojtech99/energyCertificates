@@ -63,6 +63,7 @@ public class HouseMapper {
                 houseDto.isSecondaryAreWaterInstallationCablesInsulted(),
                 houseDto.isSecondaryIsThereHeatWaterCirculation(),
                 houseDto.isSecondaryIsThereHeatWaterBufferOrTank(),
+                houseDto.getPercentOfUsageSecondaryHeatOfWaterType(),
 
                 houseDto.getVentilationType(),
 
@@ -87,6 +88,8 @@ public class HouseMapper {
                 houseDto.getAirConditioningPowerInKw(),
                 houseDto.isHasInstalledRecuperator(),
                 houseDto.getRecuperatorModel(),
+                houseDto.isHasSolarPanels(),
+                houseDto.getPowerAndUsageOfSolarPanels(),
 
                 datas,
                 houseDto.getAdditionalInformation(),
@@ -147,6 +150,7 @@ public class HouseMapper {
                 house.isSecondaryAreWaterInstallationCablesInsulted(),
                 house.isSecondaryIsThereHeatWaterCirculation(),
                 house.isSecondaryIsThereHeatWaterBufferOrTank(),
+               house.getPercentOfUsageSecondaryHeatOfWaterType(),
 
                 house.getVentilationType(),
 
@@ -171,6 +175,8 @@ public class HouseMapper {
                 house.getAirConditioningPowerInKw(),
                 house.isHasInstalledRecuperator(),
                 house.getRecuperatorModel(),
+               house.isHasSolarPanels(),
+               house.getPowerAndUsageOfSolarPanels(),
 
                dataDtoss,
                 house.getAdditionalInformation(),

@@ -10,25 +10,14 @@ public class UnheatedRoom {
     private Long id;
     private RoomType roomType;
     private double areaInSquareM;
-    @ManyToOne
-    @JoinColumn(name = "house_id")
-    private House house;
 
     public UnheatedRoom() {}
 
-    public UnheatedRoom(RoomType roomType, double areaInSquareM, House house) {
+    public UnheatedRoom(RoomType roomType, double areaInSquareM) {
         this.roomType = roomType;
         this.areaInSquareM = areaInSquareM;
-        this.house = house;
     }
 
-    public House getHouse() {
-        return house;
-    }
-
-    public void setHouse(House house) {
-        this.house = house;
-    }
 
     public Long getId() {
         return id;

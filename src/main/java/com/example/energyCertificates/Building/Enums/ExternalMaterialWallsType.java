@@ -1,6 +1,7 @@
 package com.example.energyCertificates.Building.Enums;
 
 public enum ExternalMaterialWallsType {
+    NULL("Brak"),
     BRICK("Cegła"),
     SILK("Silka"),
     REINFORCED_CONCRETE("Żelbet"),
@@ -16,5 +17,15 @@ public enum ExternalMaterialWallsType {
 
     public String getNameInPolish() {
         return nameInPolish;
+    }
+
+    public static ExternalMaterialWallsType mapToEnum(String nameInPolish) {
+        for (ExternalMaterialWallsType enumType : ExternalMaterialWallsType.values()) {
+            if (enumType.getNameInPolish().equals(nameInPolish)) {
+                return enumType;
+            }
+        }
+
+        return null;
     }
 }

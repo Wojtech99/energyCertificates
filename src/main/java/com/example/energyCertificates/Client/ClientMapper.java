@@ -1,5 +1,8 @@
 package com.example.energyCertificates.Client;
 
+import com.example.energyCertificates.Client.Dtoes.ClientDto;
+import com.example.energyCertificates.Client.Dtoes.PrimaryClientDto;
+
 public class ClientMapper {
     public static Client map(ClientDto clientDto) {
         Client client = new Client(
@@ -36,5 +39,21 @@ public class ClientMapper {
                 client.isClientConfirmsCompanyTerms(),
                 client.isOrderIsPaid()
         );
+    }
+
+    public static ClientDto map(PrimaryClientDto primaryClientDto) {
+        ClientDto clientDto = new ClientDto();
+
+        clientDto.setFirstName(primaryClientDto.getFirstName());
+        clientDto.setLastName("");
+        clientDto.setEmail(primaryClientDto.getEmail());
+        clientDto.setPhoneNumber(primaryClientDto.getPhoneNumber());
+        clientDto.setCompanyName("");
+        clientDto.setCompanyAddress("");
+        clientDto.setCompanyNumber(0);
+        clientDto.setClientConfirmsCompanyTerms(false);
+        clientDto.setDataAreGenuineStatement(false);
+
+        return clientDto;
     }
 }

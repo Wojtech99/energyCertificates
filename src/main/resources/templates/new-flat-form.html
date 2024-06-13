@@ -1,0 +1,395 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="generator" content="Mobirise v5.9.6, mobirise.com">
+  <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+  <link rel="shortcut icon" href="../static/clientFront/images/screenshot-116.jpg" th:href="@{/clientFront/images/screenshot-116.jpg}" type="image/x-icon" />
+  <meta name="description" content="">
+  
+
+	<title>Świadectwo Energetyczne dla mieszkania</title>
+	<link rel="stylesheet" href="../static/clientFront/bootstrap/css/bootstrap.min.css" th:href="@{/clientFront/bootstrap/css/bootstrap.min.css}"/>
+	<link rel="stylesheet" href="../static/clientFront/bootstrap/css/bootstrap-grid.min.css" th:href="@{/clientFront/bootstrap/css/bootstrap-grid.min.css}"/>
+	<link rel="stylesheet" href="../static/clientFront/bootstrap/css/bootstrap-reboot.min.css" th:href="@{/clientFront/bootstrap/css/bootstrap-reboot.min.css}"/>
+	<link rel="stylesheet" href="../static/clientFront/animatecss/animate.css" th:href="@{/clientFront/animatecss/animate.css}"/>
+	<link rel="stylesheet" href="../static/clientFront/socicon/css/styles.css" th:href="@{/clientFront/socicon/css/styles.css}"/>
+	<link rel="stylesheet" href="../static/clientFront/theme/css/style.css" th:href="@{/clientFront/theme/css/style.css}"/>
+	<link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap"></noscript>
+	<link rel="preload" href="https://fonts.googleapis.com/css?family=Manrope:200,300,400,500,600,700,800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+	<noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope:200,300,400,500,600,700,800&display=swap"></noscript>
+	<link rel="preload" as="style" href="../static/clientFront/mobirise/css/mbr-additional.css" th:href="@{/clientFront/mobirise/css/mbr-additional.css}" />
+	<link rel="stylesheet" href="../static/clientFront/mobirise/css/mbr-additional.css" th:href="@{/clientFront/mobirise/css/mbr-additional.css}" type="text/css" />
+
+  
+  
+  
+</head>
+<body>
+  
+  <section data-bs-version="5.1" class="header6 cid-uePWxsFgXg" id="header06-b">
+	
+
+	
+	
+
+	<div class="container">
+		<div class="row">
+			<div class="col-12 col-lg-5">
+				<div class="card-wrapper">
+					<h3 class="mbr-section-cardtitle mbr-fonts-style mb-2 display-5"><strong>Formularz mieszkanie dla świadectwa charakterystyki energetycznej</strong></h3>
+
+					
+				</div>
+			</div>
+			<div class="col-12 col-lg-6">
+				
+				
+				<p class="mbr-text mbr-fonts-style mb-4 display-7">Niniejszy regulamin określa warunki korzystania z serwisu internetowego impact.pl udostępnianego przez ... NIP: 0123456789.<br>
+<br>Regulamin określa prawa i obowiązki Użytkowników serwisu. Każdy Użytkownik serwisu jest zobowiązany do zapoznania się z treścią regulaminu i jego przestrzegania.</p>
+				<div class="mbr-section-btn mt-4"><a class="btn btn-success-outline display-7" href="#">Instrukcja formularz mieszkanie&nbsp;</a></div>
+				<div class="mbr-section-btn mt-4"><a class="btn btn-success-outline display-7" href="#" th:href="@{/ready/ready-form}">Mam wypełniony formularz świadectwa charakterystyki energetycznej&nbsp;</a></div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<section data-bs-version="5.1" class="form5 cid-uePB2j5Hwn" id="form02-0">
+    
+    
+    <div class="container" >
+        <div class="row justify-content-center">
+            <div class="col-12 content-head">
+                <div class="mbr-section-head mb-5">
+                    <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-5"><strong>Formularz domu dla świadectwa charakterystyki energetycznej</strong></h3>
+                    
+                </div>
+            </div>
+        </div>
+        <div style="font-size: small" class="row justify-content-center mt-4">
+            <div class="col-lg-8 mx-auto mbr-form">
+                <form method="POST" class="mbr-form form-with-styler" enctype="multipart/form-data" th:action="@{/house/new-house-form/save}" th:object="${flat}">
+                    <div class="row">
+                        <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Dziękujemy za wypełnienie formularza</div>
+                        <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
+                            Oops...! some problem!
+                        </div>
+                    </div>
+                    <div class="dragArea row">
+				<!-- Dane Kontaktowe -->
+						<h4 class="houseFormSubtitle" style="margin-bottom: 10px">Dane Kontaktowe</h4>
+						<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
+							<div class="form-floating   mb-3" data-for="firstName">
+								<input th:field="*{clientDto.firstName}" id="firstName" placeholder="Imię" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<label style="left: 3%" for="firstName">Imię</label>
+							</div>
+							<div class="form-floating   mb-3" data-for="lastName">
+								<input th:field="*{clientDto.lastName}" id="lastName" placeholder="Nazwisko" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<label style="left: 3%" for="lastName">Nazwisko</label>
+							</div>
+						</div>
+						<div class="form-floating   mb-3" data-for="email">
+							<input th:field="*{clientDto.email}" id="email" placeholder="Email" style="text-align: -moz-left; font-size: 18px" type="email"  class="form-control" >
+							<label style="left: 3%" for="email">Email</label>
+						</div>
+						<div class="form-floating   mb-3" data-for="phoneNumber">
+							<input th:field="*{clientDto.phoneNumber}" id="phoneNumber" placeholder="Numer telefonu" style="text-align: -moz-left; font-size: 18px; font-size: 18px" type="number" value=""  class="form-control" >
+							<label style="left: 3%" for="phoneNumber">Numer telefonu</label>
+						</div>
+						<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
+							<div class="form-floating   mb-3" data-for="companyName">
+								<input th:field="*{clientDto.companyName}" id="companyName" placeholder="Nazwa firmy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<label style="left: 3%" for="companyName">Nazwa firmy</label>
+							</div>
+							<div class="form-floating   mb-3" data-for="companyAddress">
+								<input th:field="*{clientDto.companyAddress}" id="companyAddress" placeholder="Adres firmy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<label style="left: 3%" for="companyAddress">Adres firmy</label>
+							</div>
+						</div>
+						<div class="form-floating   mb-3" data-for="companyNumber">
+							<input th:field="*{clientDto.companyNumber}" id="companyNumber" placeholder="Nip firmy" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+							<label style="left: 3%" for="companyNumber">Nip firmy</label>
+						</div>
+
+
+				<!-- Podstawowe dane domu -->
+						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Podstawowe dane domu</h4>
+						<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
+							<div class="form-floating   mb-3" data-for="street">
+								<input th:field="*{street}" id="street" placeholder="Ulica" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<label style="left: 3%" for="street">Ulica</label>
+							</div>
+							<div class="form-floating   mb-3" data-for="houseNumber">
+								<input th:field="*{houseNumber}" id="houseNumber" placeholder="Nr domu" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<label style="left: 3%" for="houseNumber">Nr domu</label>
+							</div>
+							<div class="form-floating   mb-3" data-for="flatNumber">
+								<input th:field="*{flatNumber}" id="flatNumber" placeholder="Nr mieszkania" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<label style="left: 3%" for="flatNumber">Nr mieszkania</label>
+							</div>
+						</div>
+						<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
+							<div class="form-floating   mb-3" data-for="city">
+								<input th:field="*{city}" id="city" placeholder="Miasto" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<label style="left: 3%" for="city">Miasto</label>
+							</div>
+							<div class="form-floating   mb-3" data-for="postalCode">
+								<input th:field="*{postalCode}" id="postalCode" placeholder="Kod pocztowy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<label style="left: 3%" for="postalCode">Kod pocztowy</label>
+							</div>
+						</div>
+						<div style="display: inline-flex; gap: 0.1%; justify-content: space-evenly;">
+							<div class="form-floating   mb-3" data-for="usableArea">
+								<input th:field="*{usableArea}" id="usableArea" placeholder="Powierzchnia użytkowa w m2" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<label style="left: 3%" for="usableArea">Powierzchnia użytkowa w m2</label>
+							</div>
+							<div class="form-floating   mb-3" data-for="heightOfFlat">
+								<input th:field="*{heightOfFlat}" id="heightOfFlat" placeholder="Wysokość pomieszczeń" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<label style="left: 3%" for="heightOfFlat">Wysokość pomieszczeń</label>
+							</div>
+							<div class="form-floating   mb-3" data-for="yearOfCommissioningOfTheBuilding">
+								<input th:field="*{yearOfCommissioningOfTheBuilding}" id="yearOfCommissioningOfTheBuilding" placeholder="Rok oddania do użytkowania" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<label style="left: 3%" for="yearOfCommissioningOfTheBuilding">Rok oddania do użytkowania</label>
+							</div>
+						</div>
+						<label>
+							<select class="form-control mb-3" name="floorNumberInTheBuildingInPolishString" style="font-size: small">
+								<option value="Brak">Wybierz liczba kondygnacji domu</option>
+								<option th:each="floorNumberInTheBuilding: ${listOfFloorNumberInTheBuilding}" th:value="${floorNumberInTheBuilding}" th:text="${floorNumberInTheBuilding}"></option>
+							</select>
+						</label>
+						<!-- radioGroup -->
+						<div class="btn-group btn-group-sm" role="group">
+							<input value="true"  type="radio" class="btn-check"  id="btnradio1" autocomplete="off" disabled>
+							<label style="width: min(60%); width: max(60%); font-size: medium" class="btn btn-outline-secondary" for="btnradio1">Czy budynek przechodził termomodernizację?</label>
+
+							<input value="true" th:field="*{theBuildingIsAfterThermalModernization}" type="radio" class="btn-check"  id="btnradio2" autocomplete="off" onclick="">
+							<label class="btn btn-outline-secondary" for="btnradio2">Tak</label>
+
+							<input value="false" th:field="*{theBuildingIsAfterThermalModernization}" type="radio" class="btn-check"  id="btnradio3" autocomplete="off" onclick="" checked>
+							<label class="btn btn-outline-secondary" for="btnradio3">Nie</label>
+						</div>
+
+
+
+				<!-- Załączniki -->
+						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Załączniki</h4>
+						<div class="form-control-sm mb-3">
+							<input  class="form-control" type="file" name="attachments" id="formFile" multiple>
+						</div>
+						<div class="form-floating mb-3" data-for="additionalInformation">
+							<textarea th:field="*{additionalInformation}" id="additionalInformation" placeholder="Dodatkowe informacje" style="text-align: -moz-left; font-size: 18px; height: 150px" class="form-control"></textarea>
+							<label style="left: 3%;" for="additionalInformation">Dodatkowe informacje</label>
+						</div>
+
+
+				<!-- Oświadczenia -->
+						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Oświadczenia</h4>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" value="true" id="dataAreGenuineStatement" th:field="*{clientDto.dataAreGenuineStatement}">
+							<label style="font-size: medium" class="form-check-label" for="dataAreGenuineStatement">
+								Oświadczam, że podane dane są zgodne ze stanem faktycznym wszystkich parametrów budynku. W razie rozbieżności rzutu w stosunku do danych, jakie wyżej podałem, oświadczam, że prawidłowe są dane, a nie rzut. Wszelkie ew. adnotacje na rzucie proszę zignorować. Oświadczam, że posiadam prawo do dysponowania nieruchomością na cele sporządzenia Świadectwa.
+							</label>
+						</div>
+						<div style="margin: 0.5%"></div>
+						<div class="form-check">
+							<input class="form-check-input" type="checkbox" value="true" id="clientConfirmsCompanyTerms" th:field="*{clientDto.clientConfirmsCompanyTerms}">
+							<label style="font-size: medium" class="form-check-label" for="clientConfirmsCompanyTerms">
+								Oświadczam, że zapoznałem/am się z treścią regulaminu impact.pl i akceptuję jego treść.
+							</label>
+						</div>
+
+
+
+						<div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
+                            <button type="submit" class="btn btn-primary display-7">Zapisz</button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <section data-bs-version="5.1" class="footer1 cid-uePV40xUOp" once="footers" id="footer01-a">
+
+	  <div class="container">
+		  <div class="row mbr-white">
+			  <div class="col-12 col-md-6 col-lg-3">
+				  <h5 class="mbr-section-subtitle mbr-fonts-style mb-2 display-5">
+					  <strong>Zamów Świadectwo</strong></h5>
+				  <ul class="list mbr-fonts-style display-7">
+					  <li class="mbr-text item-wrap"><a href="new-flat-form.html" th:href="@{|/flat/new-flat-form|}">Mieszkanie</a></li>
+					  <li class="mbr-text item-wrap"><a href="new-house-form.html" th:href="@{|/house/new-house-form|}">Dom</a></li>
+				  </ul>
+			  </div>
+			  <div class="col-12 col-md-6 col-lg-3">
+				  <h5 class="mbr-section-subtitle mbr-fonts-style mb-2 display-5">
+					  <strong>Impact.pl</strong></h5>
+				  <ul class="list mbr-fonts-style display-7">
+					  <li class="mbr-text item-wrap"><a href="privacy-policy.html" th:href="@{|/privacy-policy|}">Polityka prywatności</a></li>
+					  <li class="mbr-text item-wrap"><a href="regulations.html" th:href="@{|/regulations|}">Regulamin</a></li>
+					  <li class="mbr-text item-wrap"><a href="index.html#form02-2" th:href="@{|/#form02-2|}">Kontakt</a></li>
+				  </ul>
+			  </div>
+			  <div class="col-12 mt-5 footer-col">
+				  <div class="social-row mt-2 display-7">
+					  <div class="soc-item">
+						  <a href="#">
+							  <span class="mbr-iconfont socicon socicon-facebook"></span>
+						  </a>
+					  </div>
+				  </div>
+			  </div>
+			  <div class="col-12 mt-4">
+				  <p class="mbr-text mb-0 mbr-fonts-style copyright align-center display-7">
+					  © Copyright 2030 Mobirise - wszystkie prawa zastrzeżone
+				  </p>
+			  </div>
+		  </div>
+	  </div>
+  </section>
+
+  <script>
+	  window.onload = hideSecondaryHeating();
+	  window.onload = hideSecondaryHeatOfWater();
+	  window.onload = hideAllHouseWallsSinceSecond();
+	  window.onload = hideUnheatedRooms();
+	  window.onload = hideAllUnheatedRoomsSinceSecond();
+	  window.onload = hideHouseBuildCorrectlyInput();
+	  window.onload = hideHouseHasAirConditionInput();
+	  window.onload = hideHouseHasInstalledRecuperatorInput();
+	  window.onload = hideHouseHasSolarPanelsInput();
+
+	  //Secondary Heating
+	  function hideSecondaryHeating() {
+		  document.getElementById('secondaryHeating').style.display = 'none';
+	  }
+	  function showSecondaryHeating() {
+		  document.getElementById('secondaryHeating').style.display = 'grid';
+	  }
+
+
+	  //Secondary HeatOfWater
+	  function hideSecondaryHeatOfWater() {
+		  document.getElementById('secondaryHeatOfWater').style.display = 'none';
+	  }
+	  function showSecondaryHeatOfWater() {
+		  document.getElementById('secondaryHeatOfWater').style.display = 'grid';
+	  }
+
+
+	  //house walls
+	  function hideAllHouseWallsSinceSecond() {
+		  for (let i = 2; i <= 8; i++) {
+			  let houseWall = 'houseWall_' + i;
+			  document.getElementById(houseWall).style.display = 'none';
+		  }
+	  }
+
+	  let houseWallSize = 2;
+	  function addNextHouseWall() {
+		  if (houseWallSize >= 8) {
+			  return;
+		  }
+
+		  ++houseWallSize;
+
+		  let houseWall = 'houseWall_' + houseWallSize;
+		  document.getElementById(houseWall).style.display = 'flex';
+	  }
+	  function hidePreviousHouseWall() {
+		  if (houseWallSize < 2) {
+			  return;
+		  }
+
+		  let houseWall = 'houseWall_' + houseWallSize;
+		  document.getElementById(houseWall).style.display = 'none';
+
+		  --houseWallSize;
+	  }
+
+
+	  //unheated Rooms
+	  function hideUnheatedRooms() {
+		  document.getElementById('unheatedRooms').style.display = 'none';
+	  }
+	  function showUnheatedRooms() {
+		  document.getElementById('unheatedRooms').style.display = 'grid';
+	  }
+
+	  function hideAllUnheatedRoomsSinceSecond() {
+		  for (let i = 2; i <= 3; i++) {
+			  let unheatedRoom = 'unheatedRoom_' + i;
+			  document.getElementById(unheatedRoom).style.display = 'none';
+		  }
+	  }
+
+	  let unheatedRoomSize = 1;
+	  function addNextUnheatedRoom() {
+		  if (unheatedRoomSize >= 3) {
+			  return;
+		  }
+
+		  ++unheatedRoomSize;
+
+		  let unheatedRoom = 'unheatedRoom_' + unheatedRoomSize;
+		  document.getElementById(unheatedRoom).style.display = 'flex';
+	  }
+	  function hidePreviousUnheatedRoom() {
+		  if (unheatedRoomSize === 1) {
+			  return;
+		  }
+
+		  let unheatedRoom = 'unheatedRoom_' + unheatedRoomSize;
+		  document.getElementById(unheatedRoom).style.display = 'none';
+
+		  unheatedRoomSize--;
+	  }
+
+	  //house build correctly
+	  function hideHouseBuildCorrectlyInput() {
+		  document.getElementById('idHouseBuildCorrectly').style.display = 'none';
+	  }
+	  function showHouseBuildCorrectlyInput() {
+		  document.getElementById('idHouseBuildCorrectly').style.display = 'grid';
+	  }
+
+	  //house has air condition
+	  function hideHouseHasAirConditionInput() {
+		  document.getElementById('idHouseHasAirCondition').style.display = 'none';
+	  }
+	  function showHouseHasAirConditionInput() {
+		  document.getElementById('idHouseHasAirCondition').style.display = 'grid';
+	  }
+
+	  //house has installed recuperator
+	  function hideHouseHasInstalledRecuperatorInput() {
+		  document.getElementById('idHouseHasInstalledRecuperator').style.display = 'none';
+	  }
+	  function showHouseHasInstalledRecuperatorInput() {
+		  document.getElementById('idHouseHasInstalledRecuperator').style.display = 'grid';
+	  }
+
+	  //house has installed recuperator
+	  function hideHouseHasSolarPanelsInput() {
+		  document.getElementById('idHouseHasSolarPanels').style.display = 'none';
+	  }
+	  function showHouseHasSolarPanelsInput() {
+		  document.getElementById('idHouseHasSolarPanels').style.display = 'grid';
+	  }
+
+  </script>
+
+  <script src="../static/clientFront/bootstrap/js/bootstrap.bundle.min.js" th:src="@{/clientFront/bootstrap/js/bootstrap.bundle.min.js}"></script>
+  <script src="../static/clientFront/smoothscroll/smooth-scroll.js" th:src="@{/clientFront/smoothscroll/smooth-scroll.js}"></script>
+  <script src="../static/clientFront/ytplayer/index.js" th:src="@{/clientFront/ytplayer/index.js}"></script>
+  <script src="../static/clientFront/theme/js/script.js" th:src="@{/clientFront/theme/js/script.js}"></script>
+  <script src="../static/clientFront/formoid/formoid.min.js" th:src="@{/clientFront/formoid/formoid.min.js}"></script>
+  
+  
+  <input name="animation" type="hidden">
+  </body>
+</html>

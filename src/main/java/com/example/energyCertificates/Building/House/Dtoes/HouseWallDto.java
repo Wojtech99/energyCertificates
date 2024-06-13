@@ -17,5 +17,9 @@ public class HouseWallDto implements Serializable {
     private Long id;
     private WorldParts worldPart;
     private double totalLengthOfExternalWallInM;
-    private HouseDto houseDto;
+
+    public HouseWallDto(WorldParts worldPart, double totalLengthOfExternalWallInM) {
+        this.worldPart = worldPart;
+        this.totalLengthOfExternalWallInM = totalLengthOfExternalWallInM;
+    }
 }

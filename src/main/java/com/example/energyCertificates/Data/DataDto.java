@@ -15,4 +15,8 @@ import java.io.Serializable;
 public class DataDto implements Serializable {
     private Long id;
     private String name;
+
+    public DataDto(String name) {
+        this.name = name;
+    }
 }

@@ -2,6 +2,7 @@ package com.example.energyCertificates.Building.Flat.Dtoes;
 
 import com.example.energyCertificates.Building.Enums.*;
 import com.example.energyCertificates.Building.Flat.Enums.ExternalWallLayout;
+import com.example.energyCertificates.Client.Dtoes.ClientDto;
 import com.example.energyCertificates.Data.DataDto;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -50,4 +51,5 @@ public class FlatDto implements Serializable {
     private String additionalInformation;
     private Date sendFormDate;
     private boolean certificationIsCompleted;
+    private ClientDto clientDto;
 }

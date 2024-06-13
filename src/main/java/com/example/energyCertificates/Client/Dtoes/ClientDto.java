@@ -1,4 +1,4 @@
-package com.example.energyCertificates.Client;
+package com.example.energyCertificates.Client.Dtoes;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -20,7 +20,7 @@ public class ClientDto implements Serializable {
     private int phoneNumber;
     private String pdfFile;
     private String companyName;
-    private int CompanyNumber;
+    private int companyNumber;
     private String companyAddress;
     private boolean dataAreGenuineStatement;
     private boolean clientConfirmsCompanyTerms;

@@ -1,6 +1,7 @@
 package com.example.energyCertificates.Building.Enums;
 
 public enum HeatingType {
+    NULL("Brak"),
     DISTRICT_HEATING("Ogrzewanie miejskie"),
     GAS_BOILER_IN_THE_APARTMENT("Kocioł gazowy w mieszkaniu"),
     GAS_BOILER_IN_THE_BOILER_ROOM_OF_THE_BUILDING("Kocioł gazowy w kotłowni w budynku"),
@@ -20,5 +21,15 @@ public enum HeatingType {
 
     public String getNameInPolish() {
         return nameInPolish;
+    }
+
+    public static HeatingType mapToEnum(String nameInPolish) {
+        for (HeatingType enumType : HeatingType.values()) {
+            if (enumType.getNameInPolish().equals(nameInPolish)) {
+                return enumType;
+            }
+        }
+
+        return null;
     }
 }

@@ -4,6 +4,7 @@ import com.example.energyCertificates.Building.Flat.Dtoes.FlatDto;
 import com.example.energyCertificates.Building.Flat.Dtoes.ThermalModernizationScopeClassDto;
 import com.example.energyCertificates.Building.Flat.Flat;
 import com.example.energyCertificates.Building.Flat.ThermalModernizationScopeClass;
+import com.example.energyCertificates.Client.ClientMapper;
 import com.example.energyCertificates.Data.Data;
 import com.example.energyCertificates.Data.DataMapper;
 import com.example.energyCertificates.Data.DataDto;
@@ -56,7 +57,8 @@ public class FlatMapper {
                 flatDto.getAdditionalInformation(),
 
                 flatDto.getSendFormDate(),
-                flatDto.isCertificationIsCompleted()
+                flatDto.isCertificationIsCompleted(),
+                ClientMapper.map(flatDto.getClientDto())
         );
 
         flat.setId(flatDto.getId());
@@ -108,7 +110,8 @@ public class FlatMapper {
                 flat.getAdditionalInformation(),
 
                 flat.getSendFormDate(),
-                flat.isCertificationIsCompleted()
+                flat.isCertificationIsCompleted(),
+                ClientMapper.map(flat.getClient())
         );
     }
 }

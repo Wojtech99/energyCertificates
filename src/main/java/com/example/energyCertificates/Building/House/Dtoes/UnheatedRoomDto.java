@@ -18,5 +18,9 @@ public class UnheatedRoomDto implements Serializable {
     private Long id;
     private RoomType roomType;
     private double areaInSquareM;
-    private HouseDto houseDto;
+
+    public UnheatedRoomDto(RoomType roomType, double areaInSquareM) {
+        this.roomType = roomType;
+        this.areaInSquareM = areaInSquareM;
+    }
 }

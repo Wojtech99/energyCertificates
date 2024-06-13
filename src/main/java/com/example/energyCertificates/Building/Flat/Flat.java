@@ -1,5 +1,6 @@
 package com.example.energyCertificates.Building.Flat;
 
+import com.example.energyCertificates.Client.Client;
 import com.example.energyCertificates.Data.Data;
 import com.example.energyCertificates.Building.Enums.*;
 import com.example.energyCertificates.Building.Flat.Enums.*;
@@ -53,10 +54,13 @@ public class Flat {
     //Other
     private Date sendFormDate;
     private boolean certificationIsCompleted;
+    @ManyToOne
+    @JoinColumn(name = "client_id")
+    private Client client;
 
     public Flat() {}
 
-    public Flat(String street, int houseNumber, int flatNumber, String postalCode, String city, double usableArea, double heightOfFlat, int yearOfCommissioningOfTheBuilding, FloorNumberInTheBuilding floorNumberInBuilding, boolean theBuildingIsAfterThermalModernization, int lastBuildingThermalModernizationYear, List<ThermalModernizationScopeClass> thermalModernizationScopeList, boolean flatIsAtGroundFloor, CeilingBelowTheFlatType ceilingBelowTheFlatType, boolean flatIsAtLastFloor, CeilingOverTheFlatType ceilingOverTheFlatType, ExternalMaterialWallsType externalMaterialWallsType, int externalMaterialWallsThicknessInCentimeters, ExternalIsolationWallsType externalIsolationWallsType, int externalIsolationWallsThicknessInCm, ExternalWallLayout externalWallLayout, WindowFrameMaterial windowFrameMaterial, NumberOfGlasses numberOfGlasses, HeatingType heatingType, RadiatorsType radiatorsType, HeatingOfWaterType heatingOfWaterType, VentilationType ventilationType, List<Data> attachments, String additionalInformation, Date sendFormDate, boolean certificationIsCompleted) {
+    public Flat(String street, int houseNumber, int flatNumber, String postalCode, String city, double usableArea, double heightOfFlat, int yearOfCommissioningOfTheBuilding, FloorNumberInTheBuilding floorNumberInBuilding, boolean theBuildingIsAfterThermalModernization, int lastBuildingThermalModernizationYear, List<ThermalModernizationScopeClass> thermalModernizationScopeList, boolean flatIsAtGroundFloor, CeilingBelowTheFlatType ceilingBelowTheFlatType, boolean flatIsAtLastFloor, CeilingOverTheFlatType ceilingOverTheFlatType, ExternalMaterialWallsType externalMaterialWallsType, int externalMaterialWallsThicknessInCentimeters, ExternalIsolationWallsType externalIsolationWallsType, int externalIsolationWallsThicknessInCm, ExternalWallLayout externalWallLayout, WindowFrameMaterial windowFrameMaterial, NumberOfGlasses numberOfGlasses, HeatingType heatingType, RadiatorsType radiatorsType, HeatingOfWaterType heatingOfWaterType, VentilationType ventilationType, List<Data> attachments, String additionalInformation, Date sendFormDate, boolean certificationIsCompleted, Client client) {
         this.street = street;
         this.houseNumber = houseNumber;
         this.flatNumber = flatNumber;
@@ -88,6 +92,7 @@ public class Flat {
         this.additionalInformation = additionalInformation;
         this.sendFormDate = sendFormDate;
         this.certificationIsCompleted = certificationIsCompleted;
+        this.client = client;
     }
 
     public Long getId() {
@@ -344,5 +349,13 @@ public class Flat {
 
     public void setCertificationIsCompleted(boolean certificationIsCompleted) {
         this.certificationIsCompleted = certificationIsCompleted;
+    }
+
+    public Client getClient() {
+        return client;
+    }
+
+    public void setClient(Client client) {
+        this.client = client;
     }
 }

@@ -1,6 +1,9 @@
 package com.example.energyCertificates.Building.House.Enums;
 
+import com.example.energyCertificates.Building.Enums.ExternalIsolationWallsType;
+
 public enum WorldParts {
+    NULL("Brak"),
     NORTH("Północ"),
     SOUTH("Południe"),
     EAST("Wschód"),
@@ -18,5 +21,15 @@ public enum WorldParts {
 
     public String getNameInPolish() {
         return nameInPolish;
+    }
+
+    public static WorldParts mapToEnum(String nameInPolish) {
+        for (WorldParts enumType : WorldParts.values()) {
+            if (enumType.getNameInPolish().equals(nameInPolish)) {
+                return enumType;
+            }
+        }
+
+        return null;
     }
 }

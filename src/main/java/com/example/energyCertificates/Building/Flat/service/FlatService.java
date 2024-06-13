@@ -1,6 +1,6 @@
 package com.example.energyCertificates.Building.Flat.service;
 
-import com.example.energyCertificates.Building.FilteringCondition;
+import com.example.energyCertificates.Building.BuildingDto;
 import com.example.energyCertificates.Building.Flat.Dtoes.FlatDto;
 import com.example.energyCertificates.Building.Flat.Dtoes.ThermalModernizationScopeClassDto;
 import com.example.energyCertificates.Building.Flat.Flat;
@@ -13,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.function.Predicate;
 
 @Service
 public class FlatService {
@@ -27,7 +28,7 @@ public class FlatService {
     }
 
     @Transactional
-    FlatDto save(FlatDto flatDto) {
+    public FlatDto save(FlatDto flatDto) {
         List<ThermalModernizationScopeClassDto> thermalDtoList= flatDto.getThermalModernizationScopeList();
         List<DataDto> dataDtoList = flatDto.getAttachments();
 
@@ -40,8 +41,22 @@ public class FlatService {
         return FlatMapper.map(savedFlat);
     }
 
+    private FlatDto findAndDelete(BuildingDto buildingDto) {
+        Flat flatToDelete = flatRepository.getByCityAndStreetAndHouseNumberAndPostalCodeAndSendFormDate(
+                buildingDto.getCity(),
+                buildingDto.getStreet(),
+                buildingDto.getHouseNumber(),
+                buildingDto.getPostalCode(),
+                buildingDto.getDate()
+        );
+
+        return FlatMapper.map(flatToDelete);
+    }
+
     @Transactional
-    void delete(FlatDto flatDto) {
+    public void delete(BuildingDto buildingDto) {
+        FlatDto flatDto = findAndDelete(buildingDto);
+
         List<ThermalModernizationScopeClassDto> thermalDtoList= flatDto.getThermalModernizationScopeList();
         List<DataDto> dataDtoList = flatDto.getAttachments();
 
@@ -52,14 +67,14 @@ public class FlatService {
         flatRepository.deleteById(flatToDelete.getId());
     }
 
-    List<FlatDto> getFlatWithCondition(FilteringCondition filteringCondition) {
+    public List<FlatDto> getFlatWithCondition(Predicate<FlatDto> filteringCondition) {
         List<FlatDto> flatDtoList = flatRepository.getAll().stream()
                 .map(FlatMapper::map)
                 .toList();
         List<FlatDto> filteredFlatDtoList = new ArrayList<>();
 
         for (FlatDto flatDto : flatDtoList) {
-            if (filteringCondition.filter(flatDto)) {
+            if (filteringCondition.test(flatDto)) {
                 filteredFlatDtoList.add(flatDto);
             }
         }
