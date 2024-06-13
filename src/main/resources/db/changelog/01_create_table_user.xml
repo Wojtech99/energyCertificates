@@ -10,7 +10,7 @@
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="email" type="VARCHAR(64)"/>
-            <column name="password" type="VARCHAR(32)"/>
+            <column name="password" type="VARCHAR(128)"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

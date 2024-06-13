@@ -12,5 +12,6 @@
     <include file="06_create_table_house.xml" relativeToChangelogFile="true" />
     <include file="07_create_table_thermal_modernization_scope_class.xml" relativeToChangelogFile="true" />
     <include file="08_create_table_flat.xml" relativeToChangelogFile="true" />
+    <include file="data/data_01_user.xml" relativeToChangelogFile="true" />
 
 </databaseChangeLog>

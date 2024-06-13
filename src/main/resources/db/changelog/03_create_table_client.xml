@@ -9,14 +9,14 @@
             <column name="id" type="BIGINT" autoIncrement="true">
                 <constraints nullable="false" primaryKey="true"/>
             </column>
-            <column name="first_name" type="VARCHAR(32)"/>
-            <column name="last_name" type="VARCHAR(32)"/>
-            <column name="email" type="VARCHAR(64)"/>
+            <column name="first_name" type="VARCHAR(256)"/>
+            <column name="last_name" type="VARCHAR(256)"/>
+            <column name="email" type="VARCHAR(256)"/>
             <column name="phone_number" type="integer"/>
             <column name="pdf_file" type="VARCHAR(64)"/>
-            <column name="company_name" type="VARCHAR(64)"/>
+            <column name="company_name" type="VARCHAR(256)"/>
             <column name="company_number" type="integer"/>
-            <column name="company_address" type="VARCHAR(128)"/>
+            <column name="company_address" type="VARCHAR(256)"/>
             <column name="data_are_genuine_statement" type="boolean"/>
             <column name="client_confirms_company_terms" type="boolean"/>
             <column name="order_is_paid" type="boolean"/>

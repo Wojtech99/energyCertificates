@@ -11,7 +11,6 @@
             </column>
             <column name="world_part_enum_number" type="smallint"/>
             <column name="total_length_of_external_wall_inm" type="double(11, 2)"/>
-            <column name="house_id" type="bigint"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

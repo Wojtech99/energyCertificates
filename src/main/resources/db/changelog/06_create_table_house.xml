@@ -45,6 +45,7 @@
             <column name="secondary_are_water_installation_cables_insulted" type="boolean"/>
             <column name="secondary_is_there_heat_water_circulation" type="boolean"/>
             <column name="secondary_is_there_heat_water_buffer_or_tank" type="boolean"/>
+            <column name="percent_of_usage_secondary_heat_of_water_type" type="boolean"/>
 
             <column name="ventilation_type" type="smallint"/>
 
@@ -67,6 +68,8 @@
             <column name="air_conditioning_power_in_kw" type="integer"/>
             <column name="has_installed_recuperator" type="boolean"/>
             <column name="recuperator_model" type="varchar(64)"/>
+            <column name="has_solar_panels" type="boolean"/>
+            <column name="power_and_usage_of_solar_panels" type="varchar(64)"/>
 
             <column name="additional_information" type="varchar(64)"/>
 
