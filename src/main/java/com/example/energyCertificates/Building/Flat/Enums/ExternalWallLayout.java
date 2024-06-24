@@ -1,5 +1,7 @@
 package com.example.energyCertificates.Building.Flat.Enums;
 
+import com.example.energyCertificates.Building.Enums.FloorNumberInTheBuilding;
+
 public enum ExternalWallLayout {
     ONE_SIDED("Jednostronne"),
     TWO_SIDED("Dwustronne"),
@@ -14,5 +16,15 @@ public enum ExternalWallLayout {
 
     public String getNameInPolish() {
         return nameInPolish;
+    }
+
+    public static ExternalWallLayout mapToEnum(String nameInPolish) {
+        for (ExternalWallLayout enumType : ExternalWallLayout.values()) {
+            if (enumType.getNameInPolish().equals(nameInPolish)) {
+                return enumType;
+            }
+        }
+
+        return null;
     }
 }

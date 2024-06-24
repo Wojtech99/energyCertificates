@@ -16,10 +16,9 @@ public interface HouseRepository extends CrudRepository<House, Long> {
     @Query("select h from House h")
     List<House> getAll();
 
-    House getByCityAndStreetAndHouseNumberAndPostalCodeAndSendFormDate(
+    House getByCityAndStreetAndPostalCodeAndSendFormDate(
             String city,
             String street,
-            int houseNumber,
             String postalCode,
             Date sendFormDate
     );

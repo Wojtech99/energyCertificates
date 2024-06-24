@@ -8,7 +8,6 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 import java.util.Objects;
 import java.util.TreeSet;
-import java.util.function.Function;
 
 @Service
 public class BuildingService {
@@ -30,6 +29,14 @@ public class BuildingService {
                 .map(BuildingMapper::map)
                 .toList();
         TreeSet<BuildingDto> buildingDtoTreeSet = new TreeSet<>();
+
+        for (BuildingDto buildingDto : houseDtoList) {
+            buildingDto.setBuildingType(BuildingType.HOUSE);
+        }
+
+        for (BuildingDto buildingDto : flatDtoList) {
+            buildingDto.setBuildingType(BuildingType.FLAT);
+        }
 
         buildingDtoTreeSet.addAll(houseDtoList);
         buildingDtoTreeSet.addAll(flatDtoList);

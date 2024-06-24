@@ -16,4 +16,8 @@ import java.io.Serializable;
 public class ThermalModernizationScopeClassDto implements Serializable {
     private Long id;
     private ThermalModernizationScope enumNumber;
+
+    public ThermalModernizationScopeClassDto(ThermalModernizationScope thermalModernizationScope) {
+        this.enumNumber = thermalModernizationScope;
+    }
 }

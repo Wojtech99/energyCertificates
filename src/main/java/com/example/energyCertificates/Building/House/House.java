@@ -15,7 +15,7 @@ public class House {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    //Basic data of the flat
+    //Basic data of the house
     private String street;
     private int houseNumber;
     private int flatNumber;

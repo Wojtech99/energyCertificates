@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,7 +18,6 @@ import java.util.List;
  */
 @Data
 @AllArgsConstructor
-@NoArgsConstructor
 public class FlatDto implements Serializable {
     private Long id;
     private String street;
@@ -52,4 +52,9 @@ public class FlatDto implements Serializable {
     private Date sendFormDate;
     private boolean certificationIsCompleted;
     private ClientDto clientDto;
+
+    public FlatDto() {
+        this.thermalModernizationScopeList = new ArrayList<>();
+        this.attachments = new ArrayList<>();
+    }
 }

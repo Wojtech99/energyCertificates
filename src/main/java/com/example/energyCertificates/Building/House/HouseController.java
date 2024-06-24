@@ -12,6 +12,7 @@ import com.example.energyCertificates.Building.House.Enums.RoomType;
 import com.example.energyCertificates.Building.House.Enums.WorldParts;
 import com.example.energyCertificates.Building.House.Service.HouseService;
 import com.example.energyCertificates.Data.DataDto;
+import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.multipart.MultipartFile;
 
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
@@ -33,36 +35,37 @@ public class HouseController {
 
     @GetMapping("/house/new-house-form")
     String addNewFlat(Model model) {
-        List<String> listOfFloorNumberInTheBuilding = Arrays.stream(FloorNumberInTheBuilding.values()).map(FloorNumberInTheBuilding::getNameInPolish).toList();
-        List<String> listOfCeilingOverTheFlatType = Arrays.stream(CeilingOverTheFlatType.values()).map(CeilingOverTheFlatType::getNameInPolish).toList();
-        List<String> listOfCeilingBelowTheFlatType = Arrays.stream(CeilingBelowTheFlatType.values()).map(CeilingBelowTheFlatType::getNameInPolish).toList();
-        List<String> listOfExternalMaterialWallsType = Arrays.stream(ExternalMaterialWallsType.values()).map(ExternalMaterialWallsType::getNameInPolish).toList();
-        List<String> listOfExternalIsolationWallsType = Arrays.stream(ExternalIsolationWallsType.values()).map(ExternalIsolationWallsType::getNameInPolish).toList();
-        List<String> listOfExternalWallLayout = Arrays.stream(ExternalWallLayout.values()).map(ExternalWallLayout::getNameInPolish).toList();
-        List<String> listOfWindowFrameMaterial = Arrays.stream(WindowFrameMaterial.values()).map(WindowFrameMaterial::getNameInPolish).toList();
-        List<String> listOfNumberOfGlasses = Arrays.stream(NumberOfGlasses.values()).map(NumberOfGlasses::getNameInPolish).toList();
         List<String> listOfHeatingType = Arrays.stream(HeatingType.values()).map(HeatingType::getNameInPolish).toList();
         List<String> listOfRadiatorsType = Arrays.stream(RadiatorsType.values()).map(RadiatorsType::getNameInPolish).toList();
         List<String> listOfHeatingOfWaterType = Arrays.stream(HeatingOfWaterType.values()).map(HeatingOfWaterType::getNameInPolish).toList();
         List<String> listOfVentilationType = Arrays.stream(VentilationType.values()).map(VentilationType::getNameInPolish).toList();
+        List<String> listOfCeilingOverTheFlatType = Arrays.stream(CeilingOverTheFlatType.values()).map(CeilingOverTheFlatType::getNameInPolish).toList();
+        List<String> listOfCeilingBelowTheFlatType = Arrays.stream(CeilingBelowTheFlatType.values()).map(CeilingBelowTheFlatType::getNameInPolish).toList();
+        List<String> listOfFloorNumberInTheBuilding = Arrays.stream(FloorNumberInTheBuilding.values()).map(FloorNumberInTheBuilding::getNameInPolish).toList();
+        List<String> listOfEntranceDoorType = Arrays.stream(EntranceDoorType.values()).map(EntranceDoorType::getNameInPolish).toList();
+        List<String> listOfWindowFrameMaterial = Arrays.stream(WindowFrameMaterial.values()).map(WindowFrameMaterial::getNameInPolish).toList();
+        List<String> listOfNumberOfGlasses = Arrays.stream(NumberOfGlasses.values()).map(NumberOfGlasses::getNameInPolish).toList();
+        List<String> listOfExternalMaterialWallsType = Arrays.stream(ExternalMaterialWallsType.values()).map(ExternalMaterialWallsType::getNameInPolish).toList();
+        List<String> listOfExternalIsolationWallsType = Arrays.stream(ExternalIsolationWallsType.values()).map(ExternalIsolationWallsType::getNameInPolish).toList();
 
-        List<String> listOfThermalModernizationScope = Arrays.stream(ThermalModernizationScope.values()).map(ThermalModernizationScope::getNameInPolish).toList();
+        List<String> listOfWorldParts = Arrays.stream(WorldParts.values()).map(WorldParts::getNameInPolish).toList();
+        List<String> listOfRoomType = Arrays.stream(RoomType.values()).map(RoomType::getNameInPolish).toList();
 
-        model.addAttribute("listOfFloorNumberInTheBuilding", listOfFloorNumberInTheBuilding);
-        model.addAttribute("listOfCeilingOverTheFlatType", listOfCeilingOverTheFlatType);
-        model.addAttribute("listOfCeilingBelowTheFlatType", listOfCeilingBelowTheFlatType);
-        model.addAttribute("listOfExternalMaterialWallsType", listOfExternalMaterialWallsType);
-        model.addAttribute("listOfExternalIsolationWallsType", listOfExternalIsolationWallsType);
-        model.addAttribute("listOfExternalWallLayout", listOfExternalWallLayout);
-        model.addAttribute("listOfWindowFrameMaterial", listOfWindowFrameMaterial);
-        model.addAttribute("listOfNumberOfGlasses", listOfNumberOfGlasses);
         model.addAttribute("listOfHeatingType", listOfHeatingType);
         model.addAttribute("listOfRadiatorsType", listOfRadiatorsType);
         model.addAttribute("listOfHeatingOfWaterType", listOfHeatingOfWaterType);
         model.addAttribute("listOfVentilationType", listOfVentilationType);
+        model.addAttribute("listOfCeilingOverTheFlatType", listOfCeilingOverTheFlatType);
+        model.addAttribute("listOfCeilingBelowTheFlatType", listOfCeilingBelowTheFlatType);
+        model.addAttribute("listOfFloorNumberInTheBuilding", listOfFloorNumberInTheBuilding);
+        model.addAttribute("listOfEntranceDoorType", listOfEntranceDoorType);
+        model.addAttribute("listOfWindowFrameMaterial", listOfWindowFrameMaterial);
+        model.addAttribute("listOfNumberOfGlasses", listOfNumberOfGlasses);
+        model.addAttribute("listOfExternalMaterialWallsType", listOfExternalMaterialWallsType);
+        model.addAttribute("listOfExternalIsolationWallsType", listOfExternalIsolationWallsType);
 
-        model.addAttribute("listOfThermalModernizationScope", listOfThermalModernizationScope);
-
+        model.addAttribute("listOfRoomType", listOfRoomType);
+        model.addAttribute("listOfWorldParts", listOfWorldParts);
 
         model.addAttribute("house", new HouseDto());
 
@@ -155,13 +158,9 @@ public class HouseController {
         houseDto.getUnheatedRoomDtoList().add(unheatedRoomDto_2);
         houseDto.getUnheatedRoomDtoList().add(unheatedRoomDto_3);
 
-        attachments.forEach(attachment ->
-                houseDto.getAttachmentDtoList().add(
-                        new DataDto(attachment.getName())));
 
 
-
-        houseService.saveHouse(houseDto);
+        houseService.saveHouse(houseDto, attachments);
 
         return "redirect:/";
     }

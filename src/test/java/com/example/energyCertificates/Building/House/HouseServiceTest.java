@@ -11,7 +11,7 @@ import com.example.energyCertificates.Building.House.Service.UnheatedRoomService
 import com.example.energyCertificates.Client.Dtoes.ClientDto;
 import com.example.energyCertificates.Client.ClientService;
 import com.example.energyCertificates.Data.DataDto;
-import com.example.energyCertificates.Data.DataService;
+import com.example.energyCertificates.Data.Service.DataService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -102,7 +102,7 @@ public class HouseServiceTest {
         when(dataService
                 .save(any(DataDto.class)))
                 .thenReturn(dataDto);
-        when(houseService.save(any(HouseDto.class)))
+        when(houseService.saveHouse(any(HouseDto.class), any()))
                 .thenReturn(houseDto);
     }
 }

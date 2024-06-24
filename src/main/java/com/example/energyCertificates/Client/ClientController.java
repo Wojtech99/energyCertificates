@@ -21,7 +21,7 @@ public class ClientController {
         List<ClientDto> clientDtoList = clientService.getAllClients();
         model.addAttribute("clientList", clientDtoList);
 
-        return "list-of-clients";
+        return "client-list";
     }
 
     @PostMapping("/send-form")
@@ -31,7 +31,15 @@ public class ClientController {
         return "redirect:/";
     }
 
-    @DeleteMapping("/client/delete/{email}")
+    /**
+     * delete client by email
+     * @param email Client's email
+     * @return "List of client" page
+     */
+    @RequestMapping(
+            value = "/client/delete/{email}",
+            method = {RequestMethod.GET, RequestMethod.DELETE}
+    )
     String deleteClientByEmail(@PathVariable("email") String email) {
         clientService.deleteClient(email);
 

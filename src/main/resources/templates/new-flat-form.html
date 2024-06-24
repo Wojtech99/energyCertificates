@@ -70,7 +70,7 @@
         </div>
         <div style="font-size: small" class="row justify-content-center mt-4">
             <div class="col-lg-8 mx-auto mbr-form">
-                <form method="POST" class="mbr-form form-with-styler" enctype="multipart/form-data" th:action="@{/house/new-house-form/save}" th:object="${flat}">
+                <form method="POST" class="mbr-form form-with-styler" enctype="multipart/form-data" th:action="@{/flat/new-flat-form/save}" th:object="${flat}">
                     <div class="row">
                         <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Dziękujemy za wypełnienie formularza</div>
                         <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
@@ -114,8 +114,8 @@
 						</div>
 
 
-				<!-- Podstawowe dane domu -->
-						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Podstawowe dane domu</h4>
+				<!-- Podstawowe dane mieszkania -->
+						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Podstawowe dane mieszkania</h4>
 						<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
 							<div class="form-floating   mb-3" data-for="street">
 								<input th:field="*{street}" id="street" placeholder="Ulica" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
@@ -165,19 +165,170 @@
 							<input value="true"  type="radio" class="btn-check"  id="btnradio1" autocomplete="off" disabled>
 							<label style="width: min(60%); width: max(60%); font-size: medium" class="btn btn-outline-secondary" for="btnradio1">Czy budynek przechodził termomodernizację?</label>
 
-							<input value="true" th:field="*{theBuildingIsAfterThermalModernization}" type="radio" class="btn-check"  id="btnradio2" autocomplete="off" onclick="">
+							<input value="true" th:field="*{theBuildingIsAfterThermalModernization}" type="radio" class="btn-check"  id="btnradio2" autocomplete="off" onclick="showThermalModernizationInfo()">
 							<label class="btn btn-outline-secondary" for="btnradio2">Tak</label>
 
-							<input value="false" th:field="*{theBuildingIsAfterThermalModernization}" type="radio" class="btn-check"  id="btnradio3" autocomplete="off" onclick="" checked>
+							<input value="false" th:field="*{theBuildingIsAfterThermalModernization}" type="radio" class="btn-check"  id="btnradio3" autocomplete="off" onclick="hideThermalModernizationInfo()" checked>
 							<label class="btn btn-outline-secondary" for="btnradio3">Nie</label>
 						</div>
+						<div id="thermalModernizationInfo">
+							<!-- end-->
+							<div class="form-floating   mb-3" data-for="lastBuildingThermalModernizationYear">
+								<input th:field="*{lastBuildingThermalModernizationYear}" id="lastBuildingThermalModernizationYear" placeholder="Rok ostatniej termomodernizacji" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<label style="left: 3%" for="lastBuildingThermalModernizationYear">Rok ostatniej termomodernizacji</label>
+							</div>
+							<div style="display: grid; align-content: center">
+								<!-- thermalModernizationScope_1 -->
+								<label id="thermalModernizationScope_1">
+									<select class="form-control mb-3" name="thermalModernizationScope_1" style="font-size: small">
+										<option value="Brak">Zakres termodernizacji</option>
+										<option th:each="thermalModernizationScope_1_name: ${listOfThermalModernizationScope}" th:value="${thermalModernizationScope_1_name}" th:text="${thermalModernizationScope_1_name}"></option>
+									</select>
+								</label>
+								<!-- end-->
+								<!-- thermalModernizationScope_2 -->
+								<label id="thermalModernizationScope_2">
+									<select class="form-control mb-3" name="thermalModernizationScope_2" style="font-size: small">
+										<option value="Brak">Zakres termodernizacji</option>
+										<option th:each="thermalModernizationScope_2_name: ${listOfThermalModernizationScope}" th:value="${thermalModernizationScope_2_name}" th:text="${thermalModernizationScope_2_name}"></option>
+									</select>
+								</label>
+								<!-- end-->
+								<!-- thermalModernizationScope_3 -->
+								<label id="thermalModernizationScope_3">
+									<select class="form-control mb-3" name="thermalModernizationScope_3" style="font-size: small">
+										<option value="Brak">Zakres termodernizacji</option>
+										<option th:each="thermalModernizationScope_3_name: ${listOfThermalModernizationScope}" th:value="${thermalModernizationScope_3_name}" th:text="${thermalModernizationScope_3_name}"></option>
+									</select>
+								</label>
+								<!-- end-->
+							</div>
+							<div style="display: flex; justify-content: space-between">
+								<button style="font-size:12px; height: max(25%); width: max(27%)" type="button" class="btn btn-secondary" onclick="addNextThermalModernizationScope()">Dodaj zakres termodernizacji</button>
+								<button style="font-size:12px; height: max(25%); width: max(27%)" type="button" class="btn btn-outline-secondary" onclick="hidePreviousThermalModernizationScope()">Usuń zakres termodernizacji</button>
+							</div>
+						</div>
+						<!-- radioGroup -->
+						<div class="btn-group btn-group-sm" role="group">
+							<input value="true"  type="radio" class="btn-check"  id="btnradio4" autocomplete="off" disabled>
+							<label style="width: min(60%); width: max(60%); font-size: medium" class="btn btn-outline-secondary" for="btnradio4">Czy mieszkanie jest na parterze?</label>
 
+							<input value="true" th:field="*{flatIsAtGroundFloor}" type="radio" class="btn-check"  id="btnradio5" autocomplete="off" onclick="showCeilingBelowTheFlatType()">
+							<label class="btn btn-outline-secondary" for="btnradio5">Tak</label>
+
+							<input value="false" th:field="*{flatIsAtGroundFloor}" type="radio" class="btn-check"  id="btnradio6" autocomplete="off" onclick="hideCeilingBelowTheFlatType()" checked>
+							<label class="btn btn-outline-secondary" for="btnradio6">Nie</label>
+						</div>
+						<!-- end-->
+						<label id="CeilingBelowTheFlatType">
+							<select class="form-control mb-3" name="ceilingBelowTheFlatTypeInPolishString" style="font-size: small">
+								<option value="Brak">Rodzaj stropu pod mieszkaniem</option>
+								<option th:each="CeilingBelowTheFlatType: ${listOfCeilingBelowTheFlatType}" th:value="${CeilingBelowTheFlatType}" th:text="${CeilingBelowTheFlatType}"></option>
+							</select>
+						</label>
+						<!-- radioGroup -->
+						<div class="btn-group btn-group-sm" role="group">
+							<input value="true"  type="radio" class="btn-check"  id="btnradio7" autocomplete="off" disabled>
+							<label style="width: min(60%); width: max(60%); font-size: medium" class="btn btn-outline-secondary" for="btnradio7">Czy mieszkanie jest na ostatnim piętrze?</label>
+
+							<input value="true" th:field="*{flatIsAtLastFloor}" type="radio" class="btn-check"  id="btnradio8" autocomplete="off" onclick="showCeilingOverTheFlatType()">
+							<label class="btn btn-outline-secondary" for="btnradio8">Tak</label>
+
+							<input value="false" th:field="*{flatIsAtLastFloor}" type="radio" class="btn-check"  id="btnradio9" autocomplete="off" onclick="hideCeilingOverTheFlatType()" checked>
+							<label class="btn btn-outline-secondary" for="btnradio9">Nie</label>
+						</div>
+						<!-- end-->
+						<label id="CeilingOverTheFlatType">
+							<select class="form-control mb-3" name="ceilingOverTheFlatTypeInPolishString" style="font-size: small">
+								<option value="Brak">Rodzaj stropu nad mieszkaniem</option>
+								<option th:each="CeilingOverTheFlatType: ${listOfCeilingOverTheFlatType}" th:value="${CeilingOverTheFlatType}" th:text="${CeilingOverTheFlatType}"></option>
+							</select>
+						</label>
+
+
+
+				<!-- Ściany -->
+						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Ściany</h4>
+						<div style="display: flex">
+							<label>
+								<select class="form-control mb-3" name="externalMaterialWallsTypeInPolishString" style="font-size: small">
+									<option value="Brak">Materiał ścian zewnętrznych</option>
+									<option th:each="externalMaterialWallsType: ${listOfExternalMaterialWallsType}" th:value="${externalMaterialWallsType}" th:text="${externalMaterialWallsType}"></option>
+								</select>
+							</label>
+							<div class="form-floating   col-md col-sm-12 form-group mb-3" data-for="externalMaterialWallsThicknessInCentimeters">
+								<input th:field="*{externalMaterialWallsThicknessInCentimeters}" id="externalMaterialWallsThicknessInCentimeters" placeholder="Grubość (opcjonalne)" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<label style="left: 3%" for="externalMaterialWallsThicknessInCentimeters">Grubość (opcjonalne)</label>
+							</div>
+						</div>
+						<div style="display:flex">
+							<label>
+								<select class="form-control mb-3" name="externalIsolationWallsTypeInPolishString" style="font-size: small">
+									<option value="Brak">Izolacja ścian zewnętrznych</option>
+									<option th:each="externalIsolationWallsType: ${listOfExternalIsolationWallsType}" th:value="${externalIsolationWallsType}" th:text="${externalIsolationWallsType}"></option>
+								</select>
+							</label>
+							<div class="form-floating   col-md col-sm-12 form-group mb-3" data-for="externalIsolationWallsThicknessInCm">
+								<input th:field="*{externalIsolationWallsThicknessInCm}" id="externalIsolationWallsThicknessInCm" placeholder="Grubość (opcjonalne)" style="text-align: -moz-left; font-size: 18px" type="number" value=""  class="form-control" >
+								<label style="left: 3%" for="externalIsolationWallsThicknessInCm">Grubość (opcjonalne)</label>
+							</div>
+						</div>
+						<label>
+							<select class="form-control mb-3" name="externalWallLayoutInPolishString" style="font-size: small">
+								<option value="Brak">Układ ścian zewnętrznych</option>
+								<option th:each="externalWallLayout: ${listOfExternalWallLayout}" th:value="${externalWallLayout}" th:text="${externalWallLayout}"></option>
+							</select>
+						</label>
+
+
+				<!-- Okna -->
+						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Okna</h4>
+						<label>
+							<select class="form-control mb-3" name="windowFrameMaterialInPolishString" style="font-size: small">
+								<option value="Brak">Materiał ramy okna</option>
+								<option th:each="windowFrameMaterial: ${listOfWindowFrameMaterial}" th:value="${windowFrameMaterial}" th:text="${windowFrameMaterial}"></option>
+							</select>
+						</label>
+						<label>
+							<select class="form-control mb-3" name="numberOfGlassesInPolishString" style="font-size: small">
+								<option value="Brak">Wybierz liczba kondygnacji domu</option>
+								<option th:each="numberOfGlasses: ${listOfNumberOfGlasses}" th:value="${numberOfGlasses}" th:text="${numberOfGlasses}"></option>
+							</select>
+						</label>
+
+
+				<!-- Ogrzewanie i wentylacja -->
+						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Ogrzewanie i wentylacja</h4>
+						<label>
+							<select class="form-control mb-3" name="heatingTypeInPolishString" style="font-size: small">
+								<option value="Brak">Wybierz rodzaj ogrzewania</option>
+								<option th:each="heatingType: ${listOfHeatingType}" th:value="${heatingType}" th:text="${heatingType}"></option>
+							</select>
+						</label>
+						<label>
+							<select class="form-control mb-3" name="radiatorsTypeInPolishString" style="font-size: small">
+								<option value="Brak">Wybierz rodzaj zainstalowanych grzejników</option>
+								<option th:each="radiatorsType: ${listOfRadiatorsType}" th:value="${radiatorsType}" th:text="${radiatorsType}"></option>
+							</select>
+						</label>
+						<label>
+							<select class="form-control mb-3" name="heatingOfWaterTypeInPolishString" style="font-size: small">
+								<option value="Brak">Wybierz rodzaj ogrzewania wody</option>
+								<option th:each="heatingOfWaterType: ${listOfHeatingOfWaterType}" th:value="${heatingOfWaterType}" th:text="${heatingOfWaterType}"></option>
+							</select>
+						</label>
+						<label>
+							<select class="form-control mb-3" name="ventilationTypeInPolishString" style="font-size: small">
+								<option value="Brak">Wybierz rodzaj wentylacji</option>
+								<option th:each="ventilationType: ${listOfVentilationType}" th:value="${ventilationType}" th:text="${ventilationType}"></option>
+							</select>
+						</label>
 
 
 				<!-- Załączniki -->
 						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Załączniki</h4>
 						<div class="form-control-sm mb-3">
-							<input  class="form-control" type="file" name="attachments" id="formFile" multiple>
+							<input  class="form-control" type="file" name="attachmentList" id="formFile" multiple>
 						</div>
 						<div class="form-floating mb-3" data-for="additionalInformation">
 							<textarea th:field="*{additionalInformation}" id="additionalInformation" placeholder="Dodatkowe informacje" style="text-align: -moz-left; font-size: 18px; height: 150px" class="form-control"></textarea>
@@ -253,63 +404,68 @@
   </section>
 
   <script>
-	  window.onload = hideSecondaryHeating();
-	  window.onload = hideSecondaryHeatOfWater();
-	  window.onload = hideAllHouseWallsSinceSecond();
-	  window.onload = hideUnheatedRooms();
-	  window.onload = hideAllUnheatedRoomsSinceSecond();
-	  window.onload = hideHouseBuildCorrectlyInput();
-	  window.onload = hideHouseHasAirConditionInput();
-	  window.onload = hideHouseHasInstalledRecuperatorInput();
-	  window.onload = hideHouseHasSolarPanelsInput();
+	  window.onload = hideThermalModernizationInfo();
+	  window.onload = hideCeilingBelowTheFlatType();
+	  window.onload = hideCeilingOverTheFlatType();
+	  window.onload = hideAllThermalModernizationScopeSinceFirst();
 
-	  //Secondary Heating
-	  function hideSecondaryHeating() {
-		  document.getElementById('secondaryHeating').style.display = 'none';
+
+	  //thermal Modernization Info
+	  function hideThermalModernizationInfo() {
+		  document.getElementById('thermalModernizationInfo').style.display = 'none';
 	  }
-	  function showSecondaryHeating() {
-		  document.getElementById('secondaryHeating').style.display = 'grid';
+	  function showThermalModernizationInfo() {
+		  document.getElementById('thermalModernizationInfo').style.display = 'grid';
 	  }
 
 
-	  //Secondary HeatOfWater
-	  function hideSecondaryHeatOfWater() {
-		  document.getElementById('secondaryHeatOfWater').style.display = 'none';
+	  //CeilingBelowTheFlatType
+	  function hideCeilingBelowTheFlatType() {
+		  document.getElementById('CeilingBelowTheFlatType').style.display = 'none';
 	  }
-	  function showSecondaryHeatOfWater() {
-		  document.getElementById('secondaryHeatOfWater').style.display = 'grid';
+	  function showCeilingBelowTheFlatType() {
+		  document.getElementById('CeilingBelowTheFlatType').style.display = 'grid';
 	  }
 
+	  //CeilingOverTheFlatType
+	  function hideCeilingOverTheFlatType() {
+		  document.getElementById('CeilingOverTheFlatType').style.display = 'none';
+	  }
+	  function showCeilingOverTheFlatType() {
+		  document.getElementById('CeilingOverTheFlatType').style.display = 'grid';
+	  }
 
-	  //house walls
-	  function hideAllHouseWallsSinceSecond() {
-		  for (let i = 2; i <= 8; i++) {
-			  let houseWall = 'houseWall_' + i;
-			  document.getElementById(houseWall).style.display = 'none';
+	  //thermalModernizationScope
+	  function hideAllThermalModernizationScopeSinceFirst() {
+		  for (let i = 2; i <= 3; i++) {
+			  let thermalModernizationScope = 'thermalModernizationScope_' + i;
+			  document.getElementById(thermalModernizationScope).style.display = 'none';
 		  }
 	  }
 
-	  let houseWallSize = 2;
-	  function addNextHouseWall() {
-		  if (houseWallSize >= 8) {
+	  let thermalModernizationScopeSize = 1;
+	  function addNextThermalModernizationScope() {
+		  if (thermalModernizationScopeSize >= 3) {
 			  return;
 		  }
 
-		  ++houseWallSize;
+		  ++thermalModernizationScopeSize;
 
-		  let houseWall = 'houseWall_' + houseWallSize;
-		  document.getElementById(houseWall).style.display = 'flex';
+		  let thermalModernizationScope = 'thermalModernizationScope_' + thermalModernizationScopeSize;
+		  document.getElementById(thermalModernizationScope).style.display = 'flex';
 	  }
-	  function hidePreviousHouseWall() {
-		  if (houseWallSize < 2) {
+	  function hidePreviousThermalModernizationScope() {
+		  if (thermalModernizationScopeSize < 2) {
 			  return;
 		  }
 
-		  let houseWall = 'houseWall_' + houseWallSize;
-		  document.getElementById(houseWall).style.display = 'none';
+		  let thermalModernizationScope = 'thermalModernizationScope_' + thermalModernizationScopeSize;
+		  document.getElementById(thermalModernizationScope).style.display = 'none';
 
-		  --houseWallSize;
+		  --thermalModernizationScopeSize;
 	  }
+
+
 
 
 	  //unheated Rooms

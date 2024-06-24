@@ -15,6 +15,7 @@ public class BuildingDto implements Comparable<BuildingDto>{
     private String city;
     private String street;
     private int houseNumber;
+    private int flatNumber;
     private String postalCode;
     private BuildingType buildingType;
 

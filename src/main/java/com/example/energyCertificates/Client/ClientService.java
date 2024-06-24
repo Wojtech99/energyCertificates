@@ -11,37 +11,18 @@ import java.util.Optional;
 @Service
 public class ClientService {
     private final ClientRepository clientRepository;
-    private final PasswordEncoder passwordEncoder;
 
-    public ClientService(ClientRepository clientRepository, PasswordEncoder passwordEncoder) {
+    public ClientService(ClientRepository clientRepository) {
         this.clientRepository = clientRepository;
-        this.passwordEncoder = passwordEncoder;
     }
 
     @Transactional
     public ClientDto saveClient(ClientDto clientDto) {
-        ClientDto clientDtoToSave = encodeClientInfo(clientDto);
 
-        Client client = ClientMapper.map(clientDtoToSave);
+        Client client = ClientMapper.map(clientDto);
         Client savedClient = clientRepository.save(client);
 
         return ClientMapper.map(savedClient);
-    }
-
-    private ClientDto encodeClientInfo(ClientDto clientDto) {
-        String firstName = passwordEncoder.encode(clientDto.getFirstName());
-        String lastName = passwordEncoder.encode(clientDto.getLastName());
-        String email = passwordEncoder.encode(clientDto.getEmail());
-        String companyName = passwordEncoder.encode(clientDto.getCompanyName());
-        String companyAddress = passwordEncoder.encode(clientDto.getCompanyAddress());
-
-        clientDto.setFirstName(firstName);
-        clientDto.setLastName(lastName);
-        clientDto.setEmail(email);
-        clientDto.setCompanyName(companyName);
-        clientDto.setCompanyAddress(companyAddress);
-
-        return clientDto;
     }
 
     @Transactional

@@ -6,11 +6,13 @@ import com.example.energyCertificates.Building.House.Dtoes.HouseDto;
 
 public class BuildingMapper {
     public static BuildingDto map(HouseDto houseDto) {
+
         return new BuildingDto(
                 houseDto.getSendFormDate(),
                 houseDto.getCity(),
                 houseDto.getStreet(),
                 houseDto.getHouseNumber(),
+                houseDto.getFlatNumber(),
                 houseDto.getPostalCode(),
                 BuildingType.HOUSE
         );
@@ -22,6 +24,7 @@ public class BuildingMapper {
                 flatDto.getCity(),
                 flatDto.getStreet(),
                 flatDto.getHouseNumber(),
+                flatDto.getFlatNumber(),
                 flatDto.getPostalCode(),
                 BuildingType.FLAT
         );
