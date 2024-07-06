@@ -225,8 +225,10 @@ public class FlatService {
 
         Paragraph normalWalls = new Paragraph(
                 "Typ materiału ścian zewnętrznych: " + flatDto.getExternalMaterialWallsType().getNameInPolish() + "\n" +
+                        "Typ materiału ścian zewnętrznych (jeśli zaznaczono inne): " + flatDto.getAnotherExternalMaterialWallsType() + "\n" +
                         "Grubość materiału ścian zewnętrznych w centymetrach: " + flatDto.getExternalMaterialWallsThicknessInCentimeters() + "\n" +
                         "Typ izolacji ścian zewnętrznych: " + flatDto.getExternalIsolationWallsType().getNameInPolish() + "\n" +
+                        "Typ izolacji ścian zewnętrznych (jeśli zaznaczono inne): " + flatDto.getAnotherExternalIsolationWallsType() + "\n" +
                         "Grubość izolacji ścian zewnętrznych w centymetrach: " + flatDto.getExternalIsolationWallsThicknessInCm() + "\n" +
                         "Układ ścian zewnętrznych: " + flatDto.getExternalWallLayout().getNameInPolish(),
                 normalTextFont
@@ -309,7 +311,7 @@ public class FlatService {
         allThermals.append("\n");
 
         for (ThermalModernizationScopeClassDto thermal : thermalScopeList) {
-            allThermals.append("\t\t -")
+            allThermals.append("\t\t     - ")
                     .append(thermal.getEnumNumber().getNameInPolish())
                     .append(",\n");
         }

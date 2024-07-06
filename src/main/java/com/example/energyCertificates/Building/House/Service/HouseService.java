@@ -242,13 +242,13 @@ public class HouseService {
                         "Czy jest cyrkulacja ogrzewania: " + houseDto.isThereHeatingCirculation() + "\n" +
                         "Czy jest bufor lub zbiornik ogrzewania: " + houseDto.isThereHeatingBufferOrTank() + "\n" +
                         "Czy jest dodatkowy typ ogrzewania: " + houseDto.isThereSecondaryHeatingType() + "\n" +
-                        "Dodatkowy typ ogrzewania: " + houseDto.getSecondaryHeatingType().getNameInPolish() + "\n" +
-                        "Dodatkowy typ ogrzewania z modelem pieca: " + houseDto.getSecondaryTypeOfHeatingWithFurnaceModel() + "\n" +
-                        "Dodatkowy typ grzejników: " + houseDto.getSecondaryRadiatorsType().getNameInPolish() + "\n" +
-                        "Czy dodatkowe przewody instalacyjne sa izolowane: " + houseDto.isSecondaryAreInstallationCablesInsulted() + "\n" +
-                        "Czy jest dodatkowa cyrkulacja ogrzewania: " + houseDto.isSecondaryIsThereHeatingCirculation() + "\n" +
-                        "Czy jest dodatkowy bufor lub zbiornik ogrzewania: " + houseDto.isSecondaryIsThereHeatingBufferOrTank() + "\n" +
-                        "Procent wykorzystania dodatkowego typu ogrzewania: " + houseDto.getPercentOfUsageSecondaryHeatingType(),
+                        "     -Dodatkowy typ ogrzewania: " + houseDto.getSecondaryHeatingType().getNameInPolish() + "\n" +
+                        "     -Dodatkowy typ ogrzewania z modelem pieca: " + houseDto.getSecondaryTypeOfHeatingWithFurnaceModel() + "\n" +
+                        "     -Dodatkowy typ grzejników: " + houseDto.getSecondaryRadiatorsType().getNameInPolish() + "\n" +
+                        "     -Czy dodatkowe przewody instalacyjne sa izolowane: " + houseDto.isSecondaryAreInstallationCablesInsulted() + "\n" +
+                        "     -Czy jest dodatkowa cyrkulacja ogrzewania: " + houseDto.isSecondaryIsThereHeatingCirculation() + "\n" +
+                        "     -Czy jest dodatkowy bufor lub zbiornik ogrzewania: " + houseDto.isSecondaryIsThereHeatingBufferOrTank() + "\n" +
+                        "     -Procent wykorzystania dodatkowego typu ogrzewania: " + houseDto.getPercentOfUsageSecondaryHeatingType(),
                 normalTextFont
         );
         normalHeating.setAlignment(Paragraph.ALIGN_JUSTIFIED);
@@ -268,12 +268,12 @@ public class HouseService {
                         "Czy jest cyrkulacja wody grzewczej: " + houseDto.isThereHeatWaterCirculation() + "\n" +
                         "Czy jest bufor lub zbiornik wody grzewczej: " + houseDto.isThereHeatWaterBufferOrTank() + "\n" +
                         "Czy jest dodatkowy typ ogrzewania wody: " + houseDto.isThereSecondaryHeatingOfWaterType() + "\n" +
-                        "Dodatkowy typ ogrzewania wody: " + houseDto.getSecondaryHeatingOfWaterType().getNameInPolish() + "\n" +
-                        "Dodatkowy typ ogrzewania wody z modelem pieca: " + houseDto.getSecondaryTypeOfHeatingWaterWithFurnaceModel() + "\n" +
-                        "Czy dodatkowe przewody instalacji wodnej sa izolowane: " + houseDto.isSecondaryAreWaterInstallationCablesInsulted() + "\n" +
-                        "Czy jest dodatkowa cyrkulacja wody grzewczej: " + houseDto.isSecondaryIsThereHeatWaterCirculation() + "\n" +
-                        "Czy jest dodatkowy bufor lub zbiornik wody grzewczej: " + houseDto.isSecondaryIsThereHeatWaterBufferOrTank() + "\n" +
-                        "Procent wykorzystania dodatkowego typu ogrzewania wody: " + houseDto.getPercentOfUsageSecondaryHeatOfWaterType(),
+                        "     -Dodatkowy typ ogrzewania wody: " + houseDto.getSecondaryHeatingOfWaterType().getNameInPolish() + "\n" +
+                        "     -Dodatkowy typ ogrzewania wody z modelem pieca: " + houseDto.getSecondaryTypeOfHeatingWaterWithFurnaceModel() + "\n" +
+                        "     -Czy dodatkowe przewody instalacji wodnej sa izolowane: " + houseDto.isSecondaryAreWaterInstallationCablesInsulted() + "\n" +
+                        "     -Czy jest dodatkowa cyrkulacja wody grzewczej: " + houseDto.isSecondaryIsThereHeatWaterCirculation() + "\n" +
+                        "     -Czy jest dodatkowy bufor lub zbiornik wody grzewczej: " + houseDto.isSecondaryIsThereHeatWaterBufferOrTank() + "\n" +
+                        "     -Procent wykorzystania dodatkowego typu ogrzewania wody: " + houseDto.getPercentOfUsageSecondaryHeatOfWaterType(),
                 normalTextFont
         );
         normalHotWater.setAlignment(Paragraph.ALIGN_JUSTIFIED);
@@ -336,8 +336,10 @@ public class HouseService {
 
         Paragraph normalLayoutAndTypeOfExternalWalls = new Paragraph(
                 "Typ materiału ścian zewnetrznych: " + houseDto.getExternalMaterialWallsType().getNameInPolish() + "\n" +
+                        "Typ materiału ścian zewnętrznych (jeśli zaznaczono inne): " + houseDto.getAnotherExternalMaterialWallsType() + "\n" +
                         "Grubość materiału ścian zewnetrznych w centymetrach: " + houseDto.getExternalMaterialWallsThicknessInCentimeters() + "\n" +
                         "Typ izolacji ścian zewnetrznych: " + houseDto.getExternalIsolationWallsType().getNameInPolish() + "\n" +
+                        "Typ izolacji ścian zewnętrznych (jeśli zaznaczono inne): " + houseDto.getAnotherExternalMaterialWallsType() + "\n" +
                         "Grubość izolacji ścian zewnetrznych w centymetrach: " + houseDto.getExternalIsolationWallsThicknessInCentimeters() + "\n" +
                         "Lista ścian domu: \n" + getAllHouseWallsAsString(houseDto.getHauseWallDtoList()) + "\n" +
                         "Czy sa nieogrzewane pomieszczenia w domu: " + houseDto.isAreThereAnyUnheatedRoomsInHouse() + "\n" +
@@ -410,17 +412,16 @@ public class HouseService {
             HouseWallDto houseWall = houseWallDtoList.get(i);
 
             if (i == 0) {
-                allHousesWall.append("-Strona Świata (drzwi wejściowe): ")
+                allHousesWall.append("     -Strona Świata (drzwi wejściowe): ")
                         .append(houseWall.getWorldPart().getNameInPolish())
                         .append(", Łaczna długość ściany zewnetrznej w metrach: ")
                         .append(houseWall.getTotalLengthOfExternalWallInM())
                         .append("\n");
-
                 continue;
             }
 
             allHousesWall.append("\t\t ")
-                    .append("-Strona Świata: ")
+                    .append("     -Strona Świata: ")
                     .append(houseWall.getWorldPart().getNameInPolish())
                     .append(", Łaczna długość ściany zewnetrznej w metrach: ")
                     .append(houseWall.getTotalLengthOfExternalWallInM())
@@ -436,7 +437,7 @@ public class HouseService {
         for (UnheatedRoomDto unheatedRoomDto : unheatedRoomDtoList) {
             allUnheatedRooms.append("\n")
                     .append("\t\t ")
-                    .append("Rodzaj pomieszczenia: ")
+                    .append("     -Rodzaj pomieszczenia: ")
                     .append(unheatedRoomDto.getRoomType().getNameInPolish())
                     .append(", Powierzchnia pomieszczenia w m2: ")
                     .append(unheatedRoomDto.getAreaInSquareM())

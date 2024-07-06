@@ -39,7 +39,7 @@
 		<div class="row">
 			<div class="col-12 col-lg-5">
 				<div class="card-wrapper">
-					<h3 class="mbr-section-cardtitle mbr-fonts-style mb-2 display-5"><strong>Formularz domu dla świadectwa charakterystyki energetycznej</strong></h3>
+					<h3 class="mbr-section-cardtitle mbr-fonts-style mb-2 display-5"><strong>Formularz domu do sporządzenia Świadectwa Charakterystyki Energetycznej</strong></h3>
 
 					
 				</div>
@@ -98,19 +98,32 @@
 							<input th:field="*{clientDto.phoneNumber}" id="phoneNumber" placeholder="Numer telefonu" style="text-align: -moz-left; font-size: 18px; font-size: 18px" type="number" value=""  class="form-control" >
 							<label style="left: 3%" for="phoneNumber">Numer telefonu</label>
 						</div>
-						<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
-							<div class="form-floating   mb-3" data-for="companyName">
-								<input th:field="*{clientDto.companyName}" id="companyName" placeholder="Nazwa firmy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
-								<label style="left: 3%" for="companyName">Nazwa firmy</label>
-							</div>
-							<div class="form-floating   mb-3" data-for="companyAddress">
-								<input th:field="*{clientDto.companyAddress}" id="companyAddress" placeholder="Adres firmy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
-								<label style="left: 3%" for="companyAddress">Adres firmy</label>
-							</div>
+						<!-- radioGroup -->
+						<div class="btn-group btn-group-sm" role="group">
+							<input value="true"  type="radio" class="btn-check"  id="btnradio58" autocomplete="off" disabled>
+							<label style="width: min(60%); width: max(60%); font-size: medium" class="btn btn-outline-secondary" for="btnradio58">Czy wystawiać fakturę na firmę?</label>
+
+							<input value="true"  type="radio" class="btn-check"  id="btnradio59" autocomplete="off" onclick="showCompanyInfo()">
+							<label class="btn btn-outline-secondary" for="btnradio59">Tak</label>
+
+							<input value="false" type="radio" class="btn-check"  id="btnradio60" autocomplete="off" onclick="hideCompanyInfo()">
+							<label class="btn btn-outline-secondary" for="btnradio60">Nie</label>
 						</div>
-						<div class="form-floating   mb-3" data-for="companyNumber">
-							<input th:field="*{clientDto.companyNumber}" id="companyNumber" placeholder="Nip firmy" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
-							<label style="left: 3%" for="companyNumber">Nip firmy</label>
+						<div id="companyData">
+							<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
+								<div class="form-floating   mb-3" data-for="companyName">
+									<input th:field="*{clientDto.companyName}" id="companyName" placeholder="Nazwa firmy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+									<label style="left: 3%" for="companyName">Nazwa firmy</label>
+								</div>
+								<div class="form-floating   mb-3" data-for="companyAddress">
+									<input th:field="*{clientDto.companyAddress}" id="companyAddress" placeholder="Adres firmy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+									<label style="left: 3%" for="companyAddress">Adres firmy</label>
+								</div>
+							</div>
+							<div class="form-floating   mb-3" data-for="companyNumber">
+								<input th:field="*{clientDto.companyNumber}" id="companyNumber" placeholder="Nip firmy" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<label style="left: 3%" for="companyNumber">Nip firmy</label>
+							</div>
 						</div>
 
 
@@ -142,12 +155,12 @@
 						</div>
 						<div style="display: inline-flex; gap: 0.1%; justify-content: space-evenly;">
 							<div class="form-floating   mb-3" data-for="usableArea">
-								<input th:field="*{usableArea}" id="usableArea" placeholder="Powierzchnia użytkowa w m2" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
-								<label style="left: 3%" for="usableArea">Powierzchnia użytkowa w m2</label>
+								<input th:field="*{usableArea}" id="usableArea" placeholder="Powierzchnia użytkowa (m2)" style="text-align: -moz-left; font-size: 18px" type="number" step="0.01" class="form-control" >
+								<label style="left: 3%" for="usableArea">Powierzchnia użytkowa (m2)</label>
 							</div>
 							<div class="form-floating   mb-3" data-for="volumeOfHouse">
-								<input th:field="*{volumeOfHouse}" id="volumeOfHouse" placeholder="Kubatura domu w m3" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
-								<label style="left: 3%" for="volumeOfHouse">Kubatura domu w m3</label>
+								<input th:field="*{volumeOfHouse}" id="volumeOfHouse" placeholder="Kubatura domu (m3) (opcjonalne)" style="text-align: -moz-left; font-size: 18px" type="number" step="0.01" class="form-control" >
+								<label style="left: 3%" for="volumeOfHouse">Kubatura domu (m3) (opcjonalne)</label>
 							</div>
 							<div class="form-floating   mb-3" data-for="yearOfCommissioningOfTheBuilding">
 								<input th:field="*{yearOfCommissioningOfTheBuilding}" id="yearOfCommissioningOfTheBuilding" placeholder="Rok oddania do użytkowania" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
@@ -450,7 +463,7 @@
 						</label>
 						<label>
 							<select class="form-control mb-3" name="numberOfGlassesInPolishString" style="font-size: small">
-								<option value="Brak">Wybierz liczba kondygnacji domu</option>
+								<option value="Brak">Liczba szyb</option>
 								<option th:each="numberOfGlasses: ${listOfNumberOfGlasses}" th:value="${numberOfGlasses}" th:text="${numberOfGlasses}"></option>
 							</select>
 						</label>
@@ -464,26 +477,34 @@
 								<option th:each="externalMaterialWallsType: ${listOfExternalMaterialWallsType}" th:value="${externalMaterialWallsType}" th:text="${externalMaterialWallsType}"></option>
 							</select>
 						</label>
+						<div class="form-floating   mb-3" data-for="anotherExternalMaterialWallsType">
+							<input th:field="*{anotherExternalMaterialWallsType}" id="anotherExternalMaterialWallsType" placeholder="Uzupełnij jeśli zaznaczono 'Inne' przy Materiał ścian zewnętrznych" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+							<label style="left: 3%" for="anotherExternalMaterialWallsType">Uzupełnij jeśli zaznaczono 'Inne' przy Materiał ścian zewnętrznych</label>
+						</div>
 						<div class="form-floating   mb-3" data-for="externalMaterialWallsThicknessInCentimeters">
-							<input th:field="*{externalMaterialWallsThicknessInCentimeters}" id="externalMaterialWallsThicknessInCentimeters" placeholder="Grubość (opcjonalne)" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
-							<label style="left: 3%" for="externalMaterialWallsThicknessInCentimeters">Grubość (opcjonalne)</label>
+							<input th:field="*{externalMaterialWallsThicknessInCentimeters}" id="externalMaterialWallsThicknessInCentimeters" placeholder="Grubość ścian zewnętrzynych (cm)" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+							<label style="left: 3%" for="externalMaterialWallsThicknessInCentimeters">Grubość ścian zewnętrzynych (cm)</label>
 						</div>
 						<label>
 							<select class="form-control mb-3" name="externalIsolationWallsTypeInPolishString" style="font-size: small">
-								<option value="Brak">Wybierz liczba kondygnacji domu</option>
+								<option value="Brak">Izolacja ścian zewnętrznych</option>
 								<option th:each="externalIsolationWallsType: ${listOfExternalIsolationWallsType}" th:value="${externalIsolationWallsType}" th:text="${externalIsolationWallsType}"></option>
 							</select>
 						</label>
+						<div class="form-floating   mb-3" data-for="anotherExternalIsolationWallsType">
+							<input th:field="*{anotherExternalIsolationWallsType}" id="anotherExternalIsolationWallsType" placeholder="Uzupełnij jeśli zaznaczono 'Inne' przy Izolacja ścian zewnętrznych" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+							<label style="left: 3%" for="anotherExternalMaterialWallsType">Uzupełnij jeśli zaznaczono 'Inne' przy Izolacja ścian zewnętrznych</label>
+						</div>
 						<div class="form-floating   mb-3" data-for="externalIsolationWallsThicknessInCentimeters">
-							<input th:field="*{externalIsolationWallsThicknessInCentimeters}" id="externalIsolationWallsThicknessInCentimeters" placeholder="Grubość (opcjonalne)" style="text-align: -moz-left; font-size: 18px" type="number" value=""  class="form-control" >
-							<label style="left: 3%" for="externalIsolationWallsThicknessInCentimeters">Grubość (opcjonalne)</label>
+							<input th:field="*{externalIsolationWallsThicknessInCentimeters}" id="externalIsolationWallsThicknessInCentimeters" placeholder="Grubość izolacji (cm)" style="text-align: -moz-left; font-size: 18px" type="number" value=""  class="form-control" >
+							<label style="left: 3%" for="externalIsolationWallsThicknessInCentimeters">Grubość izolacji (cm)</label>
 						</div>
 
 						<!-- houseWall_1 -->
 						<div style="display: flex">
 							<label>
 								<select class="form-control mb-3" name="worldPart_1_name" style="font-size: small">
-									<option value="Brak">Strona świata</option>
+									<option value="Brak">Strona świata (od strony drzwi wejściowych)</option>
 									<option th:each="worldPart_1_name: ${listOfWorldParts}" th:value="${worldPart_1_name}" th:text="${worldPart_1_name}"></option>
 								</select>
 							</label>
@@ -650,6 +671,20 @@
 								</div>
 							</div>
 							<!-- end-->
+							<!-- unheatedRoom_4 -->
+							<div id="unheatedRoom_4" style="display: flex">
+								<label>
+									<select class="form-control mb-3" name="unheatedRoom_4_name" style="font-size: small">
+										<option value="Brak">Rodzaj pomieszczenia</option>
+										<option th:each="unheatedRoom_4_name: ${listOfRoomType}" th:value="${unheatedRoom_4_name}" th:text="${unheatedRoom_4_name}"></option>
+									</select>
+								</label>
+								<div class="form-floating   col-md col-sm-12 form-group mb-3" data-for="areaInSquareM_03">
+									<input name="unheatedRoom_4_m" id="areaInSquareM_04" placeholder="Powierzchnia pomieszczenia w m2" style="text-align: -moz-left; font-size: 18px" type="number" value="0"  class="form-control" >
+									<label style="left: 3%" for="areaInSquareM_04">Powierzchnia pomieszczenia w m2</label>
+								</div>
+							</div>
+							<!-- end-->
 							<div style="display: flex; justify-content: space-between">
 								<button style="font-size:12px; height: max(25%); width: max(45%)" type="button" class="btn btn-secondary" onclick="addNextUnheatedRoom()">Dodaj <br> nieogrzewane pomieszczenie</button>
 								<button style="font-size:12px; height: max(25%); width: max(45%)" type="button" class="btn btn-outline-secondary" onclick="hidePreviousUnheatedRoom()">Usuń <br> nieogrzewane pomieszczenie</button>
@@ -659,12 +694,12 @@
 						<!-- radioGroup -->
 						<div class="btn-group btn-group-sm" role="group">
 							<input value="true"  type="radio" class="btn-check"  id="btnradio46" autocomplete="off" disabled>
-							<label style="width: min(60%); width: max(60%); font-size: medium" class="btn btn-outline-secondary" for="btnradio46">Czy dom został zbudowany poprawnie?</label>
+							<label style="width: min(60%); width: max(60%); font-size: medium" class="btn btn-outline-secondary" for="btnradio46">Czy podczas budowy nastąpiły zmiany w projekcie?</label>
 
-							<input value="true" th:field="*{houseBuildCorrectly}" type="radio" class="btn-check"  id="btnradio47" autocomplete="on" onclick="hideHouseBuildCorrectlyInput()" checked>
+							<input value="true" th:field="*{houseBuildCorrectly}" type="radio" class="btn-check"  id="btnradio47" autocomplete="on" onclick="showHouseBuildCorrectlyInput()" checked>
 							<label class="btn btn-outline-secondary" for="btnradio47">Tak</label>
 
-							<input value="false" th:field="*{houseBuildCorrectly}" type="radio" class="btn-check"  id="btnradio48" autocomplete="off" onclick="showHouseBuildCorrectlyInput()">
+							<input value="false" th:field="*{houseBuildCorrectly}" type="radio" class="btn-check"  id="btnradio48" autocomplete="off" onclick="hideHouseBuildCorrectlyInput()">
 							<label class="btn btn-outline-secondary" for="btnradio48">Nie</label>
 						</div>
 						<!-- radioGroup end -->
@@ -710,7 +745,7 @@
 						<!-- radioGroup -->
 						<div class="btn-group btn-group-sm" role="group">
 							<input value="true"  type="radio" class="btn-check"  id="btnradio55" autocomplete="off" disabled>
-							<label style="width: min(60%); width: max(60%); font-size: medium" class="btn btn-outline-secondary" for="btnradio55">Czy dom ma zainstalowane panele fotowoltaiczne / instalacje solarną.?</label>
+							<label style="width: min(60%); width: max(60%); font-size: medium" class="btn btn-outline-secondary" for="btnradio55">Czy dom ma zainstalowane panele fotowoltaiczne / instalacje solarną?</label>
 
 							<input value="true" th:field="*{hasSolarPanels}" type="radio" class="btn-check"  id="btnradio56" autocomplete="off" onclick="showHouseHasSolarPanelsInput()">
 							<label class="btn btn-outline-secondary" for="btnradio56">Tak</label>
@@ -727,12 +762,24 @@
 
 				<!-- Załączniki -->
 						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Załączniki</h4>
+						<h6 style="margin-left: 3%">Załącz zdjęcie budynku z zewnątrz</h6>
+						<p style="margin-left: 3%">Załącznik max. 10 MB</p>
 						<div class="form-control-sm mb-3">
-							<input  class="form-control" type="file" name="attachments" id="formFile" multiple>
+							<input  class="form-control" type="file" name="attachmentList" id="formFile">
+						</div>
+						<h6 style="margin-left: 3%; margin-top: 1%">Załącz rzuty domu (poszczególnych kondygnacji) oraz przekrój domu</h6>
+						<p style="margin-left: 3%">Załączniki max. 15 MB</p>
+						<div class="form-control-sm mb-3">
+							<input  class="form-control" type="file" name="attachmentList" id="formFileSecond" multiple>
+						</div>
+						<h6 style="margin-left: 3%; margin-top: 1%">Jeżeli masz rzut mieszkania, świadectwo energetyczne budynku lub inne pliki,<br /> które uważasz, że warto nam przekazać, załącz tutaj (opcjonalne)</h6>
+						<p style="margin-left: 3%">Załączniki max. 20 MB</p>
+						<div class="form-control-sm mb-3">
+							<input  class="form-control" type="file" name="attachmentList" id="formFileThird" multiple>
 						</div>
 						<div class="form-floating mb-3" data-for="additionalInformation">
-							<textarea th:field="*{additionalInformation}" id="additionalInformation" placeholder="Dodatkowe informacje" style="text-align: -moz-left; font-size: 18px; height: 150px" class="form-control"></textarea>
-							<label style="left: 3%;" for="additionalInformation">Dodatkowe informacje</label>
+							<textarea th:field="*{additionalInformation}" id="additionalInformation" placeholder="Dodatkowe informacje (opcjonalne)" style="text-align: -moz-left; font-size: 18px; height: 150px" class="form-control"></textarea>
+							<label style="left: 3%;" for="additionalInformation">Dodatkowe informacje (opcjonalne)</label>
 						</div>
 
 
@@ -804,6 +851,7 @@
   </section>
 
   <script>
+	  window.onload = hideCompanyInfo();
 	  window.onload = hideSecondaryHeating();
 	  window.onload = hideSecondaryHeatOfWater();
 	  window.onload = hideAllHouseWallsSinceSecond();
@@ -813,6 +861,15 @@
 	  window.onload = hideHouseHasAirConditionInput();
 	  window.onload = hideHouseHasInstalledRecuperatorInput();
 	  window.onload = hideHouseHasSolarPanelsInput();
+
+
+	  //Company info
+	  function hideCompanyInfo() {
+		  document.getElementById('companyData').style.display = 'none';
+	  }
+	  function showCompanyInfo() {
+		  document.getElementById('companyData').style.display = 'grid';
+	  }
 
 	  //Secondary Heating
 	  function hideSecondaryHeating() {
@@ -872,7 +929,7 @@
 	  }
 
 	  function hideAllUnheatedRoomsSinceSecond() {
-		  for (let i = 2; i <= 3; i++) {
+		  for (let i = 2; i <= 4; i++) {
 			  let unheatedRoom = 'unheatedRoom_' + i;
 			  document.getElementById(unheatedRoom).style.display = 'none';
 		  }
@@ -880,7 +937,7 @@
 
 	  let unheatedRoomSize = 1;
 	  function addNextUnheatedRoom() {
-		  if (unheatedRoomSize >= 3) {
+		  if (unheatedRoomSize >= 4) {
 			  return;
 		  }
 

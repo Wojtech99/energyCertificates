@@ -39,7 +39,7 @@
 		<div class="row">
 			<div class="col-12 col-lg-5">
 				<div class="card-wrapper">
-					<h3 class="mbr-section-cardtitle mbr-fonts-style mb-2 display-5"><strong>Formularz mieszkanie dla świadectwa charakterystyki energetycznej</strong></h3>
+					<h3 class="mbr-section-cardtitle mbr-fonts-style mb-2 display-5"><strong>Formularz mieszkania do sporządzenia Świadectwa Charakterystyki Energetycznej</strong></h3>
 
 					
 				</div>
@@ -98,19 +98,33 @@
 							<input th:field="*{clientDto.phoneNumber}" id="phoneNumber" placeholder="Numer telefonu" style="text-align: -moz-left; font-size: 18px; font-size: 18px" type="number" value=""  class="form-control" >
 							<label style="left: 3%" for="phoneNumber">Numer telefonu</label>
 						</div>
-						<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
-							<div class="form-floating   mb-3" data-for="companyName">
-								<input th:field="*{clientDto.companyName}" id="companyName" placeholder="Nazwa firmy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
-								<label style="left: 3%" for="companyName">Nazwa firmy</label>
-							</div>
-							<div class="form-floating   mb-3" data-for="companyAddress">
-								<input th:field="*{clientDto.companyAddress}" id="companyAddress" placeholder="Adres firmy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
-								<label style="left: 3%" for="companyAddress">Adres firmy</label>
-							</div>
+
+						<!-- radioGroup -->
+						<div class="btn-group btn-group-sm" role="group">
+							<input value="true"  type="radio" class="btn-check"  id="btnradio10" autocomplete="off" disabled>
+							<label style="width: min(60%); width: max(60%); font-size: medium" class="btn btn-outline-secondary" for="btnradio10">Czy wystawiać fakturę na firmę?</label>
+
+							<input value="true"  type="radio" class="btn-check"  id="btnradio11" autocomplete="off" onclick="showCompanyInfo()">
+							<label class="btn btn-outline-secondary" for="btnradio11">Tak</label>
+
+							<input value="false" type="radio" class="btn-check"  id="btnradio12" autocomplete="off" onclick="hideCompanyInfo()">
+							<label class="btn btn-outline-secondary" for="btnradio12">Nie</label>
 						</div>
-						<div class="form-floating   mb-3" data-for="companyNumber">
-							<input th:field="*{clientDto.companyNumber}" id="companyNumber" placeholder="Nip firmy" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
-							<label style="left: 3%" for="companyNumber">Nip firmy</label>
+						<div id="companyData">
+							<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
+								<div class="form-floating   mb-3" data-for="companyName">
+									<input th:field="*{clientDto.companyName}" id="companyName" placeholder="Nazwa firmy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+									<label style="left: 3%" for="companyName">Nazwa firmy</label>
+								</div>
+								<div class="form-floating   mb-3" data-for="companyAddress">
+									<input th:field="*{clientDto.companyAddress}" id="companyAddress" placeholder="Adres firmy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+									<label style="left: 3%" for="companyAddress">Adres firmy</label>
+								</div>
+							</div>
+							<div class="form-floating   mb-3" data-for="companyNumber">
+								<input th:field="*{clientDto.companyNumber}" id="companyNumber" placeholder="Nip firmy" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<label style="left: 3%" for="companyNumber">Nip firmy</label>
+							</div>
 						</div>
 
 
@@ -142,12 +156,12 @@
 						</div>
 						<div style="display: inline-flex; gap: 0.1%; justify-content: space-evenly;">
 							<div class="form-floating   mb-3" data-for="usableArea">
-								<input th:field="*{usableArea}" id="usableArea" placeholder="Powierzchnia użytkowa w m2" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
-								<label style="left: 3%" for="usableArea">Powierzchnia użytkowa w m2</label>
+								<input th:field="*{usableArea}" id="usableArea" placeholder="Powierzchnia użytkowa (m2)" style="text-align: -moz-left; font-size: 18px" type="number" step="0.01" class="form-control" >
+								<label style="left: 3%" for="usableArea">Powierzchnia użytkowa (m2)</label>
 							</div>
 							<div class="form-floating   mb-3" data-for="heightOfFlat">
-								<input th:field="*{heightOfFlat}" id="heightOfFlat" placeholder="Wysokość pomieszczeń" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
-								<label style="left: 3%" for="heightOfFlat">Wysokość pomieszczeń</label>
+								<input th:field="*{heightOfFlat}" id="heightOfFlat" placeholder="Wysokość pomieszczeń (m)" style="text-align: -moz-left; font-size: 18px" type="number" step="0.01" class="form-control" >
+								<label style="left: 3%" for="heightOfFlat">Wysokość pomieszczeń (m)</label>
 							</div>
 							<div class="form-floating   mb-3" data-for="yearOfCommissioningOfTheBuilding">
 								<input th:field="*{yearOfCommissioningOfTheBuilding}" id="yearOfCommissioningOfTheBuilding" placeholder="Rok oddania do użytkowania" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
@@ -156,7 +170,7 @@
 						</div>
 						<label>
 							<select class="form-control mb-3" name="floorNumberInTheBuildingInPolishString" style="font-size: small">
-								<option value="Brak">Wybierz liczba kondygnacji domu</option>
+								<option value="Brak">Rodzaj mieszkania</option>
 								<option th:each="floorNumberInTheBuilding: ${listOfFloorNumberInTheBuilding}" th:value="${floorNumberInTheBuilding}" th:text="${floorNumberInTheBuilding}"></option>
 							</select>
 						</label>
@@ -257,9 +271,13 @@
 								</select>
 							</label>
 							<div class="form-floating   col-md col-sm-12 form-group mb-3" data-for="externalMaterialWallsThicknessInCentimeters">
-								<input th:field="*{externalMaterialWallsThicknessInCentimeters}" id="externalMaterialWallsThicknessInCentimeters" placeholder="Grubość (opcjonalne)" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
-								<label style="left: 3%" for="externalMaterialWallsThicknessInCentimeters">Grubość (opcjonalne)</label>
+								<input th:field="*{externalMaterialWallsThicknessInCentimeters}" id="externalMaterialWallsThicknessInCentimeters" placeholder="Grubość ścian zewnętrzynych (cm)" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<label style="left: 3%" for="externalMaterialWallsThicknessInCentimeters">Grubość ścian zewnętrzynych (cm)</label>
 							</div>
+						</div>
+						<div class="form-floating   mb-3" data-for="anotherExternalMaterialWallsType">
+							<input th:field="*{anotherExternalMaterialWallsType}" id="anotherExternalMaterialWallsType" placeholder="Uzupełnij jeśli zaznaczono 'Inne' przy Materiał ścian zewnętrznych" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+							<label style="left: 3%" for="anotherExternalMaterialWallsType">Uzupełnij jeśli zaznaczono 'Inne' przy Materiał ścian zewnętrznych</label>
 						</div>
 						<div style="display:flex">
 							<label>
@@ -269,9 +287,13 @@
 								</select>
 							</label>
 							<div class="form-floating   col-md col-sm-12 form-group mb-3" data-for="externalIsolationWallsThicknessInCm">
-								<input th:field="*{externalIsolationWallsThicknessInCm}" id="externalIsolationWallsThicknessInCm" placeholder="Grubość (opcjonalne)" style="text-align: -moz-left; font-size: 18px" type="number" value=""  class="form-control" >
-								<label style="left: 3%" for="externalIsolationWallsThicknessInCm">Grubość (opcjonalne)</label>
+								<input th:field="*{externalIsolationWallsThicknessInCm}" id="externalIsolationWallsThicknessInCm" placeholder="Grubość izolacji (cm)" style="text-align: -moz-left; font-size: 18px" type="number" value=""  class="form-control" >
+								<label style="left: 3%" for="externalIsolationWallsThicknessInCm">Grubość izolacji (cm)</label>
 							</div>
+						</div>
+						<div class="form-floating   mb-3" data-for="anotherExternalIsolationWallsType">
+							<input th:field="*{anotherExternalIsolationWallsType}" id="anotherExternalIsolationWallsType" placeholder="Uzupełnij jeśli zaznaczono 'Inne' przy Izolacja ścian zewnętrznych" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+							<label style="left: 3%" for="anotherExternalMaterialWallsType">Uzupełnij jeśli zaznaczono 'Inne' przy Izolacja ścian zewnętrznych</label>
 						</div>
 						<label>
 							<select class="form-control mb-3" name="externalWallLayoutInPolishString" style="font-size: small">
@@ -291,7 +313,7 @@
 						</label>
 						<label>
 							<select class="form-control mb-3" name="numberOfGlassesInPolishString" style="font-size: small">
-								<option value="Brak">Wybierz liczba kondygnacji domu</option>
+								<option value="Brak">Liczba szyb</option>
 								<option th:each="numberOfGlasses: ${listOfNumberOfGlasses}" th:value="${numberOfGlasses}" th:text="${numberOfGlasses}"></option>
 							</select>
 						</label>
@@ -327,12 +349,19 @@
 
 				<!-- Załączniki -->
 						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Załączniki</h4>
+						<h6 style="margin-left: 3%">Załącz zdjęcie budynku z zewnątrz</h6>
+						<p style="margin-left: 3%">Załącznik max. 10 MB</p>
 						<div class="form-control-sm mb-3">
-							<input  class="form-control" type="file" name="attachmentList" id="formFile" multiple>
+							<input  class="form-control" type="file" name="attachmentList" id="formFile">
+						</div>
+						<h6 style="margin-left: 3%; margin-top: 1%">Jeżeli masz rzut mieszkania, świadectwo energetyczne budynku lub inne pliki,<br /> które uważasz, że warto nam przekazać, załącz tutaj (opcjonalne)</h6>
+						<p style="margin-left: 3%">Załączniki max. 20 MB</p>
+						<div class="form-control-sm mb-3">
+							<input  class="form-control" type="file" name="attachmentList" id="formFileSecond" multiple>
 						</div>
 						<div class="form-floating mb-3" data-for="additionalInformation">
-							<textarea th:field="*{additionalInformation}" id="additionalInformation" placeholder="Dodatkowe informacje" style="text-align: -moz-left; font-size: 18px; height: 150px" class="form-control"></textarea>
-							<label style="left: 3%;" for="additionalInformation">Dodatkowe informacje</label>
+							<textarea th:field="*{additionalInformation}" id="additionalInformation" placeholder="Dodatkowe informacje (opcjonalne)" style="text-align: -moz-left; font-size: 18px; height: 150px" class="form-control"></textarea>
+							<label style="left: 3%;" for="additionalInformation">Dodatkowe informacje (opcjonalne)</label>
 						</div>
 
 
@@ -404,11 +433,20 @@
   </section>
 
   <script>
+	  window.onload = hideCompanyInfo();
 	  window.onload = hideThermalModernizationInfo();
 	  window.onload = hideCeilingBelowTheFlatType();
 	  window.onload = hideCeilingOverTheFlatType();
 	  window.onload = hideAllThermalModernizationScopeSinceFirst();
 
+
+	  //Company info
+	  function hideCompanyInfo() {
+		  document.getElementById('companyData').style.display = 'none';
+	  }
+	  function showCompanyInfo() {
+		  document.getElementById('companyData').style.display = 'grid';
+	  }
 
 	  //thermal Modernization Info
 	  function hideThermalModernizationInfo() {

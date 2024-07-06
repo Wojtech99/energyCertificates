@@ -114,7 +114,7 @@ public class HouseController {
             @RequestParam("unheatedRoom_3_m") Integer ur3m,
             @RequestParam("unheatedRoom_4_m") Integer ur4m,
             @ModelAttribute("house") HouseDto houseDto,
-            @RequestParam("attachments")List<MultipartFile> attachments) {
+            @RequestParam("attachmentList")List<MultipartFile> attachments) {
 
 
         houseDto.setHeatingType(HeatingType.mapToEnum(heatingType));
