@@ -19,6 +19,7 @@ public class ClientDto implements Serializable {
     private String email;
     private int phoneNumber;
     private String pdfFile;
+    private String message;
     private String companyName;
     private int companyNumber;
     private String companyAddress;

@@ -11,6 +11,7 @@ public class ClientMapper {
                 clientDto.getEmail(),
                 clientDto.getPhoneNumber(),
                 clientDto.getPdfFile(),
+                clientDto.getMessage(),
                 clientDto.getCompanyName(),
                 clientDto.getCompanyNumber(),
                 clientDto.getCompanyAddress(),
@@ -32,6 +33,7 @@ public class ClientMapper {
                 client.getEmail(),
                 client.getPhoneNumber(),
                 client.getPdfFile(),
+                client.getMessage(),
                 client.getCompanyName(),
                 client.getCompanyNumber(),
                 client.getCompanyAddress(),
@@ -48,6 +50,7 @@ public class ClientMapper {
         clientDto.setLastName("");
         clientDto.setEmail(primaryClientDto.getEmail());
         clientDto.setPhoneNumber(primaryClientDto.getPhoneNumber());
+        clientDto.setMessage(primaryClientDto.getMessage());
         clientDto.setCompanyName("");
         clientDto.setCompanyAddress("");
         clientDto.setCompanyNumber(0);

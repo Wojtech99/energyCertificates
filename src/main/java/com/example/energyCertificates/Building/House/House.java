@@ -64,8 +64,10 @@ public class House {
     private NumberOfGlasses numberOfGlasses;
     //Layout and type of External Walls
     private ExternalMaterialWallsType externalMaterialWallsType;
+    private String anotherExternalMaterialWallsType;
     private int externalMaterialWallsThicknessInCentimeters;
     private ExternalIsolationWallsType externalIsolationWallsType;
+    private String anotherExternalIsolationWallsType;
     private int externalIsolationWallsThicknessInCentimeters;
     @OneToMany(fetch = FetchType.EAGER)
     private List<HouseWall> hauseWallList;
@@ -93,7 +95,7 @@ public class House {
 
     public House() {}
 
-    public House(String street, int houseNumber, int flatNumber, String postalCode, String city, double usableArea, double volumeOfHouse, int yearOfCommissioningOfTheBuilding, HeatingType heatingType, String typeOfHeatingWithFurnaceModel, RadiatorsType radiatorsType, boolean areInstallationCablesInsulted, boolean isThereHeatingCirculation, boolean isThereHeatingBufferOrTank, boolean isThereSecondaryHeatingType, HeatingType secondaryHeatingType, String secondaryTypeOfHeatingWithFurnaceModel, RadiatorsType secondaryRadiatorsType, boolean secondaryAreInstallationCablesInsulted, boolean secondaryIsThereHeatingCirculation, boolean secondaryIsThereHeatingBufferOrTank, int percentOfUsageSecondaryHeatingType, HeatingOfWaterType heatingOfWaterType, String typeOfHeatingWaterWithFurnaceModel, boolean areWaterInstallationCablesInsulted, boolean isThereHeatWaterCirculation, boolean isThereHeatWaterBufferOrTank, boolean isThereSecondaryHeatingOfWaterType, HeatingOfWaterType secondaryHeatingOfWaterType, String secondaryTypeOfHeatingWaterWithFurnaceModel, boolean secondaryAreWaterInstallationCablesInsulted, boolean secondaryIsThereHeatWaterCirculation, boolean secondaryIsThereHeatWaterBufferOrTank, int percentOfUsageSecondaryHeatOfWaterType, VentilationType ventilationType, CeilingOverTheFlatType ceilingOverTheFlatType, CeilingBelowTheFlatType ceilingBelowTheFlatType, FloorNumberInTheBuilding floorNumberInTheBuilding, EntranceDoorType entranceDoorType, WindowFrameMaterial windowFrameMaterial, NumberOfGlasses numberOfGlasses, ExternalMaterialWallsType externalMaterialWallsType, int externalMaterialWallsThicknessInCentimeters, ExternalIsolationWallsType externalIsolationWallsType, int externalIsolationWallsThicknessInCentimeters, List<HouseWall> hauseWallList, boolean areThereAnyUnheatedRoomsInHouse, List<UnheatedRoom> unheatedRoomList, boolean isHouseBuildCorrectly, String houseNotBuildCorrectlyInformation, boolean hasHouseAirConditioning, int airConditioningPowerInKw, boolean hasInstalledRecuperator, String recuperatorModel, boolean hasSolarPanels, String powerAndUsageOfSolarPanels, List<Data> attachments, String additionalInformation, Date sendFormDate, boolean certificationIsCompleted, Client client) {
+    public House(String street, int houseNumber, int flatNumber, String postalCode, String city, double usableArea, double volumeOfHouse, int yearOfCommissioningOfTheBuilding, HeatingType heatingType, String typeOfHeatingWithFurnaceModel, RadiatorsType radiatorsType, boolean areInstallationCablesInsulted, boolean isThereHeatingCirculation, boolean isThereHeatingBufferOrTank, boolean isThereSecondaryHeatingType, HeatingType secondaryHeatingType, String secondaryTypeOfHeatingWithFurnaceModel, RadiatorsType secondaryRadiatorsType, boolean secondaryAreInstallationCablesInsulted, boolean secondaryIsThereHeatingCirculation, boolean secondaryIsThereHeatingBufferOrTank, int percentOfUsageSecondaryHeatingType, HeatingOfWaterType heatingOfWaterType, String typeOfHeatingWaterWithFurnaceModel, boolean areWaterInstallationCablesInsulted, boolean isThereHeatWaterCirculation, boolean isThereHeatWaterBufferOrTank, boolean isThereSecondaryHeatingOfWaterType, HeatingOfWaterType secondaryHeatingOfWaterType, String secondaryTypeOfHeatingWaterWithFurnaceModel, boolean secondaryAreWaterInstallationCablesInsulted, boolean secondaryIsThereHeatWaterCirculation, boolean secondaryIsThereHeatWaterBufferOrTank, int percentOfUsageSecondaryHeatOfWaterType, VentilationType ventilationType, CeilingOverTheFlatType ceilingOverTheFlatType, CeilingBelowTheFlatType ceilingBelowTheFlatType, FloorNumberInTheBuilding floorNumberInTheBuilding, EntranceDoorType entranceDoorType, WindowFrameMaterial windowFrameMaterial, NumberOfGlasses numberOfGlasses, ExternalMaterialWallsType externalMaterialWallsType, String anotherExternalMaterialWallsType, int externalMaterialWallsThicknessInCentimeters, ExternalIsolationWallsType externalIsolationWallsType, String anotherExternalIsolationWallsType, int externalIsolationWallsThicknessInCentimeters, List<HouseWall> hauseWallList, boolean areThereAnyUnheatedRoomsInHouse, List<UnheatedRoom> unheatedRoomList, boolean isHouseBuildCorrectly, String houseNotBuildCorrectlyInformation, boolean hasHouseAirConditioning, int airConditioningPowerInKw, boolean hasInstalledRecuperator, String recuperatorModel, boolean hasSolarPanels, String powerAndUsageOfSolarPanels, List<Data> attachments, String additionalInformation, Date sendFormDate, boolean certificationIsCompleted, Client client) {
         this.street = street;
         this.houseNumber = houseNumber;
         this.flatNumber = flatNumber;
@@ -136,8 +138,10 @@ public class House {
         this.windowFrameMaterial = windowFrameMaterial;
         this.numberOfGlasses = numberOfGlasses;
         this.externalMaterialWallsType = externalMaterialWallsType;
+        this.anotherExternalMaterialWallsType = anotherExternalMaterialWallsType;
         this.externalMaterialWallsThicknessInCentimeters = externalMaterialWallsThicknessInCentimeters;
         this.externalIsolationWallsType = externalIsolationWallsType;
+        this.anotherExternalIsolationWallsType = anotherExternalIsolationWallsType;
         this.externalIsolationWallsThicknessInCentimeters = externalIsolationWallsThicknessInCentimeters;
         this.hauseWallList = hauseWallList;
         this.areThereAnyUnheatedRoomsInHouse = areThereAnyUnheatedRoomsInHouse;
@@ -651,5 +655,21 @@ public class House {
 
     public void setCertificationIsCompleted(boolean certificationIsCompleted) {
         this.certificationIsCompleted = certificationIsCompleted;
+    }
+
+    public String getAnotherExternalMaterialWallsType() {
+        return anotherExternalMaterialWallsType;
+    }
+
+    public void setAnotherExternalMaterialWallsType(String anotherExternalMaterialWallsType) {
+        this.anotherExternalMaterialWallsType = anotherExternalMaterialWallsType;
+    }
+
+    public String getAnotherExternalIsolationWallsType() {
+        return anotherExternalIsolationWallsType;
+    }
+
+    public void setAnotherExternalIsolationWallsType(String anotherExternalIsolationWallsType) {
+        this.anotherExternalIsolationWallsType = anotherExternalIsolationWallsType;
     }
 }

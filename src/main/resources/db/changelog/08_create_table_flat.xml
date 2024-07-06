@@ -27,8 +27,10 @@
             <column name="ceiling_over_the_flat_type" type="smallint"/>
 
             <column name="external_material_walls_type" type="smallint"/>
+            <column name="another_external_material_walls_type" type="varchar(255)"/>
             <column name="external_material_walls_thickness_in_centimeters" type="integer"/>
             <column name="external_isolation_walls_type" type="smallint"/>
+            <column name="another_external_isolation_walls_type" type="varchar(255)"/>
             <column name="external_isolation_walls_thickness_in_cm" type="integer"/>
             <column name="external_wall_layout" type="smallint"/>
 

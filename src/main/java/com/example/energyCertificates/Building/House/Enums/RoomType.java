@@ -4,7 +4,9 @@ public enum RoomType {
     NULL("Brak"),
     GARAGE("Garaż"),
     ATTIC("Poddasze"),
-    BASEMENT("Piwnica");
+    BASEMENT("Piwnica"),
+    BOILER_OR_UTILITY_ROOM("Kotłownia/Pomieszczenie gospodarcze");
+
 
     private String nameInPolish;
 

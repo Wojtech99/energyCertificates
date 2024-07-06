@@ -44,37 +44,24 @@
 
 
 <main  class="td_to_show">
-    <table class="table table-hover table-light">
-        <thead>
+    <table class="table table-hover table-light" th:object="${client}">
+        <tbody>
         <tr>
             <td><a>Nazwa klienta</a></td>
-            <td><a>Nazwa firmy</a></td>
-            <td><a>Nip firmy</a></td>
-            <td><a>Email</a></td>
-            <td><a>Telefon</a></td>
-            <td><a>Usuń</a></td>
-            <td><a>Pokaż wiadomość</a></td>
+            <td><a th:text="*{firstName}">Message Site</a></td>
         </tr>
-        </thead>
-        <tbody th:remove="all-but-first" th:each="client: ${clientList}">
-        <tr>
-            <td><a th:text="|${client.firstName} ${client.lastName}|"></a></td>
-            <td><a th:text="|${client.companyName}|"></a></td>
-            <td><a th:text="|${client.companyNumber}|"></a></td>
-            <td><a th:text="|${client.email}|"></a></td>
-            <td><a th:text="|${client.phoneNumber}|"></a></td>
-            <td><a href="#" th:href="@{|/client/delete/${client.email}|}">Usuń</a></td>
-            <td><a href="#" th:href="@{|/list-of-clients/show-message/${client.email}|}">Pokaż wiadomość</a></td>
-        </tr>
-        <tr>
-            <td><a href="#">Nazwa klienta</a></td>
-            <td><a href="#">Nazwa firmy</a></td>
-            <td><a href="#">Nip firmy</a></td>
-            <td><a href="#">Email</a></td>
-            <td><a href="#">Telefon</a></td>
-            <td><a href="#">Usuń</a></td>
-            <td><a href="#">Pokaż wiadomość</a></td>
 
+        <tr>
+            <td><a>Email</a></td>
+            <td><a th:text="*{email}">Message Site</a></td>
+        </tr>
+        <tr>
+            <td><a>Telefon</a></td>
+            <td><a th:text="*{phoneNumber}">Message Site</a></td>
+        </tr>
+        <tr>
+            <td><a>Treść wiadomości</a></td>
+            <td><a th:text="*{message}">Message Site</a></td>
         </tr>
         </tbody>
 

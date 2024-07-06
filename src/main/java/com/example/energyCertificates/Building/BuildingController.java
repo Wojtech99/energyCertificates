@@ -3,9 +3,6 @@ package com.example.energyCertificates.Building;
 import com.example.energyCertificates.Building.Enums.BuildingType;
 import com.example.energyCertificates.Building.Flat.service.FlatService;
 import com.example.energyCertificates.Building.House.Service.HouseService;
-import com.lowagie.text.Document;
-import com.lowagie.text.pdf.PdfWriter;
-import jakarta.servlet.http.HttpServletResponse;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.MediaType;
@@ -13,14 +10,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
-import javax.swing.text.html.parser.Parser;
 import java.io.IOException;
-import java.io.OutputStream;
 import java.sql.Date;
-import java.text.DateFormat;
-import java.text.SimpleDateFormat;
 import java.util.TreeSet;
 
 @Controller
@@ -68,22 +60,16 @@ public class BuildingController {
         return "redirect:/energy-performance-certificates-list";
     }
 
-    @GetMapping("/energy-performance-certificates-list/download")
-    String downloadEnergyCertificate(@ModelAttribute BuildingDto buildingDto) {
-        return "redirect:/energy-performance-certificates-list";
-    }
-
-    @GetMapping("/house/export-to-pdf/{city}/{street}/{houseNumber}/{flatNumber}/{postalCode}/{date}/{buildingType}")
-    public void exportHouseToPdf(
+    @GetMapping("/building/export-to-pdf/{city}/{street}/{houseNumber}/{flatNumber}/{postalCode}/{date}/{buildingType}")
+    ResponseEntity<ByteArrayResource> downloadAgreement(
             @PathVariable String buildingType,
             @PathVariable String city,
             @PathVariable Date date,
             @PathVariable int flatNumber,
             @PathVariable int houseNumber,
             @PathVariable String postalCode,
-            @PathVariable String street,
-            HttpServletResponse response
-    ) throws IOException {
+            @PathVariable String street
+    ) {
         BuildingDto buildingDto = new BuildingDto(
                 date,
                 city,
@@ -94,25 +80,25 @@ public class BuildingController {
                 BuildingType.valueOf(buildingType)
         );
 
-
-        response.setContentType("application/pdf");
-
-        String headerKey = "Content-Disposition";
-        String headerValue = "attachment; filename=" +
+        String title = buildingService.changePolishLetters(
                 buildingDto.getStreet() + "_" +
                 buildingDto.getHouseNumber()  + "_" +
-                buildingDto.getFlatNumber() +
-                ".pdf";
+                buildingDto.getFlatNumber());
 
-        response.setHeader(headerKey, headerValue);
-
+        byte[] zipBytes;
         if (buildingDto.getBuildingType().equals(BuildingType.HOUSE)) {
-            houseService.exportPdf(response, buildingDto);
+            zipBytes = houseService.getZipBytes(buildingDto, title);
         } else {
-            flatService.exportPdf(response, buildingDto);
+            zipBytes = flatService.getZipBytes(buildingDto, title);
         }
 
+        ByteArrayResource resource = new ByteArrayResource(zipBytes);
 
 
+        return ResponseEntity.ok()
+                .header(HttpHeaders.CONTENT_DISPOSITION, "attachment;filename=" + title + ".zip")
+                .contentType(MediaType.APPLICATION_OCTET_STREAM)
+                .contentLength(zipBytes.length)
+                .body(resource);
     }
 }

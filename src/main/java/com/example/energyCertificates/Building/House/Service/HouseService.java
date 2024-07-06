@@ -11,26 +11,28 @@ import com.example.energyCertificates.Building.House.Mappers.HouseMapper;
 import com.example.energyCertificates.Building.House.Repos.HouseRepository;
 import com.example.energyCertificates.Client.Dtoes.ClientDto;
 import com.example.energyCertificates.Client.ClientService;
-import com.example.energyCertificates.Data.Service.AttachmentService;
+
 import com.example.energyCertificates.Data.DataDto;
-import com.example.energyCertificates.Data.Service.DataService;
+import com.example.energyCertificates.Data.DataService;
 import com.lowagie.text.Document;
 import com.lowagie.text.Font;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfName;
 import com.lowagie.text.pdf.PdfWriter;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 @Service
 public class HouseService {
@@ -39,15 +41,15 @@ public class HouseService {
     private final HouseWallService houseWallService;
     private final UnheatedRoomService unheatedRoomService;
     private final DataService dataService;
-    private final AttachmentService attachmentService;
 
-    public HouseService(HouseRepository houseRepository, ClientService clientService, HouseWallService houseWallService, UnheatedRoomService unheatedRoomService, DataService dataService, AttachmentService attachmentService) {
+
+    public HouseService(HouseRepository houseRepository, ClientService clientService, HouseWallService houseWallService, UnheatedRoomService unheatedRoomService, DataService dataService) {
         this.houseRepository = houseRepository;
         this.clientService = clientService;
         this.houseWallService = houseWallService;
         this.unheatedRoomService = unheatedRoomService;
         this.dataService = dataService;
-        this.attachmentService = attachmentService;
+
     }
 
     @Transactional
@@ -91,10 +93,13 @@ public class HouseService {
         if (!attachments.isEmpty()) {
             attachments.forEach(attachment -> {
                 try {
-                    String attachmentNameToSaveInDatabase = attachmentService.saveDataInApp(attachment);
+                    DataDto dataDto = new DataDto(
+                            attachment.getOriginalFilename(),
+                            attachment.getContentType(),
+                            attachment.getBytes()
+                    );
 
-                    DataDto savedAttachment = dataService.save(new DataDto(attachmentNameToSaveInDatabase));
-
+                    DataDto savedAttachment = dataService.save(dataDto);
                     houseDto.getAttachmentDtoList().add(savedAttachment);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -129,15 +134,7 @@ public class HouseService {
 
         houseDto.getHauseWallDtoList().forEach(houseWallService::delete);
         houseDto.getUnheatedRoomDtoList().forEach(unheatedRoomService::delete);
-
-        houseDto.getAttachmentDtoList().forEach(attachment -> {
-            try {
-                attachmentService.deleteDataFromApp(attachment.getName());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            dataService.delete(attachment);
-        });
+        houseDto.getAttachmentDtoList().forEach(dataService::delete);
 
         House houseToDelete = HouseMapper.map(houseDto);
         houseRepository.deleteById(houseToDelete.getId());
@@ -157,12 +154,12 @@ public class HouseService {
         return filteredHouseDtoList;
     }
 
-    public void exportPdf(HttpServletResponse response, BuildingDto buildingDto) throws IOException {
+    private byte[] getPdfInBytes(BuildingDto buildingDto) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
         HouseDto houseDto = findHouseFromBuilding(buildingDto);
-
         Document document = new Document(PageSize.A4);
-        PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
-
+        PdfWriter writer = PdfWriter.getInstance(document, byteArrayOutputStream);
 
         document.open();
 
@@ -222,8 +219,8 @@ public class HouseService {
                         "Numer mieszkania: " + houseDto.getFlatNumber() + "\n" +
                         "Kod pocztowy: " + houseDto.getPostalCode() + "\n" +
                         "Miasto: " + houseDto.getCity() + "\n" +
-                        "Powierzchnia użytkowa: " + houseDto.getUsableArea() + "\n" +
-                        "Objetość domu: " + houseDto.getVolumeOfHouse() + "\n" +
+                        "Powierzchnia użytkowa: " + houseDto.getUsableArea() + "m2" + "\n" +
+                        "Kubatura domu: " + houseDto.getVolumeOfHouse() + "m3" + "\n" +
                         "Rok oddania budynku: " + houseDto.getYearOfCommissioningOfTheBuilding(),
                 normalTextFont
         );
@@ -305,9 +302,9 @@ public class HouseService {
         headingCeiling.setAlignment(Paragraph.ALIGN_JUSTIFIED);
 
         Paragraph normalCeiling = new Paragraph(
-                "Typ stropu nad mieszkaniem: " + houseDto.getCeilingOverTheFlatType().getNameInPolish() + "\n" +
-                        "Typ stropu pod mieszkaniem: " + houseDto.getCeilingBelowTheFlatType().getNameInPolish() + "\n" +
-                        "Numer pietra w budynku: " + houseDto.getFloorNumberInTheBuilding().getNameInPolish(),
+                "Typ dachu: " + houseDto.getCeilingOverTheFlatType().getNameInPolish() + "\n" +
+                        "Podłoga na parterze: " + houseDto.getCeilingBelowTheFlatType().getNameInPolish() + "\n" +
+                        "Ilość kondygnacji: " + houseDto.getFloorNumberInTheBuilding().getNameInPolish(),
                 normalTextFont
         );
         normalCeiling.setAlignment(Paragraph.ALIGN_JUSTIFIED);
@@ -345,14 +342,14 @@ public class HouseService {
                         "Lista ścian domu: \n" + getAllHouseWallsAsString(houseDto.getHauseWallDtoList()) + "\n" +
                         "Czy sa nieogrzewane pomieszczenia w domu: " + houseDto.isAreThereAnyUnheatedRoomsInHouse() + "\n" +
                         "Lista nieogrzewanych pomieszczeń: " + getAllUnheatedRoomsAsString(houseDto.getUnheatedRoomDtoList()) + "\n" +
-                        "Czy dom jest prawidłowo zbudowany: " + houseDto.isHouseBuildCorrectly() + "\n" +
-                        "Informacja o nieprawidłowej budowie domu: " + houseDto.getHouseNotBuildCorrectlyInformation() + "\n" +
+                        "Czy podczas budowy nastąpiły zmiany w projekcie: " + houseDto.isHouseBuildCorrectly() + "\n" +
+                        "Informacja o zmianach w projekcie: " + houseDto.getHouseNotBuildCorrectlyInformation() + "\n" +
                         "Czy dom ma klimatyzacje: " + houseDto.isHasHouseAirConditioning() + "\n" +
                         "Moc klimatyzacji w kW: " + houseDto.getAirConditioningPowerInKw() + "\n" +
                         "Czy jest zainstalowany rekuperator: " + houseDto.isHasInstalledRecuperator() + "\n" +
                         "Model rekuperatora: " + houseDto.getRecuperatorModel() + "\n" +
                         "Czy sa panele słoneczne: " + houseDto.isHasSolarPanels() + "\n" +
-                        "Moc i użycie paneli słonecznych: " + houseDto.getPowerAndUsageOfSolarPanels(),
+                        "Moc i cel paneli słonecznych: " + houseDto.getPowerAndUsageOfSolarPanels(),
                 normalTextFont
         );
         normalLayoutAndTypeOfExternalWalls.setAlignment(Paragraph.ALIGN_JUSTIFIED);
@@ -402,16 +399,30 @@ public class HouseService {
         document.add(normalAdditionalInformation);
 
         document.close();
+
+        return byteArrayOutputStream.toByteArray();
     }
 
     private String getAllHouseWallsAsString(List<HouseWallDto> houseWallDtoList) {
         StringBuffer allHousesWall = new StringBuffer();
 
-        for (HouseWallDto houseWall : houseWallDtoList) {
+        for (int i = 0; i < houseWallDtoList.size(); i++) {
+            HouseWallDto houseWall = houseWallDtoList.get(i);
+
+            if (i == 0) {
+                allHousesWall.append("-Strona Świata (drzwi wejściowe): ")
+                        .append(houseWall.getWorldPart().getNameInPolish())
+                        .append(", Łaczna długość ściany zewnetrznej w metrach: ")
+                        .append(houseWall.getTotalLengthOfExternalWallInM())
+                        .append("\n");
+
+                continue;
+            }
+
             allHousesWall.append("\t\t ")
                     .append("-Strona Świata: ")
                     .append(houseWall.getWorldPart().getNameInPolish())
-                    .append(", Łaczna długość ścian zewnetrznych na te strone w metrach: ")
+                    .append(", Łaczna długość ściany zewnetrznej w metrach: ")
                     .append(houseWall.getTotalLengthOfExternalWallInM())
                     .append("\n");
         }
@@ -423,14 +434,45 @@ public class HouseService {
         StringBuffer allUnheatedRooms = new StringBuffer();
 
         for (UnheatedRoomDto unheatedRoomDto : unheatedRoomDtoList) {
-            allUnheatedRooms.append("\t\t ")
+            allUnheatedRooms.append("\n")
+                    .append("\t\t ")
                     .append("Rodzaj pomieszczenia: ")
                     .append(unheatedRoomDto.getRoomType().getNameInPolish())
-                    .append(", Powierzchnia pomieszczenia w metrach do kwadratu: ")
+                    .append(", Powierzchnia pomieszczenia w m2: ")
                     .append(unheatedRoomDto.getAreaInSquareM())
                     .append("\n");
         }
 
         return allUnheatedRooms.toString();
+    }
+
+    public byte[] getZipBytes(BuildingDto buildingDto, String title) {
+        byte[] pdfBytes = getPdfInBytes(buildingDto);
+
+        List<byte[]> images = new ArrayList<>();
+        HouseDto houseDto = findHouseFromBuilding(buildingDto);
+        houseDto.getAttachmentDtoList().forEach(attachment -> images.add(attachment.getBytes()));
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        try (ZipOutputStream zipOutputStream = new ZipOutputStream(byteArrayOutputStream)) {
+            ZipEntry PdfZipEntry = new ZipEntry(title + ".pdf");
+            zipOutputStream.putNextEntry(PdfZipEntry);
+            zipOutputStream.write(pdfBytes);
+            zipOutputStream.closeEntry();
+
+            for (int i = 0; i < images.size(); i++) {
+                byte[] image = images.get(i);
+
+                ZipEntry zipEntryImage = new ZipEntry(title + "_" + (i + 1) + ".png");
+                zipOutputStream.putNextEntry(zipEntryImage);
+                zipOutputStream.write(image);
+                zipOutputStream.closeEntry();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error while creating ZIP file", e);
+        }
+
+        return byteArrayOutputStream.toByteArray();
     }
 }

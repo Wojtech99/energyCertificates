@@ -1,8 +1,7 @@
 package com.example.energyCertificates.Building.Flat.Enums;
 
-import com.example.energyCertificates.Building.Enums.FloorNumberInTheBuilding;
-
 public enum ExternalWallLayout {
+    NULL("Brak"),
     ONE_SIDED("Jednostronne"),
     TWO_SIDED("Dwustronne"),
     THREE_SIDED("Trzystronne"),

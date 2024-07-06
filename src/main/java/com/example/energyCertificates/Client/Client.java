@@ -15,6 +15,7 @@ public class Client {
     private String email;
     private int phoneNumber;
     private String pdfFile;
+    private String message;
     //--- --- --- --- --- ---
     private String companyName;
     private int CompanyNumber;
@@ -27,12 +28,13 @@ public class Client {
 
     public Client() {}
 
-    public Client(String firstName, String lastName, String email, int phoneNumber, String pdfFile, String companyName, int companyNumber, String companyAddress, boolean dataAreGenuineStatement, boolean clientConfirmsCompanyTerms, boolean orderIsPaid) {
+    public Client(String firstName, String lastName, String email, int phoneNumber, String pdfFile, String message, String companyName, int companyNumber, String companyAddress, boolean dataAreGenuineStatement, boolean clientConfirmsCompanyTerms, boolean orderIsPaid) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
         this.phoneNumber = phoneNumber;
         this.pdfFile = pdfFile;
+        this.message = message;
         this.companyName = companyName;
         CompanyNumber = companyNumber;
         this.companyAddress = companyAddress;
@@ -87,6 +89,14 @@ public class Client {
 
     public void setPdfFile(String pdfFile) {
         this.pdfFile = pdfFile;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public void setMessage(String message) {
+        this.message = message;
     }
 
     public String getCompanyName() {

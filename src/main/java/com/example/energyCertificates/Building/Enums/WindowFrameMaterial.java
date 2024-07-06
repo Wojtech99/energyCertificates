@@ -4,7 +4,7 @@ import com.example.energyCertificates.Building.House.Enums.EntranceDoorType;
 
 public enum WindowFrameMaterial {
     NULL("Brak"),
-    PVC("PVC"),
+    PVC("PCV"),
     WOODEN("Drewniane"),
     ALUMINUM("Aluminiowe");
 

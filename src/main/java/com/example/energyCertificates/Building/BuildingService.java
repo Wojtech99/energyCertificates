@@ -51,4 +51,35 @@ public class BuildingService {
             flatService.delete(buildingDto);
         }
     }
+
+    public String changePolishLetters(String title) {
+        char[] lettersAsChars = title.toLowerCase().toCharArray();
+        StringBuffer stringBuffer = new StringBuffer();
+
+        for (int i = 0; i < lettersAsChars.length; i++) {
+            if (lettersAsChars[i] == 'ś') {
+                stringBuffer.append('s');
+            } else if (lettersAsChars[i] == 'ć') {
+                stringBuffer.append('c');
+            } else if (lettersAsChars[i] == 'ź') {
+                stringBuffer.append('z');
+            } else if (lettersAsChars[i] == 'ż') {
+                stringBuffer.append('z');
+            } else if (lettersAsChars[i] == 'ń') {
+                stringBuffer.append('n');
+            } else if (lettersAsChars[i] == 'ó') {
+                stringBuffer.append('o');
+            } else if (lettersAsChars[i] == 'ł') {
+                stringBuffer.append('l');
+            } else if (lettersAsChars[i] == 'ą') {
+                stringBuffer.append('a');
+            } else if (lettersAsChars[i] == 'ę') {
+                stringBuffer.append('e');
+            } else {
+                stringBuffer.append(lettersAsChars[i]);
+            }
+        }
+
+        return stringBuffer.toString();
+    }
 }

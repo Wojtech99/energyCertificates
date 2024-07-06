@@ -35,8 +35,10 @@ public class Flat {
     private CeilingOverTheFlatType ceilingOverTheFlatType;
     //walls
     private ExternalMaterialWallsType externalMaterialWallsType;
+    private String anotherExternalMaterialWallsType;
     private int externalMaterialWallsThicknessInCentimeters;
     private ExternalIsolationWallsType externalIsolationWallsType;
+    private String anotherExternalIsolationWallsType;
     private int externalIsolationWallsThicknessInCm;
     private ExternalWallLayout externalWallLayout;
     //Windows
@@ -60,7 +62,7 @@ public class Flat {
 
     public Flat() {}
 
-    public Flat(String street, int houseNumber, int flatNumber, String postalCode, String city, double usableArea, double heightOfFlat, int yearOfCommissioningOfTheBuilding, FloorNumberInTheBuilding floorNumberInBuilding, boolean theBuildingIsAfterThermalModernization, int lastBuildingThermalModernizationYear, List<ThermalModernizationScopeClass> thermalModernizationScopeList, boolean flatIsAtGroundFloor, CeilingBelowTheFlatType ceilingBelowTheFlatType, boolean flatIsAtLastFloor, CeilingOverTheFlatType ceilingOverTheFlatType, ExternalMaterialWallsType externalMaterialWallsType, int externalMaterialWallsThicknessInCentimeters, ExternalIsolationWallsType externalIsolationWallsType, int externalIsolationWallsThicknessInCm, ExternalWallLayout externalWallLayout, WindowFrameMaterial windowFrameMaterial, NumberOfGlasses numberOfGlasses, HeatingType heatingType, RadiatorsType radiatorsType, HeatingOfWaterType heatingOfWaterType, VentilationType ventilationType, List<Data> attachments, String additionalInformation, Date sendFormDate, boolean certificationIsCompleted, Client client) {
+    public Flat(String street, int houseNumber, int flatNumber, String postalCode, String city, double usableArea, double heightOfFlat, int yearOfCommissioningOfTheBuilding, FloorNumberInTheBuilding floorNumberInBuilding, boolean theBuildingIsAfterThermalModernization, int lastBuildingThermalModernizationYear, List<ThermalModernizationScopeClass> thermalModernizationScopeList, boolean flatIsAtGroundFloor, CeilingBelowTheFlatType ceilingBelowTheFlatType, boolean flatIsAtLastFloor, CeilingOverTheFlatType ceilingOverTheFlatType, ExternalMaterialWallsType externalMaterialWallsType, String anotherExternalMaterialWallsType, int externalMaterialWallsThicknessInCentimeters, ExternalIsolationWallsType externalIsolationWallsType, String anotherExternalIsolationWallsType, int externalIsolationWallsThicknessInCm, ExternalWallLayout externalWallLayout, WindowFrameMaterial windowFrameMaterial, NumberOfGlasses numberOfGlasses, HeatingType heatingType, RadiatorsType radiatorsType, HeatingOfWaterType heatingOfWaterType, VentilationType ventilationType, List<Data> attachments, String additionalInformation, Date sendFormDate, boolean certificationIsCompleted, Client client) {
         this.street = street;
         this.houseNumber = houseNumber;
         this.flatNumber = flatNumber;
@@ -78,8 +80,10 @@ public class Flat {
         this.flatIsAtLastFloor = flatIsAtLastFloor;
         this.ceilingOverTheFlatType = ceilingOverTheFlatType;
         this.externalMaterialWallsType = externalMaterialWallsType;
+        this.anotherExternalMaterialWallsType = anotherExternalMaterialWallsType;
         this.externalMaterialWallsThicknessInCentimeters = externalMaterialWallsThicknessInCentimeters;
         this.externalIsolationWallsType = externalIsolationWallsType;
+        this.anotherExternalIsolationWallsType = anotherExternalIsolationWallsType;
         this.externalIsolationWallsThicknessInCm = externalIsolationWallsThicknessInCm;
         this.externalWallLayout = externalWallLayout;
         this.windowFrameMaterial = windowFrameMaterial;
@@ -357,5 +361,21 @@ public class Flat {
 
     public void setClient(Client client) {
         this.client = client;
+    }
+
+    public String getAnotherExternalMaterialWallsType() {
+        return anotherExternalMaterialWallsType;
+    }
+
+    public void setAnotherExternalMaterialWallsType(String anotherExternalMaterialWallsType) {
+        this.anotherExternalMaterialWallsType = anotherExternalMaterialWallsType;
+    }
+
+    public String getAnotherExternalIsolationWallsType() {
+        return anotherExternalIsolationWallsType;
+    }
+
+    public void setAnotherExternalIsolationWallsType(String anotherExternalIsolationWallsType) {
+        this.anotherExternalIsolationWallsType = anotherExternalIsolationWallsType;
     }
 }

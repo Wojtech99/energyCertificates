@@ -108,9 +108,11 @@ public class HouseController {
             @RequestParam("unheatedRoom_1_name") String ur1n,
             @RequestParam("unheatedRoom_2_name") String ur2n,
             @RequestParam("unheatedRoom_3_name") String ur3n,
+            @RequestParam("unheatedRoom_4_name") String ur4n,
             @RequestParam("unheatedRoom_1_m") Integer ur1m,
             @RequestParam("unheatedRoom_2_m") Integer ur2m,
             @RequestParam("unheatedRoom_3_m") Integer ur3m,
+            @RequestParam("unheatedRoom_4_m") Integer ur4m,
             @ModelAttribute("house") HouseDto houseDto,
             @RequestParam("attachments")List<MultipartFile> attachments) {
 
@@ -153,10 +155,12 @@ public class HouseController {
         UnheatedRoomDto unheatedRoomDto_1 = new UnheatedRoomDto(RoomType.mapToEnum(ur1n), ur1m);
         UnheatedRoomDto unheatedRoomDto_2 = new UnheatedRoomDto(RoomType.mapToEnum(ur2n), ur2m);
         UnheatedRoomDto unheatedRoomDto_3 = new UnheatedRoomDto(RoomType.mapToEnum(ur3n), ur3m);
+        UnheatedRoomDto unheatedRoomDto_4 = new UnheatedRoomDto(RoomType.mapToEnum(ur4n), ur4m);
 
         houseDto.getUnheatedRoomDtoList().add(unheatedRoomDto_1);
         houseDto.getUnheatedRoomDtoList().add(unheatedRoomDto_2);
         houseDto.getUnheatedRoomDtoList().add(unheatedRoomDto_3);
+        houseDto.getUnheatedRoomDtoList().add(unheatedRoomDto_4);
 
 
 

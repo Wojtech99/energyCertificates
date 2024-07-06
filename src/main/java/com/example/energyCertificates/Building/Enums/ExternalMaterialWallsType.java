@@ -7,7 +7,8 @@ public enum ExternalMaterialWallsType {
     REINFORCED_CONCRETE("Żelbet"),
     CINDER_BLOCK("Pustak żużlowy"),
     POROTHERM("Poroterm"),
-    AERATED__CONCRETE("Beton komórkowy");
+    AERATED_CONCRETE("Beton komórkowy"),
+    ANOTHER("Inne");
 
     private String nameInPolish;
 

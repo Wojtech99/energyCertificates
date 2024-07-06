@@ -2,7 +2,7 @@ package com.example.energyCertificates.Building.Enums;
 
 public enum RadiatorsType {
     NULL("Brak"),
-    PLATE("Płytowe"),
+    PLATE("Płytowe (np. typu Purmo)"),
     PARTIAL("Członowe (żeberkowe)"),
     CAST_IRON("Żeliwne"),
     FLOOR_HEATING("Ogrzewanie podłogowe"),

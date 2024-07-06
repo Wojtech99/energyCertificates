@@ -61,8 +61,10 @@ public class HouseDto implements Serializable {
     private WindowFrameMaterial windowFrameMaterial;
     private NumberOfGlasses numberOfGlasses;
     private ExternalMaterialWallsType externalMaterialWallsType;
+    private String anotherExternalMaterialWallsType;
     private int externalMaterialWallsThicknessInCentimeters;
     private ExternalIsolationWallsType externalIsolationWallsType;
+    private String anotherExternalIsolationWallsType;
     private int externalIsolationWallsThicknessInCentimeters;
     private List<HouseWallDto> hauseWallDtoList;
     private boolean areThereAnyUnheatedRoomsInHouse;

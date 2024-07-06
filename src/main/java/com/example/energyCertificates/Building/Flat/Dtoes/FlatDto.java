@@ -37,8 +37,10 @@ public class FlatDto implements Serializable {
     private boolean flatIsAtLastFloor;
     private CeilingOverTheFlatType ceilingOverTheFlatType;
     private ExternalMaterialWallsType externalMaterialWallsType;
+    private String anotherExternalMaterialWallsType;
     private int externalMaterialWallsThicknessInCentimeters;
     private ExternalIsolationWallsType externalIsolationWallsType;
+    private String anotherExternalIsolationWallsType;
     private int externalIsolationWallsThicknessInCm;
     private ExternalWallLayout externalWallLayout;
     private WindowFrameMaterial windowFrameMaterial;

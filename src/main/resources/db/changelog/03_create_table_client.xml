@@ -14,6 +14,7 @@
             <column name="email" type="VARCHAR(256)"/>
             <column name="phone_number" type="integer"/>
             <column name="pdf_file" type="VARCHAR(64)"/>
+            <column name="message" type="VARCHAR(2048)"/>
             <column name="company_name" type="VARCHAR(256)"/>
             <column name="company_number" type="integer"/>
             <column name="company_address" type="VARCHAR(256)"/>

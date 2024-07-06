@@ -40,8 +40,10 @@ public class FlatMapper {
                 flatDto.getCeilingOverTheFlatType(),
 
                 flatDto.getExternalMaterialWallsType(),
+                flatDto.getAnotherExternalMaterialWallsType(),
                 flatDto.getExternalMaterialWallsThicknessInCentimeters(),
                 flatDto.getExternalIsolationWallsType(),
+                flatDto.getAnotherExternalIsolationWallsType(),
                 flatDto.getExternalIsolationWallsThicknessInCm(),
                 flatDto.getExternalWallLayout(),
 
@@ -93,8 +95,10 @@ public class FlatMapper {
                 flat.getCeilingOverTheFlatType(),
 
                 flat.getExternalMaterialWallsType(),
+                flat.getAnotherExternalMaterialWallsType(),
                 flat.getExternalMaterialWallsThicknessInCentimeters(),
                 flat.getExternalIsolationWallsType(),
+                flat.getAnotherExternalIsolationWallsType(),
                 flat.getExternalIsolationWallsThicknessInCm(),
                 flat.getExternalWallLayout(),
 

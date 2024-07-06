@@ -1,6 +1,5 @@
 package com.example.energyCertificates.Web;
 
-import com.example.energyCertificates.Client.Dtoes.ClientDto;
 import com.example.energyCertificates.Client.Dtoes.PrimaryClientDto;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;

@@ -2,11 +2,13 @@ package com.example.energyCertificates.Client;
 
 import com.example.energyCertificates.Client.Dtoes.ClientDto;
 import com.example.energyCertificates.Client.Dtoes.PrimaryClientDto;
+import org.bouncycastle.math.raw.Mod;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 public class ClientController {
@@ -51,5 +53,31 @@ public class ClientController {
         model.addAttribute("client", new ClientDto());
 
         return "new-ready-form";
+    }
+
+    /**
+     * save client with message
+     * @param clientDto
+     * @return
+     */
+    @PostMapping("/send-email-form")
+    public String sendEmail(@ModelAttribute("primaryClient") PrimaryClientDto clientDto) {
+
+        clientService.saveClient(ClientMapper.map(clientDto));
+
+        return "redirect:/";
+    }
+
+    @GetMapping("/list-of-clients/show-message/{email}")
+    public String showMessage(@PathVariable String email, Model model) {
+        Optional<ClientDto> clientDto = clientService.findClientByEmail(email);
+
+        if (clientDto.isEmpty() || clientDto.get().getMessage() == null) {
+            return "redirect:/list-of-clients";
+        }
+
+        model.addAttribute("client", clientDto.get());
+
+        return "single-client";
     }
 }

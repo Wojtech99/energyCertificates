@@ -10,6 +10,7 @@
                 <constraints nullable="false" primaryKey="true"/>
             </column>
             <column name="name" type="varchar(64)" />
+            <column name="bytes" type="longblob"/>
         </createTable>
     </changeSet>
 </databaseChangeLog>

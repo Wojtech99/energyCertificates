@@ -13,7 +13,8 @@ public enum HeatingOfWaterType {
     TILE_STOVE("Piec kaflowy"),
     ELECTRIC_FLOW_HEATER("Elektryczny podgrzewacz przepływowy"),
     BOILER("Elektryczny podgrzewacz pojemnościowy (bojler)"),
-    SOLAR_HEATER("Podgrzewacz solarny");
+    SOLAR_HEATER("Podgrzewacz solarny"),
+    PHOTOVOLTAICS("Fotowoltaika");
 
     private String nameInPolish;
 

@@ -4,7 +4,8 @@ public enum ExternalIsolationWallsType {
     NULL("Brak"),
     WHITE_STYROFOAM("Styropian biały"),
     GRAPHITE_STYROFOAM("Styropian grafitowy"),
-    MINERAL_WOOL("Wełna mineralna");
+    MINERAL_WOOL("Wełna mineralna"),
+    ANOTHER("Inne");
 
     private String nameInPolish;
 

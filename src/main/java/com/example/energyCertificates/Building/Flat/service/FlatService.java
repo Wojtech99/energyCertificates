@@ -9,26 +9,27 @@ import com.example.energyCertificates.Building.Flat.Mappers.FlatMapper;
 import com.example.energyCertificates.Building.Flat.Repos.FlatRepository;
 import com.example.energyCertificates.Client.ClientService;
 import com.example.energyCertificates.Client.Dtoes.ClientDto;
-import com.example.energyCertificates.Data.Service.AttachmentService;
 import com.example.energyCertificates.Data.DataDto;
-import com.example.energyCertificates.Data.Service.DataService;
+import com.example.energyCertificates.Data.DataService;
 import com.lowagie.text.Document;
 import com.lowagie.text.Font;
 import com.lowagie.text.PageSize;
 import com.lowagie.text.Paragraph;
 import com.lowagie.text.pdf.PdfName;
 import com.lowagie.text.pdf.PdfWriter;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.transaction.Transactional;
 import org.springframework.stereotype.Service;
 import org.springframework.web.multipart.MultipartFile;
 
 import java.awt.*;
+import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.function.Predicate;
+import java.util.zip.ZipEntry;
+import java.util.zip.ZipOutputStream;
 
 @Service
 public class FlatService {
@@ -36,14 +37,12 @@ public class FlatService {
     private final ClientService clientService;
     private final ThermalModernizationScopeService thermalService;
     private final DataService dataService;
-    private final AttachmentService attachmentService;
 
-    public FlatService(FlatRepository flatRepository, ClientService clientService, ThermalModernizationScopeService thermalService, DataService dataService, AttachmentService attachmentService) {
+    public FlatService(FlatRepository flatRepository, ClientService clientService, ThermalModernizationScopeService thermalService, DataService dataService) {
         this.flatRepository = flatRepository;
         this.clientService = clientService;
         this.thermalService = thermalService;
         this.dataService = dataService;
-        this.attachmentService = attachmentService;
     }
 
     @Transactional
@@ -73,10 +72,13 @@ public class FlatService {
         if (!attachments.isEmpty()) {
             attachments.forEach(attachment -> {
                 try {
-                    String attachmentNameToSaveInDataBase = attachmentService.saveDataInApp(attachment);
+                    DataDto dataDto = new DataDto(
+                            attachment.getOriginalFilename(),
+                            attachment.getContentType(),
+                            attachment.getBytes()
+                    );
 
-                    DataDto savedAttachment = dataService.save(new DataDto(attachmentNameToSaveInDataBase));
-
+                    DataDto savedAttachment = dataService.save(dataDto);
                     flatDto.getAttachments().add(savedAttachment);
                 } catch (IOException e) {
                     throw new RuntimeException(e);
@@ -111,14 +113,7 @@ public class FlatService {
         List<DataDto> dataDtoList = flatDto.getAttachments();
 
         thermalDtoList.forEach(thermalService::delete);
-        dataDtoList.forEach(attachment -> {
-            try {
-                attachmentService.deleteDataFromApp(attachment.getName());
-            } catch (IOException e) {
-                throw new RuntimeException(e);
-            }
-            dataService.delete(attachment);
-        });
+        dataDtoList.forEach(dataService::delete);
 
         Flat flatToDelete = FlatMapper.map(flatDto);
         flatRepository.deleteById(flatToDelete.getId());
@@ -139,11 +134,12 @@ public class FlatService {
         return filteredFlatDtoList;
     }
 
-    public void exportPdf(HttpServletResponse response, BuildingDto buildingDto) throws IOException {
-        FlatDto flatDto = findFlatFromBuilding(buildingDto);
+    private byte[] getPdfInBytes(BuildingDto buildingDto) {
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
 
+        FlatDto flatDto = findFlatFromBuilding(buildingDto);
         Document document = new Document(PageSize.A4);
-        PdfWriter writer = PdfWriter.getInstance(document, response.getOutputStream());
+        PdfWriter writer = PdfWriter.getInstance(document, byteArrayOutputStream);
 
 
         document.open();
@@ -207,7 +203,7 @@ public class FlatService {
                         "Powierzchnia użytkowa: " + flatDto.getUsableArea() + "\n" +
                         "Wysokość mieszkania: " + flatDto.getHeightOfFlat() + "\n" +
                         "Rok oddania budynku: " + flatDto.getYearOfCommissioningOfTheBuilding() + "\n" +
-                        "Numer piętra w budynku: " + flatDto.getFloorNumberInBuilding().getNameInPolish() + "\n" +
+                        "Rodzaj Mieszkania: " + flatDto.getFloorNumberInBuilding().getNameInPolish() + "\n" +
                         "Czy budynek jest po termomodernizacji: " + flatDto.isTheBuildingIsAfterThermalModernization() + "\n" +
                         "Rok ostatniej termomodernizacji budynku: " + flatDto.getLastBuildingThermalModernizationYear() + "\n" +
                         "Zakres termomodernizacji: " + getAllThermalModernizationScopesAsString(flatDto.getThermalModernizationScopeList()) + "\n" +
@@ -304,6 +300,8 @@ public class FlatService {
         document.add(normalAdditionalInformation);
 
         document.close();
+
+        return byteArrayOutputStream.toByteArray();
     }
 
     private String getAllThermalModernizationScopesAsString(List<ThermalModernizationScopeClassDto> thermalScopeList) {
@@ -317,5 +315,35 @@ public class FlatService {
         }
 
         return allThermals.toString();
+    }
+
+    public byte[] getZipBytes(BuildingDto buildingDto, String title) {
+        byte[] pdfBytes = getPdfInBytes(buildingDto);
+
+        List<byte[]> images = new ArrayList<>();
+        FlatDto flatDto = findFlatFromBuilding(buildingDto);
+        flatDto.getAttachments().forEach(attachment -> images.add(attachment.getBytes()));
+
+        ByteArrayOutputStream byteArrayOutputStream = new ByteArrayOutputStream();
+
+        try (ZipOutputStream zipOutputStream = new ZipOutputStream(byteArrayOutputStream)) {
+            ZipEntry PdfZipEntry = new ZipEntry(title + ".pdf");
+            zipOutputStream.putNextEntry(PdfZipEntry);
+            zipOutputStream.write(pdfBytes);
+            zipOutputStream.closeEntry();
+
+            for (int i = 0; i < images.size(); i++) {
+                byte[] image = images.get(i);
+
+                ZipEntry zipEntryImage = new ZipEntry(title + "_" + (i + 1) + ".png");
+                zipOutputStream.putNextEntry(zipEntryImage);
+                zipOutputStream.write(image);
+                zipOutputStream.closeEntry();
+            }
+        } catch (IOException e) {
+            throw new RuntimeException("Error while creating ZIP file", e);
+        }
+
+        return byteArrayOutputStream.toByteArray();
     }
 }

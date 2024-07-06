@@ -76,8 +76,10 @@ public class HouseMapper {
                 houseDto.getNumberOfGlasses(),
 
                 houseDto.getExternalMaterialWallsType(),
+                houseDto.getAnotherExternalMaterialWallsType(),
                 houseDto.getExternalMaterialWallsThicknessInCentimeters(),
                 houseDto.getExternalIsolationWallsType(),
+                houseDto.getAnotherExternalIsolationWallsType(),
                 houseDto.getExternalIsolationWallsThicknessInCentimeters(),
                 houseWalls,
                 houseDto.isAreThereAnyUnheatedRoomsInHouse(),
@@ -163,8 +165,10 @@ public class HouseMapper {
                 house.getNumberOfGlasses(),
 
                 house.getExternalMaterialWallsType(),
+                house.getAnotherExternalMaterialWallsType(),
                 house.getExternalMaterialWallsThicknessInCentimeters(),
                 house.getExternalIsolationWallsType(),
+               house.getAnotherExternalIsolationWallsType(),
                 house.getExternalIsolationWallsThicknessInCentimeters(),
                houseWallDtoss,
                 house.isAreThereAnyUnheatedRoomsInHouse(),
