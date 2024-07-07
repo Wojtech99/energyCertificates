@@ -546,7 +546,7 @@
 					</div>
 				</div>
 			</div><div class="item features-without-image col-12 col-md-6 col-lg-6">
-				<div class="item-wrapper">
+			<div class="item-wrapper">
 					<div class="card-box align-left">
 						
 						<h5 class="card-title mbr-fonts-style display-5">
@@ -564,50 +564,22 @@
 <section data-bs-version="5.1" class="form5 cid-uePFO1gIyZ" id="contact">
     
     
-    <div class="container">
+    <div class="container justify-content-center">
         <div class="row justify-content-center">
             <div class="col-12 content-head">
                 <div class="mbr-section-head mb-5">
                     <h3 class="mbr-section-title mbr-fonts-style align-center mb-0 display-2">
                         <strong>Kontakt</strong></h3>
                     <h4 class="mbr-section-subtitle mbr-fonts-style align-center mb-0 mt-4 display-7">
-                        Wypełnij formularz lub zadzwoń&nbsp;<br>tel. 123 456 789</h4>
+						Wyślij wiadomość lub zadzwoń&nbsp;<br>tel. 608 664 830</h4>
                 </div>
             </div>
         </div>
-        <div class="row justify-content-center mt-4">
-                <form method="post" class="mbr-form form-with-styler" data-form-title="Form Name" th:action="@{|/send-email-form|}" th:object="${primaryClient}">
-                    <div class="row">
-                        <div hidden="hidden" data-form-alert="" class="alert alert-success col-12">Dziękujemy za przesłanie formularza</div>
-                        <div hidden="hidden" data-form-alert-danger="" class="alert alert-danger col-12">
-                            Oops...! some problem!
-                        </div>
-                    </div>
-                    <div class="dragArea row">
-						<div style="display: flex; gap: 3%; justify-content: center ">
-							<div class="form-floating mb-3" data-for="firstName">
-								<input th:field="*{firstName}" id="firstName" placeholder="Imię" style="text-align: -moz-left" class="form-control" />
-								<label style="left: 3%;" for="firstName">Imię</label>
-							</div>
-							<div class="form-floating mb-3" data-for="email">
-								<input th:field="*{email}" id="email" placeholder="E-mail" style="text-align: -moz-left" class="form-control">
-								<label style="left: 3%;" for="email">E-mail</label>
-							</div>
-						</div>
-						<div class="form-floating mb-3" data-for="phoneNumber">
-							<input th:field="*{phoneNumber}" id="phoneNumber" placeholder="Numer telefonu" type="number" style="text-align: -moz-left; font-size: 18px; height: 100px" class="form-control">
-							<label style="left: 3%;" for="phoneNumber">Numer telefonu</label>
-						</div>
-						<div class="form-floating mb-3" data-for="message">
-							<textarea th:field="*{message}" id="message" placeholder="Wiadomość" style="text-align: -moz-left; font-size: 18px; height: 100px" class="form-control"></textarea>
-							<label style="left: 3%;" for="message">Wiadomość</label>
-						</div>
-						<div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
-							<button type="submit" class="btn btn-primary display-7">Wyślij&nbsp;</button>
-						</div>
-                    </div>
-                </form>
-        </div>
+		<div class="justify-content-center">
+			<div class="card-box align-center">
+				<div class="mbr-section-btn mt-auto"><a class="btn btn-lg btn-primary display-7" href="new-message-form.html" th:href="@{|/message|}">Wyślij wiadomość</a></div>
+			</div>
+		</div>
     </div>
 </section>
 
@@ -644,6 +616,9 @@
 			<div class="col-12 mt-4">
 				<p class="mbr-text mb-0 mbr-fonts-style copyright align-center display-7">
 					© Copyright 2030 Mobirise - wszystkie prawa zastrzeżone
+				</p>
+				<p class="mbr-text mb-0 mbr-fonts-style copyright align-center display-7">
+					Designed by www.freepik.com
 				</p>
 			</div>
 		</div>

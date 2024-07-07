@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="pl" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="generator" content="Mobirise v5.9.6, mobirise.com">
+    <meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1">
+    <link rel="shortcut icon" href="../static/clientFront/images/screenshot-116.jpg" th:href="@{/clientFront/images/screenshot-116.jpg}" type="image/x-icon" />
+    <meta name="description" content="">
+
+
+    <title>Wiadomość</title>
+    <link rel="stylesheet" href="../static/clientFront/web/assets/mobirise-icons2/mobirise2.css" th:href="@{/clientFront/web/assets/mobirise-icons2/mobirise2.css}" />
+    <link rel="stylesheet" href="../static/clientFront/bootstrap/css/bootstrap.min.css" th:href="@{/clientFront/bootstrap/css/bootstrap.min.css}" />
+    <link rel="stylesheet" href="../static/clientFront/bootstrap/css/bootstrap-grid.min.css" th:href="@{/clientFront/bootstrap/css/bootstrap-grid.min.css}" />
+    <link rel="stylesheet" href="../static/clientFront/bootstrap/css/bootstrap-reboot.min.css" th:href="@{/clientFront/bootstrap/css/bootstrap-reboot.min.css}" />
+    <link rel="stylesheet" href="../static/clientFront/animatecss/animate.css" th:href="@{/clientFront/animatecss/animate.css}" />
+    <link rel="stylesheet" href="../static/clientFront/dropdown/css/style.css" th:href="@{/clientFront/dropdown/css/style.css}" />
+    <link rel="stylesheet" href="../static/clientFront/socicon/css/styles.css" th:href="@{/clientFront/socicon/css/styles.css}" />
+    <link rel="stylesheet" href="../static/clientFront/theme/css/style.css" th:href="@{/clientFront/theme/css/style.css}" />
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@400;700&display=swap&display=swap"></noscript>
+    <link rel="preload" href="https://fonts.googleapis.com/css?family=Manrope:200,300,400,500,600,700,800&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Manrope:200,300,400,500,600,700,800&display=swap"></noscript>
+    <link rel="preload" as="style" href="../static/clientFront/mobirise/css/mbr-additional.css" th:href="@{/clientFront/mobirise/css/mbr-additional.css}" />
+    <link rel="stylesheet" href="../static/clientFront/mobirise/css/mbr-additional.css" th:href="@{/clientFront/mobirise/css/mbr-additional.css}" type="text/css" />
+
+
+
+
+</head>
+<body>
+
+<section data-bs-version="5.1" class="menu menu1 cid-tJGsCG1vVL" once="menu" id="menu01-1">
+
+
+    <nav class="navbar navbar-dropdown navbar-fixed-top navbar-expand-lg">
+        <div class="container">
+            <div class="navbar-brand">
+				<span class="navbar-logo">
+					<a href="index.html" th:href="@{|/|}">
+						<img src="../static/clientFront/images/Logo_IMPACT_2.png" th:src="@{/clientFront/images/Logo_IMPACT_2.png}" alt="#" style="height: 4rem;">
+					</a>
+				</span>
+                <span class="navbar-caption-wrap"><a class="navbar-caption text-primary display-4" href="index.html" th:href="@{|/|}">Impact</a></span>
+            </div>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-bs-toggle="collapse" data-target="#navbarSupportedContent" data-bs-target="#navbarSupportedContent" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
+
+            </button>
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                <ul class="navbar-nav nav-dropdown" data-app-modern-menu="true"><li class="nav-item">
+                    <a class="nav-link link text-primary display-4" href="index.html#how_to_order" th:href="@{|/#how_to_order|}">JAK ZAMÓWIĆ</a>
+                </li>
+                    <li class="nav-item">
+                        <a class="nav-link link text-primary display-4" href="index.html#questions" th:href="@{|/#questions|}" aria-expanded="false">PYTANIA</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link link text-primary display-4" href="index.html#contact" th:href="@{|/#contact|}">KONTAKT</a>
+                    </li></ul>
+
+                <div class="navbar-buttons mbr-section-btn"><a class="btn btn-primary display-4" href="index.html#order_now" th:href="@{|/#order_now|}">Zamów Świadectwo</a></div>
+            </div>
+        </div>
+    </nav>
+</section>
+
+<section data-bs-version="5.1" class="form5 cid-uePFO1gIyZ" id="contact_2">
+    <div class="container" style="margin-top: 5%">
+    <div class="row justify-content-center mt-4" >
+        <form method="POST" class="mbr-form form-with-styler" th:action="@{/send-email-form}" th:object="${primaryClient}">
+            <div class="dragArea row">
+                <div style="display: flex; gap: 3%; justify-content: center ">
+                    <div class="form-floating mb-3" data-for="firstName">
+                        <input th:field="*{firstName}" id="firstName" placeholder="Imię" style="text-align: -moz-left" class="form-control" />
+                        <label style="left: 3%;" for="firstName">Imię</label>
+                    </div>
+                    <div class="form-floating mb-3" data-for="email">
+                        <input th:field="*{email}" id="email" placeholder="E-mail" style="text-align: -moz-left" class="form-control">
+                        <label style="left: 3%;" for="email">E-mail</label>
+                    </div>
+                </div>
+                <div class="form-floating mb-3" data-for="phoneNumber">
+                    <input th:field="*{phoneNumber}" id="phoneNumber" placeholder="Numer telefonu" type="number" style="text-align: -moz-left; font-size: 18px; height: 100px" class="form-control">
+                    <label style="left: 3%;" for="phoneNumber">Numer telefonu</label>
+                </div>
+                <div class="form-floating mb-3" data-for="message">
+                    <textarea th:field="*{message}" id="message" placeholder="Wiadomość" style="text-align: -moz-left; font-size: 18px; height: 100px" class="form-control"></textarea>
+                    <label style="left: 3%;" for="message">Wiadomość</label>
+                </div>
+                <div class="col-lg-12 col-md-12 col-sm-12 align-center mbr-section-btn">
+                    <button type="submit" class="btn btn-primary display-7">Wyślij&nbsp;</button>
+                </div>
+            </div>
+        </form>
+    </div>
+    </div>
+</section>
+
+<section data-bs-version="5.1" class="footer1 cid-uePV40xUOp" once="footers" id="footer01-a">
+
+    <div class="container">
+        <div class="row mbr-white">
+            <div class="col-12 col-md-6 col-lg-3">
+                <h5 class="mbr-section-subtitle mbr-fonts-style mb-2 display-5">
+                    <strong>Zamów Świadectwo</strong></h5>
+                <ul class="list mbr-fonts-style display-7">
+                    <li class="mbr-text item-wrap"><a href="new-flat-form.html" th:href="@{|/flat/new-flat-form|}">Mieszkanie</a></li>
+                    <li class="mbr-text item-wrap"><a href="new-house-form.html" th:href="@{|/house/new-house-form|}">Dom</a></li>
+                </ul>
+            </div>
+            <div class="col-12 col-md-6 col-lg-3">
+                <h5 class="mbr-section-subtitle mbr-fonts-style mb-2 display-5">
+                    <strong>Impact.pl</strong></h5>
+                <ul class="list mbr-fonts-style display-7">
+                    <li class="mbr-text item-wrap"><a href="privacy-policy.html" th:href="@{|/privacy-policy|}">Polityka prywatności</a></li>
+                    <li class="mbr-text item-wrap"><a href="regulations.html" th:href="@{|/regulations|}">Regulamin</a></li>
+                    <li class="mbr-text item-wrap"><a href="index.html#contact" th:href="@{|/#contact|}">Kontakt</a></li>
+                </ul>
+            </div>
+            <div class="col-12 mt-5 footer-col">
+                <div class="social-row mt-2 display-7">
+                    <div class="soc-item">
+                        <a href="#">
+                            <span class="mbr-iconfont socicon socicon-facebook"></span>
+                        </a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-12 mt-4">
+                <p class="mbr-text mb-0 mbr-fonts-style copyright align-center display-7">
+                    © Copyright 2030 Mobirise - wszystkie prawa zastrzeżone
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<script src="../static/clientFront/bootstrap/js/bootstrap.bundle.min.js" th:src="@{/clientFront/bootstrap/js/bootstrap.bundle.min.js}"></script>
+<script src="../static/clientFront/smoothscroll/smooth-scroll.js" th:src="@{/clientFront/smoothscroll/smooth-scroll.js}"></script>
+<script src="../static/clientFront/ytplayer/index.js" th:src="@{/clientFront/ytplayer/index.js}"></script>
+<script src="../static/clientFront/dropdown/js/navbar-dropdown.js" th:src="@{/clientFront/dropdown/js/navbar-dropdown.js}"></script>
+<script src="../static/clientFront/mbr-switch-arrow/mbr-switch-arrow.js" th:src="@{/clientFront/mbr-switch-arrow/mbr-switch-arrow.js}"></script>
+<script src="../static/clientFront/theme/js/script.js" th:src="@{/clientFront/theme/js/script.js}"></script>
+<script src="../static/clientFront/formoid/formoid.min.js" th:src="@{/clientFront/formoid/formoid.min.js}"></script>
+
+<input name="animation" type="hidden">
+</body>
+</html>

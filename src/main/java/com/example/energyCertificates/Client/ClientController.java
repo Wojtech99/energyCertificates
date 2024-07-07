@@ -55,6 +55,13 @@ public class ClientController {
         return "new-ready-form";
     }
 
+    @GetMapping("/message")
+    String showMessageForm(Model model) {
+        model.addAttribute("primaryClient", new PrimaryClientDto());
+
+        return "new-message-form";
+    }
+
     /**
      * save client with message
      * @param clientDto
