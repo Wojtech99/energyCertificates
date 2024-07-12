@@ -14,13 +14,23 @@ public class SecurityConfiguration {
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity httpSecurity) throws Exception {
         httpSecurity.authorizeHttpRequests(request -> request
-                .requestMatchers("/**").permitAll()
-                .requestMatchers("/static/userFront/**").permitAll()
-                .requestMatchers("/static/clientFront/**").permitAll()
-                .anyRequest().permitAll());
+                .requestMatchers("userFront/**", "clientFront/**").permitAll()
+                .requestMatchers("/", "/regulations", "/privacy-policy").permitAll()
+                .requestMatchers("/login", "/send-email-form", "/message", "/ready/ready-form",
+                        "/house/new-house-form", "/house/new-house-form/save",
+                        "/flat/new-flat-form", "/flat/new-flat-form/save").permitAll()
+
+                .requestMatchers("/delete-building/{city}/{street}/{houseNumber}/{flatNumber}/{postalCode}/{date}/{buildingType}," +
+                        "/energy-performance-certificates-list", "/list-of-clients",
+                        "/change-password", "/change-password/save").authenticated()
+
+                .anyRequest().authenticated()
+        );
+
 
         httpSecurity.formLogin(login -> login.loginPage("/login")
-                .permitAll());
+                .permitAll()
+        );
 
         httpSecurity.logout(logout -> logout
                 .logoutRequestMatcher(new AntPathRequestMatcher("/logout/**",

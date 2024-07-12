@@ -71,16 +71,16 @@
             <div class="dragArea row">
                 <div style="display: flex; gap: 3%; justify-content: center ">
                     <div class="form-floating mb-3" data-for="firstName">
-                        <input th:field="*{firstName}" id="firstName" placeholder="Imię" style="text-align: -moz-left" class="form-control" />
+                        <input th:field="*{firstName}" id="firstName" placeholder="Imię" style="text-align: -moz-left" class="form-control" required />
                         <label style="left: 3%;" for="firstName">Imię</label>
                     </div>
                     <div class="form-floating mb-3" data-for="email">
-                        <input th:field="*{email}" id="email" placeholder="E-mail" style="text-align: -moz-left" class="form-control">
+                        <input th:field="*{email}" id="email" placeholder="E-mail" style="text-align: -moz-left" class="form-control" required />
                         <label style="left: 3%;" for="email">E-mail</label>
                     </div>
                 </div>
                 <div class="form-floating mb-3" data-for="phoneNumber">
-                    <input th:field="*{phoneNumber}" id="phoneNumber" placeholder="Numer telefonu" type="number" style="text-align: -moz-left; font-size: 18px; height: 100px" class="form-control">
+                    <input th:field="*{phoneNumber}" id="phoneNumber" placeholder="Numer telefonu" type="number" style="text-align: -moz-left; font-size: 18px; height: 100px" class="form-control" pattern="[0-9]{9}" required />
                     <label style="left: 3%;" for="phoneNumber">Numer telefonu</label>
                 </div>
                 <div class="form-floating mb-3" data-for="message">

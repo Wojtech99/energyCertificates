@@ -21,14 +21,17 @@ public class BuildingDto implements Comparable<BuildingDto>{
 
 
 
-    @Override
+    @Override 
     public int compareTo(BuildingDto o) {
         int buildingSendForm = this.date.compareTo(o.date);
         int cityCompare = this.city.compareTo(o.city);
         int streetCompare = this.street.compareTo(o.street);
         int postalCodeCompare = this.postalCode.compareTo(o.postalCode);
+        int dateCompare = this.date.compareTo(o.date);
 
-        if (buildingSendForm != 0) {
+        if (dateCompare != 0) {
+            return -dateCompare;
+        } else if (buildingSendForm != 0) {
             return buildingSendForm;
         } else if ( cityCompare != 0) {
             return cityCompare;

@@ -50,6 +50,7 @@
             <td><a>Dane Mieszkania</a></td>
             <td><a>Data zamówienia</a></td>
             <td><a>Pobierz</a></td>
+            <td><a></a></td>
             <td><a>Usuń</a></td>
         </tr>
         </thead>
@@ -58,12 +59,14 @@
             <td><a th:text="|${building.street} ${building.houseNumber}/${building.flatNumber}, ${building.city} ${building.postalCode}|"></a></td>
             <td><a th:text="|${building.date}|"></a></td>
             <td><a href="#" th:href="@{|/building/export-to-pdf/${building.city}/${building.street}/${building.houseNumber}/${building.flatNumber}/${building.postalCode}/${building.date}/${building.buildingType}|}">Pobierz</a></td>
+            <td><a>|</a></td>
             <td><a href="#" th:href="@{|/delete-building/${building.city}/${building.street}/${building.houseNumber}/${building.flatNumber}/${building.postalCode}/${building.date}/${building.buildingType}|}">Usuń</a></td>
         </tr>
         <tr>
             <td><a>Dane Mieszkania</a></td>
             <td><a>Data zamówienia</a></td>
             <td><a href="#">Pobierz</a></td>
+            <td><a>|</a></td>
             <td><a href="#">Usuń</a></td>
 
         </tr>

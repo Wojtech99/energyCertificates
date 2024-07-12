@@ -82,20 +82,20 @@
 						<h4 class="houseFormSubtitle" style="margin-bottom: 10px">Dane Kontaktowe</h4>
 						<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
 							<div class="form-floating   mb-3" data-for="firstName">
-								<input th:field="*{clientDto.firstName}" id="firstName" placeholder="Imię" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<input th:field="*{clientDto.firstName}" id="firstName" placeholder="Imię" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" required >
 								<label style="left: 3%" for="firstName">Imię</label>
 							</div>
 							<div class="form-floating   mb-3" data-for="lastName">
-								<input th:field="*{clientDto.lastName}" id="lastName" placeholder="Nazwisko" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<input th:field="*{clientDto.lastName}" id="lastName" placeholder="Nazwisko" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" required >
 								<label style="left: 3%" for="lastName">Nazwisko</label>
 							</div>
 						</div>
 						<div class="form-floating   mb-3" data-for="email">
-							<input th:field="*{clientDto.email}" id="email" placeholder="Email" style="text-align: -moz-left; font-size: 18px" type="email"  class="form-control" >
+							<input th:field="*{clientDto.email}" id="email" placeholder="Email" style="text-align: -moz-left; font-size: 18px" type="email"  class="form-control" required >
 							<label style="left: 3%" for="email">Email</label>
 						</div>
 						<div class="form-floating   mb-3" data-for="phoneNumber">
-							<input th:field="*{clientDto.phoneNumber}" id="phoneNumber" placeholder="Numer telefonu" style="text-align: -moz-left; font-size: 18px; font-size: 18px" type="number" value=""  class="form-control" >
+							<input th:field="*{clientDto.phoneNumber}" id="phoneNumber" placeholder="Numer telefonu" style="text-align: -moz-left; font-size: 18px; font-size: 18px" type="number" value=""  class="form-control" required >
 							<label style="left: 3%" for="phoneNumber">Numer telefonu</label>
 						</div>
 
@@ -132,25 +132,25 @@
 						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Podstawowe dane mieszkania</h4>
 						<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
 							<div class="form-floating   mb-3" data-for="street">
-								<input th:field="*{street}" id="street" placeholder="Ulica" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<input th:field="*{street}" id="street" placeholder="Ulica" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" required >
 								<label style="left: 3%" for="street">Ulica</label>
 							</div>
 							<div class="form-floating   mb-3" data-for="houseNumber">
-								<input th:field="*{houseNumber}" id="houseNumber" placeholder="Nr domu" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<input th:field="*{houseNumber}" id="houseNumber" placeholder="Nr domu" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" required >
 								<label style="left: 3%" for="houseNumber">Nr domu</label>
 							</div>
 							<div class="form-floating   mb-3" data-for="flatNumber">
-								<input th:field="*{flatNumber}" id="flatNumber" placeholder="Nr mieszkania" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" >
+								<input th:field="*{flatNumber}" id="flatNumber" placeholder="Nr mieszkania" style="text-align: -moz-left; font-size: 18px" type="number"  class="form-control" required >
 								<label style="left: 3%" for="flatNumber">Nr mieszkania</label>
 							</div>
 						</div>
 						<div style="display: inline-flex; gap: 3%; justify-content: space-evenly;">
 							<div class="form-floating   mb-3" data-for="city">
-								<input th:field="*{city}" id="city" placeholder="Miasto" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<input th:field="*{city}" id="city" placeholder="Miasto" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" required >
 								<label style="left: 3%" for="city">Miasto</label>
 							</div>
 							<div class="form-floating   mb-3" data-for="postalCode">
-								<input th:field="*{postalCode}" id="postalCode" placeholder="Kod pocztowy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" >
+								<input th:field="*{postalCode}" id="postalCode" placeholder="Kod pocztowy" style="text-align: -moz-left; font-size: 18px" type="text"  class="form-control" required >
 								<label style="left: 3%" for="postalCode">Kod pocztowy</label>
 							</div>
 						</div>
@@ -368,14 +368,14 @@
 				<!-- Oświadczenia -->
 						<h4 class="houseFormSubtitle" style="margin-top: 5%; margin-bottom: 3%">Oświadczenia</h4>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="true" id="dataAreGenuineStatement" th:field="*{clientDto.dataAreGenuineStatement}">
+							<input class="form-check-input" type="checkbox" value="true" id="dataAreGenuineStatement" th:field="*{clientDto.dataAreGenuineStatement}" required >
 							<label style="font-size: medium" class="form-check-label" for="dataAreGenuineStatement">
 								Oświadczam, że podane dane są zgodne ze stanem faktycznym wszystkich parametrów budynku. W razie rozbieżności rzutu w stosunku do danych, jakie wyżej podałem, oświadczam, że prawidłowe są dane, a nie rzut. Wszelkie ew. adnotacje na rzucie proszę zignorować. Oświadczam, że posiadam prawo do dysponowania nieruchomością na cele sporządzenia Świadectwa.
 							</label>
 						</div>
 						<div style="margin: 0.5%"></div>
 						<div class="form-check">
-							<input class="form-check-input" type="checkbox" value="true" id="clientConfirmsCompanyTerms" th:field="*{clientDto.clientConfirmsCompanyTerms}">
+							<input class="form-check-input" type="checkbox" value="true" id="clientConfirmsCompanyTerms" th:field="*{clientDto.clientConfirmsCompanyTerms}" required >
 							<label style="font-size: medium" class="form-check-label" for="clientConfirmsCompanyTerms">
 								Oświadczam, że zapoznałem/am się z treścią regulaminu impact.pl i akceptuję jego treść.
 							</label>

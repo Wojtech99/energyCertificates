@@ -53,6 +53,7 @@
             <td><a>Email</a></td>
             <td><a>Telefon</a></td>
             <td><a>Usuń</a></td>
+            <td><a></a></td>
             <td><a>Pokaż wiadomość</a></td>
         </tr>
         </thead>
@@ -64,6 +65,7 @@
             <td><a th:text="|${client.email}|"></a></td>
             <td><a th:text="|${client.phoneNumber}|"></a></td>
             <td><a href="#" th:href="@{|/client/delete/${client.email}|}">Usuń</a></td>
+            <td><a>|</a></td>
             <td><a href="#" th:href="@{|/list-of-clients/show-message/${client.email}|}">Pokaż wiadomość</a></td>
         </tr>
         <tr>
@@ -73,6 +75,7 @@
             <td><a href="#">Email</a></td>
             <td><a href="#">Telefon</a></td>
             <td><a href="#">Usuń</a></td>
+            <td><a href="#">|</a></td>
             <td><a href="#">Pokaż wiadomość</a></td>
 
         </tr>
